@@ -8,7 +8,7 @@
   - @locales.each do |locale|
     %tr
       %td= locale.name
-      %td= link_to 'Show', locale
+      %td= link_to 'Show', locale_path(locale)
       %td= link_to 'Edit', edit_locale_path(locale)
       %td= link_to 'Destroy', locale, confirm: 'Are you sure?', method: :delete
 %br/

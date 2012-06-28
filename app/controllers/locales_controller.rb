@@ -45,7 +45,7 @@ class LocalesController < ApplicationController
 
     respond_to do |format|
       if @locale.save
-        format.html { redirect_to @locale, notice: 'Locale was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Locale was successfully created.' }
         format.json { render json: @locale, status: :created, location: @locale }
       else
         format.html { render action: "new" }

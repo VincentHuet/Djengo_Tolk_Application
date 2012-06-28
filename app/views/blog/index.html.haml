@@ -2,9 +2,19 @@
 
 %br/
 = link_to 'New Locale', new_locale_path
+%br
+= link_to 'Locales list', locales_path
 %br/
 = link_to 'New translation', new_locale_path
 %br/
+%br
+%br
+- list = read_dir
+= raw(list)
+%br
+%br
+%br
+%br
 = link_to 'New phrase', new_locale_path
 %br/
 %p
