@@ -1,0 +1,9 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  blog:
+    index:
+      bonjour: Hello
+      welcome_paragraphe: Here you are on Djengo's Blog 
+      welcome_paragraphe_2: You should find your articles and relative comments.

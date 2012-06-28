@@ -1,0 +1,34 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  articles:
+    index:
+      show: "View details »"
+      subject: "Subject"
+      cattegory: "Catragory"
+      posted: "Posted on"
+      new_article: "Post a new article"
+      article_list: "Article List"
+      published_article_quantity:
+        zero: "There is no published article in the database"
+        one: "There is one published article in the database"
+        other: "There is %{count} published articles in the database"
+      article_quantity:
+        zero: "There is no article in the database"
+        one: "There is one article in the database"
+        other: "There is %{count} articles in the database"
+    show:
+      comment: "Commenter"
+      subject: "Subject"
+      from: "From"
+      category: "Category"
+      content: "Content"
+      comments: "Comments"
+      back: "Back"
+      comment_quantity:
+        zero: "There is no relative comment in the database"
+        one: "There is one relative comment in the database. It is the one which follows :"
+        other: "There is %{count} relative comments in the database. They are the following"
+    new:
+      new_article: "Post a new article"

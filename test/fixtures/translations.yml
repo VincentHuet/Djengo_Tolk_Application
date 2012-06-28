@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  Primary_updated: false
+  text: MyString
+  previous_text: MyString
+  phrase_id: 1
+  phrase: MyString
+  locale_id: 1
+  locale: MyString
+
+two:
+  Primary_updated: false
+  text: MyString
+  previous_text: MyString
+  phrase_id: 1
+  phrase: MyString
+  locale_id: 1
+  locale: MyString

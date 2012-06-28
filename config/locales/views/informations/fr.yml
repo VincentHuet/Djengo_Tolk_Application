@@ -1,0 +1,8 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+fr:
+  aboutus:
+    show: voir plus de détails >
+    more_about_us: En apprendre plus sur nous »
+    about_us_html: "Djengo, c’est l’histoire de 4 jeunes diplômés entrepreneurs qui pensent encore pouvoir changer le monde. Rêve ou réalité ?<br/><br/>Il s’agit d’une start-up web innovante favorisant le covoiturage pour les petites et moyennes distances. Grâce à djengo, vous pouvez désormais réserver votre trajet en quelques secondes.<br/><br/> Avant d’aller plus loin, il est amusant de s’interroger sur la signification de “djengo”. Est-ce par assimilation au prénom de Django Reinhardt, virtuose et tsigane, et aux gens du voyage ? Ce nom nous est venu à l’esprit sans idée préconçue et nous ne pouvons plus nous en passer. D’ailleurs, si vous avez l’idée d’une explication rationnelle au nom qui pourrait justifier ce choix, communiquez là vous pourriez gagner le badge “créatif”<br/><br/> Revenons à notre histoire. Il y a quelques mois, comme à son habitude, Guillaume faisait de l’autostop le long de la route. Par malchance ce jour-là, personne ne s’arrêta pour le charger, et cela malgré un nombre inimaginable de voitures, vides de passager.<br/><br/> Quelque chose devait changer."

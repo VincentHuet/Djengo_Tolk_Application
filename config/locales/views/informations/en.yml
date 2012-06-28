@@ -1,0 +1,8 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  aboutus:
+    show: more details >
+    more_about_us: More information about us »
+    about_us_html: Djengo is the story of 4 young university graduates super entrepreneurs who still think they can change the world. Great for them.<br /><br /> Briefly, djengo is a web start-up which facilitates travel on a short and medium distance basis in a car with somebody else (carpooling). With djengo you can book a driver or a passenger in a click. True story. <br /><br /> Before going any further, let us inform you that we still have NO IDEA what the meaning of « djengo » is or where this name came from! It just came about one day and now we sticked to it. Sort of addictive. By the way, if you have any good idea for us, keep us posted and you may win the «creative » badge.<br /><br /> How did these 4 guys (not eaving out the girl) meet??<br /><br /> One day Guillaume was hitchhiking and no one in all the empty cars which passed, stopped for him. He thought something had to change. He spoke of his vision to Anissia (the girl) who thought there might be something in this (Guillaume comes up with 10 ideas a week). Together they formed their first dream team with 3 IT guys. Hello djengo or rather shall I say at this stage “an embryo” of djengo!

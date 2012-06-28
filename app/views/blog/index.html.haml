@@ -1,0 +1,25 @@
+%h1 Accueil du site de traduction
+
+%br/
+= link_to 'New Locale', new_locale_path
+%br/
+= link_to 'New translation', new_locale_path
+%br/
+= link_to 'New phrase', new_locale_path
+%br/
+%p
+  / = @information["en"]["articles"].inspect
+  - indent = "----"
+  - @information["en"].each_key do |key|
+    - if @information["en"][key].class == Hash
+      
+      = indent + " | " + key
+      %br
+      - paragraph = parse_yaml(@information["en"][key], indent)
+      = raw(paragraph)
+    
+    - else
+      = indent + @information["en"][key]
+      = " est de type = > " + @information["en"][key].class
+      %br
+    
