@@ -1,5 +1,7 @@
 DjengoTolkApplication::Application.routes.draw do
   
+  resources :yml_sources
+
   # scope '(:locale)' do
 
     resources :translations

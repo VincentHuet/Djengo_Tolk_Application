@@ -15,8 +15,8 @@ module BlogHelper
         return_phrase << indent + "| " + key2 << '<br />'
         return_phrase << parse_yaml(h[key2], indent)
       else
-        return_phrase <<  indent << "[" + key2 + "] "        
-        return_phrase << h[key2]
+        return_phrase << indent << "[" + key2 + "] "        
+        return_phrase << h[key2].to_s
         # return_phrase <<" est de type = > " +  h[key2].class.to_s
         return_phrase << '<br />'
       end
@@ -44,7 +44,7 @@ module BlogHelper
 
           puts YAML::load(File.open(yml_file_path)).inspect
 
-          @yml_list.merge!(YAML::load(File.open(yml_file_path)))
+          @yml_list[key] = YAML::load(File.open(yml_file_path))
 
 
           puts @yml_list.inspect

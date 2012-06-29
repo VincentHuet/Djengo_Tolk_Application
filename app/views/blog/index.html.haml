@@ -20,16 +20,27 @@
 %p
   / = @information["en"]["articles"].inspect
   - indent = "----"
-  - @information["en"].each_key do |key|
-    - if @information["en"][key].class == Hash
+  / - @yml_list.each_key do |yml_name|
+  /   = "=>" + yml_name + "<="
+  /   = @yml_list[yml_name].class
+  /   - @yml_list[yml_name].each_key do |key|
+  /     = @yml_list[yml_name][key].class
+  %hr
+  - @yml_list["config/locales/views/articles/fr.yml"].each_key do |key|
+    - if @yml_list["config/locales/views/articles/fr.yml"][key].class == Hash
       
       = indent + " | " + key
       %br
-      - paragraph = parse_yaml(@information["en"][key], indent)
+      
+      - paragraph = parse_yaml(@yml_list["config/locales/views/articles/fr.yml"][key], indent)
       = raw(paragraph)
     
     - else
-      = indent + @information["en"][key]
-      = " est de type = > " + @information["en"][key].class
+      = indent + @yml_list["config/locales/views/articles/fr.yml"][key]
+      = " est de type = > " + @yml_list["config/locales/views/articles/fr.yml"][key].class
       %br
-    
+%hr
+%br
+%hr
+%br
+= @yml_list

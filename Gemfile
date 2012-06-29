@@ -36,6 +36,9 @@ gem 'haml'
 gem 'ya2yaml'
 gem 'therubyracer', :require => 'v8'
 
+gem 'carrierwave'
+gem "carrierwave"
+
 gem 'i18n'
 
 # To use ActiveModel has_secure_password
