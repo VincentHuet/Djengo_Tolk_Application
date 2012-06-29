@@ -6,12 +6,12 @@
 #  key        :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  yaml_path  :string(255)
 #
 
 class Phrase < ActiveRecord::Base
   attr_accessible :key
-
-  validates :key, :uniqueness => :true
+  attr_accessible :yaml_path
 
   has_many :translations
   belongs_to :locale

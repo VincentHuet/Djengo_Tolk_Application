@@ -18,7 +18,7 @@
   / = @information["en"]["articles"].inspect
   - indent = "--"
   - @yml_list.each_key do |yml_name|
-    - paragraph = parse_yaml(@yml_list, indent)
+    - paragraph = parse_yaml(@yml_list, indent, indent)
     = raw(paragraph)
     / %hr
     / = "==> " + yml_name
