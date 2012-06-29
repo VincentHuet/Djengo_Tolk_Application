@@ -2,7 +2,7 @@ require 'yaml'
 
 module YmlSourcesHelper
 
-  def parse_yaml(h, indent)
+  def parse_yaml(h, hash_path, indent)
 
     return_phrase = ""
 
@@ -11,9 +11,13 @@ module YmlSourcesHelper
     h.each_key do |key2|
       if h[key2].class == Hash
         # return_phrase << '<br />'
-        return_phrase << indent + "<br />"
+        hash_path << "/" + key2.to_s
+        return_phrase << indent + "| <br />"
         return_phrase << indent + "| " + key2 << '<br />'
-        return_phrase << parse_yaml(h[key2], indent)
+
+        hash_path << "/" + key2.to_s
+
+        return_phrase << parse_yaml(h[key2], hash_path, indent)
       else
         return_phrase << indent << "[" + key2.to_s + "] "        
         return_phrase << h[key2].to_s
