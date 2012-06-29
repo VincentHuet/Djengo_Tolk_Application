@@ -1,0 +1,25 @@
+<h1>Listing yml_sources</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Path</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @yml_sources.each do |yml_source| %>
+  <tr>
+    <td><%= yml_source.name %></td>
+    <td><%= yml_source.path %></td>
+    <td><%= link_to 'Show', yml_source %></td>
+    <td><%= link_to 'Edit', edit_yml_source_path(yml_source) %></td>
+    <td><%= link_to 'Destroy', yml_source, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Yml source', new_yml_source_path %>

@@ -1,0 +1,15 @@
+%p#notice= notice
+%p
+  %b Name:
+  = @yml_source.name
+%p
+  %b Path:
+  = @yml_source.path
+- indent = "--"
+- load_yaml(@yml_source.path)
+- @reletive_file = parse_yaml(@Yml_to_hash, indent)
+= raw(@reletive_file)
+%br/
+= link_to 'Edit', edit_yml_source_path(@yml_source)
+|
+\#{link_to 'Back', yml_sources_path}

@@ -18,7 +18,7 @@ class YmlSourcesControllerTest < ActionController::TestCase
 
   test "should create yml_source" do
     assert_difference('YmlSource.count') do
-      post :create, yml_source: {  }
+      post :create, yml_source: { name: @yml_source.name, path: @yml_source.path }
     end
 
     assert_redirected_to yml_source_path(assigns(:yml_source))
@@ -35,7 +35,7 @@ class YmlSourcesControllerTest < ActionController::TestCase
   end
 
   test "should update yml_source" do
-    put :update, id: @yml_source, yml_source: {  }
+    put :update, id: @yml_source, yml_source: { name: @yml_source.name, path: @yml_source.path }
     assert_redirected_to yml_source_path(assigns(:yml_source))
   end
 
