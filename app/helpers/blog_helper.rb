@@ -6,7 +6,7 @@ module BlogHelper
 
     return_phrase = ""
 
-    indent = indent + "--------"
+    indent = indent + "--"
 
     h.each_key do |key2|
       if h[key2].class == Hash
@@ -15,7 +15,7 @@ module BlogHelper
         return_phrase << indent + "| " + key2 << '<br />'
         return_phrase << parse_yaml(h[key2], indent)
       else
-        return_phrase << indent << "[" + key2 + "] "        
+        return_phrase << indent << "[" + key2.to_s + "] "        
         return_phrase << h[key2].to_s
         # return_phrase <<" est de type = > " +  h[key2].class.to_s
         return_phrase << '<br />'

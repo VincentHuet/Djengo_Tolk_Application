@@ -10,35 +10,32 @@
 %br
 %br
 - list = read_dir
-= raw(list)
-%br
-%br
-%br
+/= raw(list)
 %br
 = link_to 'New phrase', new_locale_path
 %br/
 %p
   / = @information["en"]["articles"].inspect
-  - indent = "----"
-  / - @yml_list.each_key do |yml_name|
-  /   = "=>" + yml_name + "<="
-  /   = @yml_list[yml_name].class
-  /   - @yml_list[yml_name].each_key do |key|
-  /     = @yml_list[yml_name][key].class
-  %hr
-  - @yml_list["config/locales/views/articles/fr.yml"].each_key do |key|
-    - if @yml_list["config/locales/views/articles/fr.yml"][key].class == Hash
+  - indent = "--"
+  - @yml_list.each_key do |yml_name|
+    - paragraph = parse_yaml(@yml_list, indent)
+    = raw(paragraph)
+    / %hr
+    / = "==> " + yml_name
+    / %br
+    / - @yml_list[yml_name].each_key do |key|
+    /   - if @yml_list[yml_name][key].class == Hash
+        
+    /     = indent + " | " + key
+    /     %br
+        
+    /     - paragraph = parse_yaml(@yml_list[yml_name][key], indent)
+    /     = raw(paragraph)
       
-      = indent + " | " + key
-      %br
-      
-      - paragraph = parse_yaml(@yml_list["config/locales/views/articles/fr.yml"][key], indent)
-      = raw(paragraph)
-    
-    - else
-      = indent + @yml_list["config/locales/views/articles/fr.yml"][key]
-      = " est de type = > " + @yml_list["config/locales/views/articles/fr.yml"][key].class
-      %br
+    /   - else
+    /     = indent + @yml_list[yml_name][key].to_s
+    /     = " est de type = > " + @yml_list[yml_name][key].class.to_s
+    /     %br
 %hr
 %br
 %hr
