@@ -1,7 +1,23 @@
 DjengoTolkApplication::Application.routes.draw do
   
 
-  resources :yml_sources
+  resources :yml_sources do
+    collection do
+      get 'load_to_db'
+      get '/load_to_db/:id' => 'yml_sources#load_to_db'
+    end
+  end
+
+  resources :locales do
+    resources :translations
+  end
+
+  resources :phrases do
+    resources :translations
+  end  
+
+  # resources :phrases
+  #   resources :translations
 
   # scope '(:locale)' do
 
@@ -10,7 +26,7 @@ DjengoTolkApplication::Application.routes.draw do
     resources :phrases
 
     resources :locales
-    
+
     root :to => 'blog#index'
   # end 
 

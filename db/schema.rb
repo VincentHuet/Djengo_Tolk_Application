@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120629123024) do
+ActiveRecord::Schema.define(:version => 20120701190223) do
 
   create_table "datafiles", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20120629123024) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "yaml_path"
+    t.string   "en_value"
   end
 
   create_table "translations", :force => true do |t|

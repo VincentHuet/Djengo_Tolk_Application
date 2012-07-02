@@ -7,33 +7,29 @@
       %ul
         - @translation.errors.full_messages.each do |msg|
           %li= msg
+
+
+  = @corresponding_phrase.key
   .field
     = f.label :Primary_updated
-    %br/
     = f.check_box :Primary_updated
   .field
     = f.label :text
-    %br/
     = f.text_field :text
   .field
-    = f.label :previous_text
-    %br/
+    = f.label :previous_text 
     = f.text_field :previous_text
   .field
-    = f.label :phrase_id
-    %br/
+    = f.label t('.phrase_id')
     = f.number_field :phrase_id
   .field
     = f.label :phrase
-    %br/
     = f.text_field :phrase
   .field
     = f.label :locale_id
-    %br/
     = f.number_field :locale_id
   .field
     = f.label :locale
-    %br/
     = f.text_field :locale
   .actions
     = f.submit

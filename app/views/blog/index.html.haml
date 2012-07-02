@@ -1,43 +1,48 @@
-%h1 Accueil du site de traduction
 
-%br/
-= link_to 'New Locale', new_locale_path
-%br
-= link_to 'Locales list', locales_path
-%br/
-= link_to 'New translation', new_locale_path
-%br/
-%br
-%br
-- list = read_dir
-/= raw(list)
-%br
-= link_to 'New phrase', new_locale_path
-%br/
-%p
-  / = @information["en"]["articles"].inspect
-  - indent = "--"
-  - @yml_list.each_key do |yml_name|
-    - paragraph = parse_yaml(@yml_list, indent, indent)
-    = raw(paragraph)
-    / %hr
-    / = "==> " + yml_name
-    / %br
-    / - @yml_list[yml_name].each_key do |key|
-    /   - if @yml_list[yml_name][key].class == Hash
-        
-    /     = indent + " | " + key
-    /     %br
-        
-    /     - paragraph = parse_yaml(@yml_list[yml_name][key], indent)
-    /     = raw(paragraph)
-      
-    /   - else
-    /     = indent + @yml_list[yml_name][key].to_s
-    /     = " est de type = > " + @yml_list[yml_name][key].class.to_s
-    /     %br
-%hr
-%br
-%hr
-%br
-= @yml_list
+= link_to image_tag("logo-djengo.jpg"), root_path, :class => 'blog-image'
+%h2 Accueil du site de traduction
+%table
+  %tr
+    %td
+      = link_to 'New Locale', new_locale_path
+    %td
+      = link_to 'Locales list', locales_path
+    %td
+      = link_to 'New translation', new_locale_path
+    %td
+      = link_to 'phrase list', phrases_path
+    %td
+      = link_to 'New phrase', new_locale_path
+    %td
+      = link_to 'Fichier Yml source', yml_sources_path
+
+/ %p
+/   / = @information["en"]["articles"].inspect
+/ - @full_phrase = Phrase.all
+/ %h1 Listing complet de la table phrase
+/ %table
+/   %tr
+/     %th Name
+/     %th Path
+/     %th
+/     %th
+/     %th
+/   - @full_phrase.each do |phrase|
+/     %tr
+/       %td= phrase.yaml_path
+/       %td= "=>> " + phrase.key
+
+/ = "==> " + yml_name
+/ %br
+/ - @yml_list[yml_name].each_key do |key|
+/   - if @yml_list[yml_name][key].class == Hash
+    
+/     = indent + " | " + key
+    
+/     - paragraph = parse_yaml(@yml_list[yml_name][key], indent)
+/     = raw(paragraph)
+  
+/   - else
+/     = indent + @yml_list[yml_name][key].to_s
+/     = " est de type = > " + @yml_list[yml_name][key].class.to_s
+

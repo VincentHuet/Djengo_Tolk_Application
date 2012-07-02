@@ -25,6 +25,8 @@ class TranslationsController < ApplicationController
   # GET /translations/new
   # GET /translations/new.json
   def new
+    @corresponding_phrase = Phrase.find(params[:phrase_id])
+
     @translation = Translation.new
 
     respond_to do |format|
