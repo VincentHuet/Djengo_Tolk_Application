@@ -34,12 +34,11 @@ class TranslationsController < ApplicationController
 
     @translation = Translation.new
     
-    @translation.phrase = @corresponding_phrase
+    @translation.phrase_id = @corresponding_phrase.id
 
-    @translation.previous_text = @current_translator.name
+    @translation.author = current_translator.name
 
-    @translation.locale_id = @current_translator.locale_id
-
+    @translation.locale_id = current_translator.locale_id
 
 
     respond_to do |format|
@@ -56,7 +55,16 @@ class TranslationsController < ApplicationController
   # POST /translations
   # POST /translations.json
   def create
+    @corresponding_phrase = Phrase.find(params[:phrase_id])
+
     @translation = Translation.new(params[:translation])
+
+    @translation.phrase_id = @corresponding_phrase.id
+
+    @translation.author = current_translator.name
+
+    @translation.locale_id = current_translator.locale_id
+
 
     respond_to do |format|
       if @translation.save

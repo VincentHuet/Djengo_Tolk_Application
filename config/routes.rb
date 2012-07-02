@@ -12,6 +12,12 @@ DjengoTolkApplication::Application.routes.draw do
     end
   end
 
+  resources :translations do 
+    collection do
+      get '/index_by_locale/:id' => 'translations#index_by_locale'
+    end
+  end
+
   resources :locales do
     resources :translations
   end

@@ -1,4 +1,4 @@
-= form_for(@translation) do |f|
+= form_for [@corresponding_phrase, @translation] do |f|
   - if @translation.errors.any?
     #error_explanation
       %h2
@@ -8,13 +8,9 @@
         - @translation.errors.full_messages.each do |msg|
           %li= msg
 
-  = @current_translator.locale_id
-  = @corresponding_phrase.key
+  %br
   .field
-    = f.label :Primary_updated
-    = f.check_box :Primary_updated
-  .field
-    = "traduction pour : " + @translation.phrase.key
+    = "traduction pour : " + @translation.phrase.en_value
     = f.text_field :text
   .actions
     = f.submit
