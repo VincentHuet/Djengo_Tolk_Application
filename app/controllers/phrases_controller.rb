@@ -2,6 +2,9 @@
 class PhrasesController < ApplicationController
   # GET /phrases
   # GET /phrases.json
+
+  before_filter :authenticate_translator!
+
   def index
     @phrases = Phrase.all
 

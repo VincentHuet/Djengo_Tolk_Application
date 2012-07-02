@@ -1,6 +1,10 @@
 DjengoTolkApplication::Application.routes.draw do
   
 
+  devise_for :translators
+
+  resources :translators
+
   resources :yml_sources do
     collection do
       get 'load_to_db'
@@ -11,6 +15,12 @@ DjengoTolkApplication::Application.routes.draw do
   resources :locales do
     resources :translations
   end
+
+
+ resources :locales do
+    resources :translators
+  end
+
 
   resources :phrases do
     resources :translations

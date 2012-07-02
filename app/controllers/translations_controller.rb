@@ -2,6 +2,9 @@
 class TranslationsController < ApplicationController
   # GET /translations
   # GET /translations.json
+
+  before_filter :authenticate_translator!
+
   def index
     @translations = Translation.all
 
@@ -27,7 +30,17 @@ class TranslationsController < ApplicationController
   def new
     @corresponding_phrase = Phrase.find(params[:phrase_id])
 
+
+
     @translation = Translation.new
+    
+    @translation.phrase = @corresponding_phrase
+
+    @translation.previous_text = @current_translator.name
+
+    @translation.locale_id = @current_translator.locale_id
+
+
 
     respond_to do |format|
       format.html # new.html.erb

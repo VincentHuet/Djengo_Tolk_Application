@@ -12,14 +12,9 @@
   %b Phrase:
   = @translation.phrase_id
 %p
-  %b Phrase:
-  = @translation.phrase
-%p
   %b Locale:
   = @translation.locale_id
-%p
-  %b Locale:
-  = @translation.locale
+  
 = link_to 'Edit', edit_translation_path(@translation)
 |
 \#{link_to 'Back', translations_path}

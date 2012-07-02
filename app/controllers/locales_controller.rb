@@ -2,6 +2,9 @@
 class LocalesController < ApplicationController
   # GET /locales
   # GET /locales.json
+
+  before_filter :authenticate_translator!
+
   def index
     @locales = Locale.all
 

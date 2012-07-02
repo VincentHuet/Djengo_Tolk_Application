@@ -3,6 +3,9 @@ require 'yml_sources_helper'
 class YmlSourcesController < ApplicationController
   # GET /yml_sources
   # GET /yml_sources.json
+
+  before_filter :authenticate_translator!
+
   def index
     @yml_sources = YmlSource.all
 
