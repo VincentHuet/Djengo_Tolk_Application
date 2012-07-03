@@ -1,24 +1,27 @@
 %h1 Listing translations
-%table
-  %tr
-    %th Primary updated
-    %th Text
-    %th Previous text
-    %th Phrase
-    %th Locale
-    %th
-    %th
-    %th
+%table#translations-table
+  %tr.bottom_border
+    %td
+      %strong 
+        #normal Translation
+    %td
+      %strong 
+        #skinny Translator
+    %td
+      %strong 
+        #normal English Value
+    %td
+      %strong Locale
+    %td
+      %strong 
   - @translations.each do |translation|
     %tr
-      %td= translation.Primary_updated
       %td= translation.text
       %td= translation.author
       /%td= Phrase.find(translation.phrase_id)
       /%td= Locale.find(translation.locale_id)
-      %td= translation.phrase_id
-      %td= translation.locale_id
-      %td= link_to 'Show', translation
+      %td= Phrase.find(translation.phrase_id).en_value
+      %td= Locale.find(translation.locale_id).name
       %td= link_to 'Edit', edit_translation_path(translation)
       %td= link_to 'Destroy', translation, confirm: 'Are you sure?', method: :delete
 %br

@@ -104,4 +104,15 @@ class TranslationsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def index_by_locale
+    @translations = Translation.where(:locale_id => params[:id])
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @translations }
+    end
+  end
+
+
 end

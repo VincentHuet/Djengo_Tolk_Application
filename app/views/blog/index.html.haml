@@ -4,17 +4,18 @@
 %table
   %tr
     %td
-      = link_to 'New Locale', new_locale_path
+      = link_to 'Locales list', locales_path, :class => "btn"
     %td
-      = link_to 'Locales list', locales_path
+      = link_to 'Phrase list', phrases_path, :class => "btn"
     %td
-      = link_to 'New translation', new_locale_path
+      = link_to 'Yml source list', yml_sources_path, :class => "btn"
+  %tr
     %td
-      = link_to 'phrase list', phrases_path
+      = link_to 'Add a new Locale', new_locale_path, :class => "btn"
     %td
-      = link_to 'New phrase', new_locale_path
+      = link_to 'Add a new phrase', new_locale_path, :class => "btn"
     %td
-      = link_to 'Fichier Yml source', yml_sources_path
+      = link_to 'Add a new Yml source', new_yml_source_path, :class => "btn"
 
 / %p
 /   / = @information["en"]["articles"].inspect

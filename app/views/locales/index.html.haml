@@ -7,9 +7,8 @@
     %th
   - @locales.each do |locale|
     %tr
-      %td= locale.name
-      %td= link_to 'Show', locale_path(locale)
+      %td= link_to locale.name, index_by_locale_translations_path + "/" + locale.id.to_s
       %td= link_to 'Edit', edit_locale_path(locale)
       %td= link_to 'Destroy', locale, confirm: 'Are you sure?', method: :delete
 %br/
-= link_to 'New Locale', new_locale_path
+= link_to 'New Locale', new_locale_path, :class => "btn"
