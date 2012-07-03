@@ -2,6 +2,8 @@
 %table
   %tr
     %td
+      %strong ID
+    %td
       %strong Name
     %td 
       %strong Locale
@@ -12,6 +14,7 @@
     %th
   - @translators.each do |translator|
     %tr
+      %td= translator.id
       %td= translator.name
       %td= Locale.find(translator.locale_id).name
       %td= raw("&nbsp;")

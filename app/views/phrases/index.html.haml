@@ -11,18 +11,16 @@
         #fat-path
           %strong Path
       %td.bottom_border
-        #en-value
-          %strong English_value
-      %td.bottom_border
-        %strong
+        %strongEnglish Value
       %td.bottom_border
         %strong
     - @full_phrase.each do |phrase|
       %tr
         / %td= phrase.key
         %td= phrase.yaml_path
-        %td= phrase.en_value
-        %td= link_to 'translate', new_phrase_translation_path(phrase)
+        %td= Translation.where(:locale_id => 1).where(:phrase_id => phrase.id).first.text
+        %td= link_to 'translate', new_phrase_translation_path(phrase), :class => "full-right"
+        /%td= link_to 'Destroy', phrase, confirm: 'Are you sure?', method: :delete
 
 %br
 %br

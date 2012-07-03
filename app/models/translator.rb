@@ -30,4 +30,6 @@ class Translator < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :locale_id, :name, :password
+
+  has_many :translations
 end

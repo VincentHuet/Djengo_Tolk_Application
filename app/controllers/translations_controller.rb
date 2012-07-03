@@ -29,17 +29,8 @@ class TranslationsController < ApplicationController
   # GET /translations/new.json
   def new
     @corresponding_phrase = Phrase.find(params[:phrase_id])
-
-
-
-    @translation = Translation.new
-    
+    @translation = Translation.new(params[:translation])
     @translation.phrase_id = @corresponding_phrase.id
-
-    @translation.author = current_translator.name
-
-    @translation.locale_id = current_translator.locale_id
-
 
     respond_to do |format|
       format.html # new.html.erb
@@ -56,13 +47,9 @@ class TranslationsController < ApplicationController
   # POST /translations.json
   def create
     @corresponding_phrase = Phrase.find(params[:phrase_id])
-
     @translation = Translation.new(params[:translation])
-
     @translation.phrase_id = @corresponding_phrase.id
-
-    @translation.author = current_translator.name
-
+    @translation.author = current_translator.id
     @translation.locale_id = current_translator.locale_id
 
 

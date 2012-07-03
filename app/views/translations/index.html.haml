@@ -1,27 +1,27 @@
 %h1 Listing translations
-%table
-  %tr
-    %td
-      %strong  Translation
-    %td
-      %strong  Author
-    %td
-      %strong English Value
-    %td
-      %strong  Locale
+%table#translations-table
+  %tr.bottom_border
     %td
       %strong 
+        #normal Translation
     %td
       %strong 
+        #skinny Translator
+    %td
+      %strong 
+        #normal English Value
+    %td
+      %strong
+        #skinny Locale
     %td
       %strong 
   - @translations.each do |translation|
     %tr
       %td= translation.text
-      %td= translation.author
+      %td= Translator.find(translation.author).name
       /%td= Phrase.find(translation.phrase_id)
       /%td= Locale.find(translation.locale_id)
-      %td= Phrase.find(translation.phrase_id).en_value
+      %td= Translation.where(:locale_id => 1).where(:phrase_id => translation.phrase_id).first.text
       %td= Locale.find(translation.locale_id).name
       %td= link_to 'Edit', edit_translation_path(translation)
       %td= link_to 'Destroy', translation, confirm: 'Are you sure?', method: :delete
