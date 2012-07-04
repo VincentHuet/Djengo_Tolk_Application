@@ -1,15 +1,33 @@
-%h1 Listing phrases
-%table
-  %tr
-    %th Key
-    %th
-    %th
-    %th
-  - @phrases.each do |phrase|
+%p
+  / = @information["en"]["articles"].inspect
+  - @full_phrase = Phrase.all
+  %h1 Listing complet de la table phrase
+  %table#phrases-table
     %tr
-      %td= phrase.key
-      %td= link_to 'Show', phrase
-      %td= link_to 'Edit', edit_phrase_path(phrase)
-      %td= link_to 'Destroy', phrase, confirm: 'Are you sure?', method: :delete
-%br/
-= link_to 'New Phrase', new_phrase_path
+      / %td.bottom_border
+      /   #skinny
+      /     %strong Key
+      %td.bottom_border
+        #fat-path
+          %strong Path
+      %td.bottom_border
+        %strongEnglish Value
+      %td.bottom_border
+        %strong
+    - @full_phrase.each do |phrase|
+      %tr
+        / %td= phrase.key
+        %td= phrase.yaml_path
+        %td= Translation.where(:locale_id => 1).where(:phrase_id => phrase.id).first.text
+        %td= link_to 'translate', new_phrase_translation_path(phrase), :class => "full-right"
+        /%td= link_to 'Destroy', phrase, confirm: 'Are you sure?', method: :delete
+
+%br
+%br
+= link_to 'New locale', new_locale_path
+%br
+%br
+= link_to 'New Yml Source', new_yml_source_path
+%br
+%br
+%br

@@ -36,28 +36,38 @@ module YmlSourcesHelper
     h.each_key do |key2|
       if h[key2].class == Hash
         # return_phrase << '<br />'
-        hash_path << "/" + key2.to_s
         # return_phrase << indent + "| <br />"
         # return_phrase << indent + "| " + key2 << '<br />'
-        hash_path << "/" + key2.to_s
-        return_phrase << parse_yaml(h[key2], hash_path, indent)
+        hash_path << "." + key2.to_s
+        parse_yaml(h[key2], hash_path, indent)
       else
 
         new_phrase = Phrase.new
 
-        new_phrase.yaml_path = hash_path + "/" 
+        new_phrase.yaml_path = hash_path + "." + key2.to_s
         new_phrase.key = key2.to_s
 
         new_phrase.save!
 
-        return_phrase << "[" + hash_path + "/" + key2.to_s + "] "        
+
+
+        new_translation = Translation.new
+
+        new_translation.text = h[key2].to_s
+        new_translation.author = 4
+        new_translation.phrase_id = new_phrase.id
+        new_translation.locale_id = 1
+
+        new_translation.save!
+
+
+
+        return_phrase << "[" + hash_path + "." + key2.to_s + "] "        
         return_phrase << h[key2].to_s
         # return_phrase <<" est de type = > " +  h[key2].class.to_s
         return_phrase << '<br />'
       end
     end
-
-    return_phrase.to_s
   end
 
 

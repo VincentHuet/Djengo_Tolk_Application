@@ -1,25 +1,17 @@
 %p#notice= notice
 %p
-  %b Primary updated:
-  = @translation.Primary_updated
-%p
   %b Text:
   = @translation.text
 %p
-  %b Previous text:
-  = @translation.previous_text
+  %b Author:
+  = @translation.author
 %p
-  %b Phrase:
-  = @translation.phrase_id
-%p
-  %b Phrase:
-  = @translation.phrase
+  %b Original text:
+  = Translation.where(:locale_id => 1).where(:phrase_id => @translation.phrase_id).first.text
 %p
   %b Locale:
-  = @translation.locale_id
-%p
-  %b Locale:
-  = @translation.locale
+  = Locale.find(@translation.locale_id).name
+
 = link_to 'Edit', edit_translation_path(@translation)
 |
 \#{link_to 'Back', translations_path}

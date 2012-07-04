@@ -1,15 +1,19 @@
 %h1 Listing locales
 %table
   %tr
-    %th Name
+    %td
+      %strong Name
+    %td
+      %strong Translation available
     %th
+      %strong
     %th
-    %th
+      %strong
   - @locales.each do |locale|
     %tr
-      %td= locale.name
-      %td= link_to 'Show', locale_path(locale)
-      %td= link_to 'Edit', edit_locale_path(locale)
-      %td= link_to 'Destroy', locale, confirm: 'Are you sure?', method: :delete
+      %td= link_to locale.name, locale_translations_path(locale)
+      %td= (Translation.where(:locale_id => 1).count - Translation.where(:locale_id => locale.id).count)
+      %td= link_to 'Edit', edit_locale_path(locale), :class => "full-right"
+      %td= link_to 'Destroy', locale, confirm: 'Are you sure?', method: :delete, :class => "full-right"
 %br/
-= link_to 'New Locale', new_locale_path
+= link_to 'New Locale', new_locale_path, :class => "btn"

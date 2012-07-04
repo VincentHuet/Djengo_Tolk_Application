@@ -1,18 +1,39 @@
 DjengoTolkApplication::Application.routes.draw do
   
 
-  resources :yml_sources
+  devise_for :translators
 
-  # scope '(:locale)' do
+  resources :translators
 
+  resources :yml_sources do
+    collection do
+      get 'load_to_db'
+      get '/load_to_db/:id' => 'yml_sources#load_to_db'
+    end
+  end
+
+  resources :translations do 
+    collection do
+      get '/index_by_locale/'
+      get '/index_by_locale/:id' => 'translations#index_by_locale'
+    end
+  end
+
+  resources :locales do
     resources :translations
+    resources :translators
+  end
 
-    resources :phrases
 
-    resources :locales
-    
-    root :to => 'blog#index'
-  # end 
+  resources :phrases do
+    resources :translations
+  end  
+
+  resources :phrases
+
+  resources :locales
+
+  root :to => 'blog#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
