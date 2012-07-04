@@ -21,10 +21,6 @@ DjengoTolkApplication::Application.routes.draw do
 
   resources :locales do
     resources :translations
-  end
-
-
- resources :locales do
     resources :translators
   end
 
@@ -33,19 +29,11 @@ DjengoTolkApplication::Application.routes.draw do
     resources :translations
   end  
 
-  # resources :phrases
-  #   resources :translations
+  resources :phrases
 
-  # scope '(:locale)' do
+  resources :locales
 
-    resources :translations
-
-    resources :phrases
-
-    resources :locales
-
-    root :to => 'blog#index'
-  # end 
+  root :to => 'blog#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

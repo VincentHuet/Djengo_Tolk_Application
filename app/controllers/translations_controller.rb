@@ -6,7 +6,8 @@ class TranslationsController < ApplicationController
   before_filter :authenticate_translator!
 
   def index
-    @translations = Translation.all
+    @locale = Locale.find(params[:locale_id])
+    @translations = @locale.translations.all
 
     respond_to do |format|
       format.html # index.html.erb

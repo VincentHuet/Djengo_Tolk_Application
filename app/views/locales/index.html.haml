@@ -11,8 +11,8 @@
       %strong
   - @locales.each do |locale|
     %tr
-      %td= link_to locale.name, index_by_locale_translations_path + "/" + locale.id.to_s
-      %td= Translation.where(:locale_id => locale.id).count
+      %td= link_to locale.name, locale_translations_path(locale)
+      %td= (Translation.where(:locale_id => 1).count - Translation.where(:locale_id => locale.id).count)
       %td= link_to 'Edit', edit_locale_path(locale), :class => "full-right"
       %td= link_to 'Destroy', locale, confirm: 'Are you sure?', method: :delete, :class => "full-right"
 %br/

@@ -48,6 +48,7 @@ class PhrasesController < ApplicationController
 
     respond_to do |format|
       if @phrase.save
+        TranslatorMailer.deliver_bienvenue
         format.html { redirect_to @phrase, notice: 'Phrase was successfully created.' }
         format.json { render json: @phrase, status: :created, location: @phrase }
       else
