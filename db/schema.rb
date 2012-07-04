@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120703120707) do
+ActiveRecord::Schema.define(:version => 20120704095040) do
 
   create_table "datafiles", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -33,11 +33,12 @@ ActiveRecord::Schema.define(:version => 20120703120707) do
 
   create_table "translations", :force => true do |t|
     t.string   "text"
-    t.integer  "author",     :limit => 255
+    t.integer  "author",        :limit => 255
     t.integer  "phrase_id"
     t.integer  "locale_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "needed_update"
   end
 
   create_table "translators", :force => true do |t|

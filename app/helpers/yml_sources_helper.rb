@@ -57,10 +57,23 @@ module YmlSourcesHelper
         new_translation.author = 4
         new_translation.phrase_id = new_phrase.id
         new_translation.locale_id = 1
+        new_translation.needed_update = 0
+
 
         new_translation.save!
 
+        @locales = Locale.where("id >= 2")
 
+        @locales.each do |locale|
+          new_translation = Translation.new
+
+          new_translation.text = "---"
+          new_translation.author = 4
+          new_translation.phrase_id = new_phrase.id
+          new_translation.locale_id = locale.id
+          new_translation.needed_update = 1
+          new_translation.save!
+        end
 
         return_phrase << "[" + hash_path + "." + key2.to_s + "] "        
         return_phrase << h[key2].to_s
