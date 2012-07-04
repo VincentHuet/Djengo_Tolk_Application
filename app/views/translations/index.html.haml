@@ -27,7 +27,7 @@
       %td= Translation.where(:locale_id => 1).where(:phrase_id => translation.phrase_id).first.text
       %td= Locale.find(translation.locale_id).name
       %td= translation.needed_update
-      - if translation.needed_update == 1
+      - if translation.needed_update == 1 && translation.locale_id == current_translator.locale_id
         %td= link_to 'Edit', edit_translation_path(translation)
   
 %br

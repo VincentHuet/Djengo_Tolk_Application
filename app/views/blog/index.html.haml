@@ -1,49 +1,44 @@
 
 = link_to image_tag("logo-djengo.jpg"), root_path, :class => 'blog-image'
 %h2 Accueil du site de traduction
-%table
-  %tr
-    %td
-      = link_to 'Locales list', locales_path, :class => "btn"
-    %td
-      = link_to 'Phrase list', phrases_path, :class => "btn"
-    %td
-      = link_to 'Yml source list', yml_sources_path, :class => "btn"
-  %tr
-    %td
-      = link_to 'Add a new Locale', new_locale_path, :class => "btn"
-    %td
-      = link_to 'Add a new phrase', new_locale_path, :class => "btn"
-    %td
-      = link_to 'Add a new Yml source', new_yml_source_path, :class => "btn"
+%br
+%hr
+%div.home
+  = link_to t(:home), root_path, :class => 'btn home-btn'
+  %br
+  = link_to t(:yml_source), yml_sources_path, :class => 'btn home-btn'
+  %br
+  = link_to t(:locale), locales_path, :class => 'btn home-btn'
+  %br
+  = link_to t(:phrases), phrases_path, :class => 'btn home-btn'
+  - if translator_signed_in?
+    %br
+      = link_to t(:translation), locale_translations_path(Locale.find(current_translator.locale_id)), :class => 'btn home-btn'
+    %br
+      = raw("&nbsp;"*30)
+    %br
+      = link_to t(:logout), destroy_translator_session_path, :method => :delete, :class => "btn full-rigth home-btn"
+  - else
+    %br
+      = link_to t(:login), new_translator_session_path, :class => 'btn home-btn'
+    %br
+      = link_to t(:sign_up), new_translator_registration_path, :class => 'btn home-btn'
 
-/ %p
-/   / = @information["en"]["articles"].inspect
-/ - @full_phrase = Phrase.all
-/ %h1 Listing complet de la table phrase
 / %table
 /   %tr
-/     %th Name
-/     %th Path
-/     %th
-/     %th
-/     %th
-/   - @full_phrase.each do |phrase|
-/     %tr
-/       %td= phrase.yaml_path
-/       %td= "=>> " + phrase.key
+/     %td
+/       = link_to 'Locales list', locales_path, :class => "btn"
+/     %td
+/       = link_to 'Phrase list', phrases_path, :class => "btn"
+/     %td
+/       = link_to 'Yml source list', yml_sources_path, :class => "btn"
+/   %tr
+/     %td
+/       = link_to 'Add a new Locale', new_locale_path, :class => "btn"
+/     %td
+/       = link_to 'Add a new phrase', new_locale_path, :class => "btn"
+/     %td
+/       = link_to 'Add a new Yml source', new_yml_source_path, :class => "btn"
 
-/ = "==> " + yml_name
-/ %br
-/ - @yml_list[yml_name].each_key do |key|
-/   - if @yml_list[yml_name][key].class == Hash
-    
-/     = indent + " | " + key
-    
-/     - paragraph = parse_yaml(@yml_list[yml_name][key], indent)
-/     = raw(paragraph)
-  
-/   - else
-/     = indent + @yml_list[yml_name][key].to_s
-/     = " est de type = > " + @yml_list[yml_name][key].class.to_s
+
 
