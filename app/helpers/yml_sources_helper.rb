@@ -67,7 +67,7 @@ module YmlSourcesHelper
         @locales.each do |locale|
           new_translation = Translation.new
 
-          new_translation.text = h[key2].to_s
+          new_translation.text = "---"
           new_translation.author = 4
           new_translation.phrase_id = new_phrase.id
           new_translation.locale_id = locale.id

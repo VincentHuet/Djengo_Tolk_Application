@@ -74,7 +74,7 @@ class TranslationsController < ApplicationController
     @translation.needed_update = 0
 
     if @translation.locale_id == 1
-      
+      Translation.where("id >= 2").update_all(:needed_update => 0)
     end
     
     respond_to do |format|

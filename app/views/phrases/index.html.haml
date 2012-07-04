@@ -19,7 +19,7 @@
         / %td= phrase.key
         %td= phrase.yaml_path
         %td= Translation.where(:locale_id => 1).where(:phrase_id => phrase.id).first.text
-        %td= link_to 'translate', new_phrase_translation_path(phrase), :class => "full-right"
+        /%td= link_to 'translate', new_phrase_translation_path(phrase), :class => "full-right"
         /%td= link_to 'Destroy', phrase, confirm: 'Are you sure?', method: :delete
 
 %br
