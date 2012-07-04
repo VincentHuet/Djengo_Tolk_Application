@@ -1,4 +1,3 @@
-
 class TranslationsController < ApplicationController
   # GET /translations
   # GET /translations.json
@@ -52,6 +51,7 @@ class TranslationsController < ApplicationController
     @translation.phrase_id = @corresponding_phrase.id
     @translation.author = current_translator.id
     @translation.locale_id = current_translator.locale_id
+    @translation.needed_update = 1
 
 
     respond_to do |format|
@@ -69,7 +69,14 @@ class TranslationsController < ApplicationController
   # PUT /translations/1.json
   def update
     @translation = Translation.find(params[:id])
+    @translation.author = current_translator.id
+    @translation.locale_id = current_translator.locale_id
+    @translation.needed_update = 0
 
+    if @translation.locale_id == 1
+      
+    end
+    
     respond_to do |format|
       if @translation.update_attributes(params[:translation])
         format.html { redirect_to @translation, notice: 'Translation was successfully updated.' }
