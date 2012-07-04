@@ -1,0 +1,23 @@
+= form_for(@translator) do |f|
+  - if @translator.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@translator.errors.count, "error")
+        prohibited this translator from being saved:
+      %ul
+        - @translator.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :name
+    %br/
+    = f.text_field :name
+  .field
+    = f.label :locale_id
+    %br/
+    = f.select(:category, Locale.all.collect {|l| [ l.id,l.name ] }, { :include_blank => false })
+  .field
+    = f.label :password
+    %br/
+    = f.text_field :password
+  .actions
+    = f.submit

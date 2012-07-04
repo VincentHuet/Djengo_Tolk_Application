@@ -2,8 +2,12 @@
 class TranslationsController < ApplicationController
   # GET /translations
   # GET /translations.json
+
+  before_filter :authenticate_translator!
+
   def index
-    @translations = Translation.all
+    @locale = Locale.find(params[:locale_id])
+    @translations = @locale.translations.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,7 +29,9 @@ class TranslationsController < ApplicationController
   # GET /translations/new
   # GET /translations/new.json
   def new
-    @translation = Translation.new
+    @corresponding_phrase = Phrase.find(params[:phrase_id])
+    @translation = Translation.new(params[:translation])
+    @translation.phrase_id = @corresponding_phrase.id
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,7 +47,12 @@ class TranslationsController < ApplicationController
   # POST /translations
   # POST /translations.json
   def create
+    @corresponding_phrase = Phrase.find(params[:phrase_id])
     @translation = Translation.new(params[:translation])
+    @translation.phrase_id = @corresponding_phrase.id
+    @translation.author = current_translator.id
+    @translation.locale_id = current_translator.locale_id
+
 
     respond_to do |format|
       if @translation.save
@@ -81,4 +92,15 @@ class TranslationsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def index_by_locale
+    @translations = Translation.where(:locale_id => params[:id])
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @translations }
+    end
+  end
+
+
 end
