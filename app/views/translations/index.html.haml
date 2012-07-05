@@ -20,14 +20,15 @@
       %strong 
   - @translations.each do |translation|
     %tr
-      %td= translation.text
-      %td= Translator.find(translation.author).name
+      %td= translation.text 
+      %td= translation.translator.name
       /%td= Phrase.find(translation.phrase_id)
       /%td= Locale.find(translation.locale_id)
-      %td= Translation.where(:locale_id => 1).where(:phrase_id => translation.phrase_id).first.text
+      - current_locale = Locale.where(:name => :en).first
+      %td= current_locale.translations.where(:phrase_id => translation.phrase_id).first.text
       %td= Locale.find(translation.locale_id).name
       %td= translation.needed_update
-      - if translation.needed_update == 1
+      - if needed_update?(translation)
         %td= link_to 'Edit', edit_translation_path(translation)
   
 %br
