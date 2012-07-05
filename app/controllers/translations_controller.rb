@@ -51,7 +51,6 @@ class TranslationsController < ApplicationController
     @translation.phrase_id = @corresponding_phrase.id
     @translation.author = current_translator.id
     @translation.locale_id = current_translator.locale_id
-    @translation.needed_update = 1
 
 
     respond_to do |format|
@@ -71,15 +70,11 @@ class TranslationsController < ApplicationController
     @translation = Translation.find(params[:id])
     @translation.author = current_translator.id
     @translation.locale_id = current_translator.locale_id
-    @translation.needed_update = 0
-
-    if @translation.locale_id == 1
-      Translation.where("id >= 2").update_all(:needed_update => 0)
-    end
+    
     
     respond_to do |format|
       if @translation.update_attributes(params[:translation])
-        format.html { redirect_to @translation, notice: 'Translation was successfully updated.' }
+        format.html { redirect_to locale_translations_path(Locale.find(@translation.locale_id)), notice: 'Translation was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -108,6 +103,5 @@ class TranslationsController < ApplicationController
       format.json { render json: @translations }
     end
   end
-
 
 end
