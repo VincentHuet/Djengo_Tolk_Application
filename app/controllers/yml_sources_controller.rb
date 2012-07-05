@@ -89,6 +89,7 @@ class YmlSourcesController < ApplicationController
 def load_to_db
     @yml_source = YmlSource.find(params[:id])
 
+    TranslatorMailer.welcome_email(current_translator).deliver
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @yml_source }
