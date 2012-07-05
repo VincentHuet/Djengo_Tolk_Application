@@ -25,9 +25,9 @@ private
   def needed_update_flag_update
     update_column(:needed_update, 0)
 
-    # if locale_id == 1
-    #   Translation.where("id >= 2").update_all(:needed_update => 1)
-    # end
+    if locale_id == 1
+      phrase.translations..where("name != ?", :en).update_all(:needed_update => 1)
+    end
   end
 
 
