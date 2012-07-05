@@ -54,24 +54,23 @@ module YmlSourcesHelper
         new_translation = Translation.new
 
         new_translation.text = h[key2].to_s
-        new_translation.author = 4
+        new_translation.translator_id = Translator.where(:name => 'DB_loader').first.id
         new_translation.phrase_id = new_phrase.id
-        new_translation.locale_id = 1
+        new_translation.locale_id = Locale.where(:name => :en).first.id
         new_translation.needed_update = 0
-
-
         new_translation.save!
 
-        @locales = Locale.where("id >= 2")
+        @locales = Locale.where("name != ?", :en)
 
         @locales.each do |locale|
           new_translation = Translation.new
 
           new_translation.text = "---"
-          new_translation.author = 4
+          new_translation.translator_id = Translator.where(:name => 'DB_loader').first.id
           new_translation.phrase_id = new_phrase.id
           new_translation.locale_id = locale.id
           new_translation.needed_update = 1
+
           new_translation.save!
         end
 

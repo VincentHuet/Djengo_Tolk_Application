@@ -4,7 +4,7 @@
 #
 #  id            :integer          not null, primary key
 #  text          :string(255)
-#  author        :integer
+#  translator_id :integer
 #  phrase_id     :integer
 #  locale_id     :integer
 #  created_at    :datetime         not null
@@ -17,4 +17,19 @@ class Translation < ActiveRecord::Base
 
   belongs_to :locale
   belongs_to :phrase
+  belongs_to :translator
+
+  after_update :needed_update_flag_update
+
+private
+  def needed_update_flag_update
+    update_column(:needed_update, 0)
+
+    if locale_id == 1
+      phrase.translations..where("name != ?", :en).update_all(:needed_update => 1)
+    end
+  end
+
+
+
 end
