@@ -19,17 +19,27 @@ class Translation < ActiveRecord::Base
   belongs_to :phrase
   belongs_to :translator
 
-  after_update :needed_update_flag_update
+  before_save :needed_update_flag_update
 
-private
-  def needed_update_flag_update
-    update_column(:needed_update, 0)
 
-    if locale_id == 1
-      phrase.translations..where("name != ?", :en).update_all(:needed_update => 1)
-    end
+
+
+  def needed_update?(current_translator)
+    self.needed_update == 1 && self.locale_id == current_translator.locale_id
   end
 
+  private
+    def needed_update_flag_update
+      needed_update = 0
+
+      if text.blank?
+        needed_update = 1
+      end
+
+      if locale_id == 1
+        phrase.translations..where("name != ?", :en).update_all(:needed_update => 1)
+      end
+    end
 
 
 end

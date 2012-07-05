@@ -56,7 +56,7 @@ module YmlSourcesHelper
         new_translation.text = h[key2].to_s
         new_translation.translator_id = Translator.where(:name => 'DB_loader').first.id
         new_translation.phrase_id = new_phrase.id
-        new_translation.locale_id = Locale.where(:name => :en).first.id
+        new_translation.locale_id = Locale.find_by_name(:en).id
         new_translation.needed_update = 0
         new_translation.save!
 
@@ -65,7 +65,7 @@ module YmlSourcesHelper
         @locales.each do |locale|
           new_translation = Translation.new
 
-          new_translation.text = "---"
+          new_translation.text = nil
           new_translation.translator_id = Translator.where(:name => 'DB_loader').first.id
           new_translation.phrase_id = new_phrase.id
           new_translation.locale_id = locale.id

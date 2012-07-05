@@ -4,25 +4,25 @@
 %br
 %hr
 %div.home
-  = link_to t(:home), root_path, :class => 'btn home-btn'
+  = link_to t("home"), root_path, :class => 'btn home-btn'
   %br
-  = link_to t(:yml_source), yml_sources_path, :class => 'btn home-btn'
+  = link_to t("yml_source"), yml_sources_path, :class => 'btn home-btn'
   %br
-  = link_to t(:locale), locales_path, :class => 'btn home-btn'
+  = link_to t("locale"), locales_path, :class => 'btn home-btn'
   %br
-  = link_to t(:phrases), phrases_path, :class => 'btn home-btn'
+  = link_to t("phrases"), phrases_path, :class => 'btn home-btn'
   - if translator_signed_in?
     %br
-      = link_to t(:translation), locale_translations_path(Locale.find(current_translator.locale_id)), :class => 'btn home-btn'
+      = link_to t("translation"), locale_translations_path(Locale.find(current_translator.locale_id)), :class => 'btn home-btn'
     %br
       = raw("&nbsp;"*30)
     %br
-      = link_to t(:logout), destroy_translator_session_path, :method => :delete, :class => "btn full-rigth home-btn"
+      = link_to t("logout"), destroy_translator_session_path, :method => :delete, :class => "btn full-rigth home-btn"
   - else
     %br
-      = link_to t(:login), new_translator_session_path, :class => 'btn home-btn'
+      = link_to t("login"), new_translator_session_path, :class => 'btn home-btn'
     %br
-      = link_to t(:sign_up), new_translator_registration_path, :class => 'btn home-btn'
+      = link_to t("sign_up"), new_translator_registration_path, :class => 'btn home-btn'
 
 / %table
 /   %tr

@@ -13,7 +13,7 @@
     %tr
       %td= link_to locale.name, locale_translations_path(locale)
       %td= missing_translation?(locale)
-      %td= primary?(locale)
+      %td= primary(locale)
       / %td= link_to 'Edit', edit_locale_path(locale), :class => "full-right"
       / %td= link_to 'Destroy', locale, confirm: 'Are you sure?', method: :delete, :class => "full-right"
 %br/

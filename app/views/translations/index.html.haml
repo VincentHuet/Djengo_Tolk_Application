@@ -24,11 +24,11 @@
       %td= translation.translator.name
       /%td= Phrase.find(translation.phrase_id)
       /%td= Locale.find(translation.locale_id)
-      - current_locale = Locale.where(:name => :en).first
+      - current_locale = Locale.find_by_name(:en)
       %td= current_locale.translations.where(:phrase_id => translation.phrase_id).first.text
       %td= Locale.find(translation.locale_id).name
       %td= translation.needed_update
-      - if needed_update?(translation)
+      - if translation.needed_update?(current_translator)
         %td= link_to 'Edit', edit_translation_path(translation)
   
 %br
