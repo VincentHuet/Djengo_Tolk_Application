@@ -20,8 +20,8 @@
       %strong 
   - @translations.each do |translation|
     %tr
-      %td= translation.text
-      %td= Translator.find(translation.translator_id).name
+      %td= translation.text 
+      %td= translation.translator.name
       /%td= Phrase.find(translation.phrase_id)
       /%td= Locale.find(translation.locale_id)
       - current_locale = Locale.where(:name => :en).first

@@ -17,6 +17,7 @@ class Translation < ActiveRecord::Base
 
   belongs_to :locale
   belongs_to :phrase
+  belongs_to :translator
 
   after_update :needed_update_flag_update
 

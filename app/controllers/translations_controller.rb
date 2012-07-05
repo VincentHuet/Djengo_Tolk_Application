@@ -68,7 +68,7 @@ class TranslationsController < ApplicationController
   # PUT /translations/1.json
   def update
     @translation = Translation.find(params[:id])
-    @translation.author = current_translator.id
+    @translation.translator_id = current_translator.id
     @translation.locale_id = current_translator.locale_id
     
     
