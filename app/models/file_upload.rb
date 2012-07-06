@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: yml_sources
+# Table name: file_uploads
 #
 #  id         :integer          not null, primary key
 #  name       :string(255)
@@ -9,8 +9,6 @@
 #  updated_at :datetime         not null
 #
 
-class YmlSource < ActiveRecord::Base
+class FileUpload < ActiveRecord::Base
   attr_accessible :name, :path
-
-  validates :path, :uniqueness => true
 end

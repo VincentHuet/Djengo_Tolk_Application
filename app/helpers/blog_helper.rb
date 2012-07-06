@@ -25,31 +25,5 @@ module BlogHelper
     return_phrase.to_s
   end
 
-  def read_dir
-    file_list = ""
-
-    @yml_list = {}
-
-    @files = Dir.glob('config/locales/**/*.yml')
-      for file in @files
-          key = file
-          # .split(/\//).reverse[0..2].reverse.to_sentence( :words_connector => '/',
-          #                                                           :two_words_connector => '/',
-          #                                                           :last_word_connector => '/').to_s
-          file_list << key + "<br />" 
-
-          # file_list << file + "<br />"
-
-          yml_file_path = "#{Rails.root}/" + key
-
-          puts YAML::load(File.open(yml_file_path)).inspect
-
-          @yml_list[key] = YAML::load(File.open(yml_file_path))
-
-
-          puts @yml_list.inspect
-      end
-    file_list
-  end
 
 end

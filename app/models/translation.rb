@@ -24,7 +24,7 @@ class Translation < ActiveRecord::Base
 
 
 
-  def needed_update?(current_translator)
+  def need_updated?(current_translator)
     self.needed_update == 1 && self.locale_id == current_translator.locale_id
   end
 
@@ -37,7 +37,8 @@ class Translation < ActiveRecord::Base
       end
 
       if locale_id == 1
-        phrase.translations..where("name != ?", :en).update_all(:needed_update => 1)
+        # bientot corrigé
+        # phrase.translations.where("name != ?", :en).update_all(:needed_update => 1)
       end
     end
 

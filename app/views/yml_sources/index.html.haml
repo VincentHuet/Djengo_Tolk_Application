@@ -21,6 +21,12 @@
       %td= link_to 'Destroy', yml_source, confirm: 'Are you sure?', method: :delete
 %br/
 
+%table
+  - @yml_files.each do |file|
+    %tr
+      %td= file.from(15).truncate(2, :separator => '.')
+      %td= file
+
 = link_to 'New Yml source', new_yml_source_path
 
 %br/

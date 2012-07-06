@@ -9,6 +9,10 @@ class YmlSourcesController < ApplicationController
   def index
     @yml_sources = YmlSource.all
 
+    @yml_files = YmlLoader.load_pathes
+
+    YmlLoader.load_locales
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @yml_sources }
@@ -86,7 +90,7 @@ class YmlSourcesController < ApplicationController
     end
   end
 
-def load_to_db
+  def load_to_db
     @yml_source = YmlSource.find(params[:id])
 
     TranslatorMailer.welcome_email(current_translator).deliver
@@ -95,8 +99,6 @@ def load_to_db
       format.json { render json: @yml_source }
     end
   end
-
-
 
 end
 

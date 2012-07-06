@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: yml_sources
+# Table name: file_uploads
 #
 #  id         :integer          not null, primary key
 #  name       :string(255)
@@ -9,8 +9,10 @@
 #  updated_at :datetime         not null
 #
 
-class YmlSource < ActiveRecord::Base
-  attr_accessible :name, :path
+require 'test_helper'
 
-  validates :path, :uniqueness => true
+class FileUploadTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end
