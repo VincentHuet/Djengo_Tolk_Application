@@ -25,7 +25,7 @@ class Translation < ActiveRecord::Base
 
 
   def need_updated?(current_translator)
-    self.needed_update == 1 && self.locale_id == current_translator.locale_id
+    self.needed_update == 1 && Locale.find(current_translator.locale_id).is_primary?  || self.locale_id == 1 && Locale.find(current_translator.locale_id).is_primary? 
   end
 
   private
@@ -36,7 +36,9 @@ class Translation < ActiveRecord::Base
         needed_update = 1
       end
 
-      if locale_id == 1
+      if Locale.find(locale_id).is_primary?
+        vincent = Translator.find(2)
+        TranslatorMailer.welcome_email(vincent).deliver
         # bientot corrigé
         # phrase.translations.where("name != ?", :en).update_all(:needed_update => 1)
       end

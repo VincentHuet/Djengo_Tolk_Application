@@ -62,7 +62,6 @@ class YmlLoader
           counter += 1
         
           new_translation = Translation.new
-
           new_translation.text = h[key2].to_s
           new_translation.translator_id = Translator.where(:name => 'DB_loader').first.id
           new_translation.phrase_id = new_phrase.id
@@ -75,15 +74,11 @@ class YmlLoader
 
           @locales.each do |locale|
             new_translation = Translation.new
-
             new_translation.text = nil
             new_translation.translator_id = Translator.where(:name => 'DB_loader').first.id
             new_translation.phrase_id = new_phrase.id
-
-
             new_translation.locale_id = locale.id
             new_translation.needed_update = 1
-
             new_translation.save if locale.translations.find_by_phrase_id(new_translation.phrase_id).nil?
           end
 

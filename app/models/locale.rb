@@ -14,4 +14,15 @@ class Locale < ActiveRecord::Base
 
   has_many :phrases
   has_many :translations
+
+
+
+  def primary_locale
+    Locale.find_by_name(:en)
+  end
+
+  def is_primary?
+    prim_loc = self.primary_locale
+    self.id == prim_loc.id
+  end
 end
