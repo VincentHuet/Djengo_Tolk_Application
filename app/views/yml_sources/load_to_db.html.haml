@@ -7,6 +7,8 @@
   = @yml_source.path
 - indent = "--"
 - counter = YmlLoader.parse_yaml_to_db(@Yml_to_hash, '.', indent)
+- if counter >= 1 
+  - TranslatorMailer.welcome_email(current_translator).deliver
 /- hash_path = @yml_source.path
 /- TranslatorMailer.bienvenue
 %p

@@ -97,7 +97,7 @@ class YmlSourcesController < ApplicationController
 
     @Yml_to_hash = YmlLoader.load_yaml(@yml_source.path)
 
-    TranslatorMailer.welcome_email(current_translator).deliver
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @yml_source }
