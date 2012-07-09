@@ -1,6 +1,8 @@
 DjengoTolkApplication::Application.routes.draw do
   
 
+  resources :file_uploads
+
   devise_for :translators
 
   resources :translators

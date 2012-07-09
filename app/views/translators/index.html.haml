@@ -8,7 +8,7 @@
     %td 
       %strong Locale
     %td 
-      %strong 
+      %strong Email
     %th
     %th
     %th
@@ -17,6 +17,7 @@
       %td= translator.id
       %td= translator.name
       %td= Locale.find(translator.locale_id).name
+      %td= translator.email
       %td= raw("&nbsp;")
       %td= link_to 'Show', translator
       %td= link_to 'Edit', edit_translator_path(translator)
