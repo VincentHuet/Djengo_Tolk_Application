@@ -29,7 +29,7 @@ module YmlSourcesHelper
     return_phrase.to_s
   end
 
-  def parse_yaml(h, hash_path, indent)
+  def parse_yaml_to_db(h, hash_path, indent)
 
     return_phrase = ""
 
@@ -39,7 +39,7 @@ module YmlSourcesHelper
         # return_phrase << indent + "| <br />"
         # return_phrase << indent + "| " + key2 << '<br />'
         hash_path << "." + key2.to_s
-        parse_yaml(h[key2], hash_path, indent)
+        parse_yaml_to_db(h[key2], hash_path, indent)
       else
 
         new_phrase = Phrase.new
@@ -47,7 +47,7 @@ module YmlSourcesHelper
         new_phrase.yaml_path = hash_path + "." + key2.to_s
         new_phrase.key = key2.to_s
 
-        new_phrase.save!
+        new_phrase.save if Phrase.find_by_yaml_path(new_phrase.yaml_path).nil?
 
 
 
@@ -56,22 +56,22 @@ module YmlSourcesHelper
         new_translation.text = h[key2].to_s
         new_translation.translator_id = Translator.where(:name => 'DB_loader').first.id
         new_translation.phrase_id = new_phrase.id
-        new_translation.locale_id = Locale.where(:name => :en).first.id
+        new_translation.locale_id = Locale.find_by_name(:en).id
         new_translation.needed_update = 0
-        new_translation.save!
+        new_translation.save if Translation.find_by_phrase_id(new_translation).nil?
 
         @locales = Locale.where("name != ?", :en)
 
         @locales.each do |locale|
           new_translation = Translation.new
 
-          new_translation.text = "---"
+          new_translation.text = nil
           new_translation.translator_id = Translator.where(:name => 'DB_loader').first.id
           new_translation.phrase_id = new_phrase.id
           new_translation.locale_id = locale.id
           new_translation.needed_update = 1
 
-          new_translation.save!
+          new_translation.save if Translation.find_by_phrase_id(new_translation).nil?
         end
 
         return_phrase << "[" + hash_path + "." + key2.to_s + "] "        
@@ -91,4 +91,10 @@ module YmlSourcesHelper
     @Yml_to_hash = YAML::load(File.open(yml_file_path))
 
   end
+
+  
+
+
+
+
 end

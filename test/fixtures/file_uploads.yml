@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: yml_sources
+# Table name: file_uploads
 #
 #  id         :integer          not null, primary key
 #  name       :string(255)
@@ -9,8 +9,12 @@
 #  updated_at :datetime         not null
 #
 
-class YmlSource < ActiveRecord::Base
-  attr_accessible :name, :path
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-  validates :path, :uniqueness => true
-end
+one:
+  name: MyString
+  path: MyString
+
+two:
+  name: MyString
+  path: MyString

@@ -9,6 +9,12 @@ class YmlSourcesController < ApplicationController
   def index
     @yml_sources = YmlSource.all
 
+    @yml_files = YmlLoader.load_pathes
+
+    YmlLoader.load_locales
+
+   # YmlLoader.load_yml_content
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @yml_sources }
@@ -86,16 +92,17 @@ class YmlSourcesController < ApplicationController
     end
   end
 
-def load_to_db
+  def load_to_db
     @yml_source = YmlSource.find(params[:id])
 
+    @Yml_to_hash = YmlLoader.load_yaml(@yml_source.path)
+
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @yml_source }
     end
   end
-
-
 
 end
 

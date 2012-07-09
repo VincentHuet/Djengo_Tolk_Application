@@ -1,16 +1,17 @@
 module LocalesHelper
 
-  def primary?(locale)
+  def primary(locale)
     if locale.primary_locale == true
-      @return = "primary"
+      return_status = "primary"
     else
-      @return = "secondary"
+      return_status = "secondary"
     end
-    @return
+    return_status
   end
 
   def missing_translation?(locale)
-    (Translation.where(:locale_id => 1).count - Translation.where(:locale_id => locale.id).where(:needed_update => 0).count)
+    primary_locale = Locale.where(:name => :en).first
+    (primary_locale.translations.count - locale.translations.where(:needed_update => 0).count)
   end
 
 
