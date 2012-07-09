@@ -24,7 +24,7 @@
   - @translations.each do |translation|
     %tr
       %td= translation.text 
-      %td= translation.translator.name
+      %td= translation.translator_id
       %td= translation.phrase_id
       /%td= Locale.find(translation.locale_id)
       - current_locale = Locale.find_by_name(:en)

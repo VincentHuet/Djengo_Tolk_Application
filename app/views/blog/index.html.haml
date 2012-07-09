@@ -1,6 +1,11 @@
 
 = link_to image_tag("logo-djengo.jpg"), root_path, :class => 'blog-image'
 %h2 Accueil du site de traduction
+- if translator_signed_in?
+  %br
+    = current_translator.id
+  %br
+    = Locale.find(current_translator.locale_id).name
 %br
 %hr
 %div.home

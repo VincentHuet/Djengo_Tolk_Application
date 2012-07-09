@@ -14,6 +14,7 @@ class Locale < ActiveRecord::Base
 
   has_many :phrases
   has_many :translations
+  has_many :translators
 
 
 
