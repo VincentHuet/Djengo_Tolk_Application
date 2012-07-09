@@ -9,6 +9,9 @@
         #skinny Translator
     %td
       %strong 
+        #skinny Phrase ID
+    %td
+      %strong 
         #normal English Value
     %td
       %strong
@@ -22,7 +25,7 @@
     %tr
       %td= translation.text 
       %td= translation.translator.name
-      /%td= Phrase.find(translation.phrase_id)
+      %td= translation.phrase_id
       /%td= Locale.find(translation.locale_id)
       - current_locale = Locale.find_by_name(:en)
       %td= current_locale.translations.where(:phrase_id => translation.phrase_id).first.text

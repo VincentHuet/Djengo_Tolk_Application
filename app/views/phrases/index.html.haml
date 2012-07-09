@@ -4,9 +4,9 @@
   %h1 Listing complet de la table phrase
   %table#phrases-table
     %tr
-      / %td.bottom_border
-      /   #skinny
-      /     %strong Key
+      %td.bottom_border
+        #skinny
+          %strong Key
       %td.bottom_border
         #fat-path
           %strong Path
@@ -14,9 +14,9 @@
         %strongEnglish Value
       %td.bottom_border
         %strong
-    - @full_phrase.each do |phrase|
+    - @full_phrase.sort_by{|e| e[:yaml_path]}.each do |phrase|
       %tr
-        / %td= phrase.key
+        %td= phrase.id
         %td= phrase.yaml_path
         - current_locale = Locale.where(:name => :en).first
         %td= current_locale.translations.where(:phrase_id => phrase.id).first.text

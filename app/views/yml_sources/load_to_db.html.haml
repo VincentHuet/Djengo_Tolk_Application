@@ -1,14 +1,15 @@
 %p#notice= notice
 %p
-  %b Name:
+  %strong Name:
   = @yml_source.name
 %p
-  %b Path:
+  %strong Path:
   = @yml_source.path
-  - indent = "--"
-  - load_yaml(@yml_source.path)
-  /- hash_path = @yml_source.path
-  - parse_yaml(@Yml_to_hash, '.', indent)
-  /- TranslatorMailer.bienvenue
+- indent = "--"
+- counter = YmlLoader.parse_yaml_to_db(@Yml_to_hash, '.', indent)
+/- hash_path = @yml_source.path
+/- TranslatorMailer.bienvenue
+%p
+  %strong= pluralize(counter, 'phrase added', 'phrases added')
   
 = link_to 'Back', yml_sources_path
