@@ -10,7 +10,7 @@
     = f.text_field :name
   .field
     = f.label :locale_id
-    = f.select(:locale_id, Locale.all.collect {|l| [ l.name,l.id ] }, { :include_blank => false })
+    = f.select(:locale_id, locale_list, { :include_blank => false })
   .field
     = f.label :password
     = f.password_field :password

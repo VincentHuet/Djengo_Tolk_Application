@@ -1,11 +1,11 @@
 
 = link_to image_tag("logo-djengo.jpg"), root_path, :class => 'blog-image'
 %h2 Accueil du site de traduction
-- if translator_signed_in?
-  %br
-    = current_translator.id
-  %br
-    = Locale.find(current_translator.locale_id).name
+/ - if translator_signed_in?
+/   %br
+/     = current_translator.id
+/   %br
+/     = Locale.find(current_translator.locale_id).name
 %br
 %hr
 %div.home
@@ -29,8 +29,11 @@
     %br
       = link_to t("sign_up"), new_translator_registration_path, :class => 'btn home-btn'
 
-
-
+/ %br
+/ %div
+/ - YmlLoader.load_pathes.each do |file|
+/   = file.to_s.sub!(/config\/locales\//,"")
+/   %br
 
 
 

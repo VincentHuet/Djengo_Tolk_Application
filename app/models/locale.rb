@@ -22,8 +22,12 @@ class Locale < ActiveRecord::Base
     Locale.find_by_name(:en)
   end
 
+  def secondary_locale
+    Locale.where("name != ?", :en)
+  end
+
   def is_primary?
-    prim_loc = self.primary_locale
+    prim_loc = sprimary_locale
     self.id == prim_loc.id
   end
 end

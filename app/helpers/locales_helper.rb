@@ -1,12 +1,11 @@
 module LocalesHelper
 
   def primary(locale)
-    if locale.primary_locale == true
-      return_status = "primary"
+    if locale.primary_locale
+      "primary"
     else
-      return_status = "secondary"
+      "secondary"
     end
-    return_status
   end
 
   def missing_translation?(locale)

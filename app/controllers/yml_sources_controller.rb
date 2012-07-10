@@ -7,14 +7,10 @@ class YmlSourcesController < ApplicationController
   before_filter :authenticate_translator!
 
   def index
-    @yml_sources = YmlSource.all
-
     @yml_files = YmlLoader.load_pathes
-
     YmlLoader.load_locales
-
-   # YmlLoader.load_yml_content
-
+    @yml_sources = YmlSource.all   # YmlLoader.load_yml_content
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @yml_sources }
