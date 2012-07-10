@@ -1,8 +1,5 @@
 DjengoTolkApplication::Application.routes.draw do
   
-
-  resources :file_uploads
-
   devise_for :translators
 
   resources :translators
@@ -11,13 +8,6 @@ DjengoTolkApplication::Application.routes.draw do
     collection do
       get 'load_to_db'
       get '/load_to_db/:id' => 'yml_sources#load_to_db'
-    end
-  end
-
-  resources :translations do 
-    collection do
-      get '/index_by_locale/'
-      get '/index_by_locale/:id' => 'translations#index_by_locale'
     end
   end
 

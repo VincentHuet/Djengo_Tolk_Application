@@ -2,9 +2,8 @@
 class LocalesController < ApplicationController
   # GET /locales
   # GET /locales.json
-
   before_filter :authenticate_translator!
-
+  load_and_authorize_resource
   def index
     @locales = Locale.all
 
@@ -48,7 +47,6 @@ class LocalesController < ApplicationController
 
     respond_to do |format|
       if @locale.save
-        TranslatorMailer.registration_confirmation(current_translator).deliver
         format.html { redirect_to root_path, notice: 'Locale was successfully created.' }
         format.json { render json: @locale, status: :created, location: @locale }
       else

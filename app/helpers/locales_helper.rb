@@ -9,7 +9,7 @@ module LocalesHelper
   end
 
   def missing_translation?(locale)
-    primary_locale = Locale.where(:name => :en).first
+    primary_locale = Locale.primary_locale
     (primary_locale.translations.count - locale.translations.where(:needed_update => 0).count)
   end
 

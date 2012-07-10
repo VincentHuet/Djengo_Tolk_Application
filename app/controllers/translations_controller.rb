@@ -1,8 +1,8 @@
 class TranslationsController < ApplicationController
   # GET /translations
   # GET /translations.json
-
   before_filter :authenticate_translator!
+  load_and_authorize_resource
 
   def index
     @locale = Locale.find(params[:locale_id])
@@ -17,8 +17,6 @@ class TranslationsController < ApplicationController
   # GET /translations/1
   # GET /translations/1.json
   def show
-    @translation = Translation.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @translation }
@@ -40,7 +38,6 @@ class TranslationsController < ApplicationController
 
   # GET /translations/1/edit
   def edit
-    @translation = Translation.find(params[:id])
   end
 
   # POST /translations
@@ -67,7 +64,6 @@ class TranslationsController < ApplicationController
   # PUT /translations/1
   # PUT /translations/1.json
   def update
-    @translation = Translation.find(params[:id])
     @translation.translator_id = current_translator.id
     @translation.locale_id = current_translator.locale_id
     
@@ -86,7 +82,6 @@ class TranslationsController < ApplicationController
   # DELETE /translations/1
   # DELETE /translations/1.json
   def destroy
-    @translation = Translation.find(params[:id])
     @translation.destroy
 
     respond_to do |format|
@@ -94,14 +89,4 @@ class TranslationsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  def index_by_locale
-    @translations = Translation.where(:locale_id => params[:id])
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @translations }
-    end
-  end
-
 end

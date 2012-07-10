@@ -18,7 +18,7 @@
       %tr
         %td= phrase.id
         %td= phrase.yaml_path
-        - current_locale = Locale.where(:name => :en).first
+        - current_locale = Locale.primary_locale
         %td= current_locale.translations.where(:phrase_id => phrase.id).first.text
         /%td= link_to 'translate', new_phrase_translation_path(phrase), :class => "full-right"
         /%td= link_to 'Destroy', phrase, confirm: 'Are you sure?', method: :delete

@@ -16,18 +16,13 @@ class Locale < ActiveRecord::Base
   has_many :translations
   has_many :translators
 
+  #validates :primary_locale, presence => true
 
-
-  def primary_locale
-    Locale.find_by_name(:en)
-  end
-
-  def secondary_locale
-    Locale.where("name != ?", :en)
+  def self.primary_locale
+    Locale.find_by_primary_locale(true)
   end
 
   def is_primary?
-    prim_loc = sprimary_locale
-    self.id == prim_loc.id
+    primary_locale
   end
 end
