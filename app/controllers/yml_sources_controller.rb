@@ -82,22 +82,7 @@ class YmlSourcesController < ApplicationController
     @yml_source = YmlSource.find(params[:id])
     @yml_source.destroy
 
-    respond_to do |format|
-      format.html { redirect_to yml_sources_url }
-      format.json { head :no_content }
-    end
-  end
-
-  def load_to_db
-    @yml_source = YmlSource.find(params[:id])
-
-    @Yml_to_hash = YmlLoader.load_yaml(@yml_source.path)
-
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @yml_source }
-    end
+    destroy_respond_to
   end
 
 end

@@ -18,10 +18,7 @@ class LocalesController < ApplicationController
   def show
     @locale = Locale.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @locale }
-    end
+    standard_respond_to(@locale)
   end
 
   # GET /locales/new
@@ -29,10 +26,7 @@ class LocalesController < ApplicationController
   def new
     @locale = Locale.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @locale }
-    end
+    standard_respond_to(@locale)
   end
 
   # GET /locales/1/edit
@@ -78,9 +72,6 @@ class LocalesController < ApplicationController
     @locale = Locale.find(params[:id])
     @locale.destroy
 
-    respond_to do |format|
-      format.html { redirect_to locales_url }
-      format.json { head :no_content }
-    end
+    destroy_respond_to
   end
 end

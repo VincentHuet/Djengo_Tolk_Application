@@ -5,40 +5,29 @@ class PhrasesController < ApplicationController
 
   before_filter :authenticate_translator!
 
+
   def index
     @phrases = Phrase.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @phrases }
-    end
+    standard_respond_to(@phrase)
   end
 
   # GET /phrases/1
   # GET /phrases/1.json
   def show
-    @phrase = Phrase.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @phrase }
-    end
+    @phrase = get_phrase(params[:id])
+    standard_respond_to(@phrase)
   end
 
   # GET /phrases/new
   # GET /phrases/new.json
   def new
     @phrase = Phrase.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @phrase }
-    end
+    standard_respond_to(@phrase)
   end
 
   # GET /phrases/1/edit
   def edit
-    @phrase = Phrase.find(params[:id])
+    @phrase = get_phrase(params[:id])
   end
 
   # POST /phrases
@@ -61,7 +50,7 @@ class PhrasesController < ApplicationController
   # PUT /phrases/1
   # PUT /phrases/1.json
   def update
-    @phrase = Phrase.find(params[:id])
+    @phrase = get_phrase(params[:id])
 
     respond_to do |format|
       if @phrase.update_attributes(params[:phrase])
@@ -77,12 +66,14 @@ class PhrasesController < ApplicationController
   # DELETE /phrases/1
   # DELETE /phrases/1.json
   def destroy
-    @phrase = Phrase.find(params[:id])
+    @phrase = get_phrase(params[:id])
     @phrase.destroy
 
-    respond_to do |format|
-      format.html { redirect_to phrases_url }
-      format.json { head :no_content }
-    end
+    destroy_respond_to
+  end
+
+  private
+  def get_phrase(phrase_id)
+    Phrase.find(phrase_id)
   end
 end

@@ -79,9 +79,6 @@ class TranslatorsController < ApplicationController
     @translator = Translator.find(params[:id])
     @translator.destroy
 
-    respond_to do |format|
-      format.html { redirect_to translators_url }
-      format.json { head :no_content }
-    end
+    destroy_respond_to
   end
 end
