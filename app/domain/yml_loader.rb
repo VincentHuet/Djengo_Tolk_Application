@@ -47,7 +47,7 @@ class YmlLoader
           counter += 1
           new_translation = Translation.new
           new_translation.text = hash_branch[sub_tree_key].to_s
-          new_translation.translator_id = Translator.where(:name => 'DB_loader').first.id
+          new_translation.translator_id = Translator.db_loader
           new_translation.phrase_id = new_phrase.id
           
           en_local = Locale.primary_locale
