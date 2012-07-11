@@ -11,6 +11,8 @@ class Ability
 
     can :create, Locale
     can :destroy, Locale
+
+    can :create, :all
   end
 end
 

@@ -39,7 +39,7 @@ class YmlLoader
         hash_path << "." + sub_tree_key.to_s
         counter += parse_yaml_to_db(hash_branch[sub_tree_key], hash_path, indent)
       else
-        new_phrase_entry(hash_path, sub_tree_key, hash_branch)
+        counter += new_phrase_entry(hash_path, sub_tree_key, hash_branch)
       end
     end
     counter
@@ -49,15 +49,16 @@ class YmlLoader
     new_phrase = Phrase.new
     new_phrase.yaml_path = hash_path + "." + sub_tree_key.to_s
     new_phrase.key = sub_tree_key.to_s
-
+    counter = 0
     if Phrase.find_by_yaml_path(new_phrase.yaml_path).nil?
       new_phrase.save 
-      counter += 1
+      counter = 1
       populate_translation_table(hash_branch, sub_tree_key, new_phrase)
     end
+    counter
   end
 
-  def populate_translation_table(hash_branch, sub_tree_key, relevant_phrase)
+  def self.populate_translation_table(hash_branch, sub_tree_key, relevant_phrase)
     new_translation = Translation.new
     new_translation.text = hash_branch[sub_tree_key].to_s
     new_translation.phrase_id = relevant_phrase.id
@@ -70,7 +71,7 @@ class YmlLoader
     populate_non_primary_translation_table(relevant_phrase)
   end
 
-  def populate_non_primary_translation_table(relevant_phrase)
+  def self.populate_non_primary_translation_table(relevant_phrase)
     Locale.find_each do |locale|
       if !locale.is_primary?
         new_translation = Translation.new

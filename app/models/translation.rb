@@ -33,14 +33,22 @@ class Translation < ActiveRecord::Base
     end
 
     if Locale.find(locale_id).is_primary?
-      Locale.find_each do |locale|
-        if !locale.is_primary?
-          locale.translations.where(:phrase_id => self.phrase_id).update_all(:needed_update => 1)
-          translator = Translator.find_by_locale_id(locale.id)
-          TranslatorMailer.welcome_email(translator).deliver
-        end
+      actualize_secondary_locale_relevant_translation
+    end
+  end
+
+  def actualize_secondary_locale_relevant_translation
+    Locale.find_each do |locale|
+      if !locale.is_primary?
+        locale.translations.where(:phrase_id => self.phrase_id).update_all(:needed_update => 1)
+        translator = Translator.find_by_locale_id(locale.id)
+        mail_if_deliverable(translator)
       end
     end
+  end
+
+  def mail_if_deliverable(translator)
+    TranslatorMailer.welcome_email(translator).deliver if !translator.nil?
   end
 
 end

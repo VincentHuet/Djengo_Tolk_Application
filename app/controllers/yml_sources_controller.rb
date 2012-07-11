@@ -5,7 +5,7 @@ class YmlSourcesController < ApplicationController
   # GET /yml_sources.json
 
   before_filter :authenticate_translator!
-  load_and_authorize_resource
+  #load_and_authorize_resource
 
   def index
     @yml_files = YmlLoader.load_pathes
