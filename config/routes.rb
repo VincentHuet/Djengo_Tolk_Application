@@ -21,6 +21,8 @@ DjengoTolkApplication::Application.routes.draw do
     resources :translations
   end  
 
+  resources :translations
+  
   resources :phrases
 
   resources :locales

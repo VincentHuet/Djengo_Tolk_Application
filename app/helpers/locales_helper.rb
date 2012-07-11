@@ -9,9 +9,9 @@ module LocalesHelper
   end
 
   def missing_translation?(locale)
-    primary_locale = Locale.primary_locale
-    (primary_locale.translations.count - locale.translations.where(:needed_update => 0).count)
+    reference_locale = Locale.primary_locale
+    primary_keyword_quantity = reference_locale.translations.count 
+    current_done_translation = locale.translations.where(:needed_update => 0).count
+    primary_keyword_quantity - current_done_translation
   end
-
-
 end

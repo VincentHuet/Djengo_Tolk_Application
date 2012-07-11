@@ -20,7 +20,7 @@
               %li= link_to t("home"), root_path
               %li= link_to t("yml_source"), yml_sources_path
               %li= link_to t("locale"), locales_path
-              %li= link_to t("phrases"), phrases_path
+              /%li= link_to t("phrases"), phrases_path
               - if translator_signed_in?
                 %li= link_to t("translation"), locale_translations_path(Locale.find(current_translator.locale_id))
                 %li= raw("&nbsp;"*30)

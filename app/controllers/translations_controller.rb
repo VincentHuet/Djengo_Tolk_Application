@@ -6,8 +6,12 @@ class TranslationsController < ApplicationController
 
   def index
     @locale = Locale.find(params[:locale_id])
-    @translations = @locale.translations.all
-
+    if !@locale.blank?
+      @translations = @locale.translations.all
+    else
+      @translations = Translations.all
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @translations }
