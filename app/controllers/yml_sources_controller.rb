@@ -5,27 +5,20 @@ class YmlSourcesController < ApplicationController
   # GET /yml_sources.json
 
   before_filter :authenticate_translator!
+  load_and_authorize_resource
 
   def index
     @yml_files = YmlLoader.load_pathes
     YmlLoader.load_locales
     @yml_sources = YmlSource.all   # YmlLoader.load_yml_content
     
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @yml_sources }
-    end
+    standard_respond_to(@yml_sources)
   end
 
   # GET /yml_sources/1
   # GET /yml_sources/1.json
   def show
-    @yml_source = YmlSource.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @yml_source }
-    end
+    standard_respond_to(@yml_source)
   end
 
   # GET /yml_sources/new
@@ -41,7 +34,6 @@ class YmlSourcesController < ApplicationController
 
   # GET /yml_sources/1/edit
   def edit
-    @yml_source = YmlSource.find(params[:id])
   end
 
   # POST /yml_sources
@@ -63,8 +55,6 @@ class YmlSourcesController < ApplicationController
   # PUT /yml_sources/1
   # PUT /yml_sources/1.json
   def update
-    @yml_source = YmlSource.find(params[:id])
-
     respond_to do |format|
       if @yml_source.update_attributes(params[:yml_source])
         format.html { redirect_to @yml_source, notice: 'Yml source was successfully updated.' }
@@ -79,9 +69,7 @@ class YmlSourcesController < ApplicationController
   # DELETE /yml_sources/1
   # DELETE /yml_sources/1.json
   def destroy
-    @yml_source = YmlSource.find(params[:id])
     @yml_source.destroy
-
     destroy_respond_to
   end
 

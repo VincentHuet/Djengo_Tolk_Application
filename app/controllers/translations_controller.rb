@@ -5,16 +5,13 @@ class TranslationsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @locale = Locale.find(params[:locale_id])
     if !@locale.blank?
       @translations = @locale.translations.all
     else
       @translations = Translations.all
     end
     
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @translations }
+    standard_respond_to(@translations)
     end
   end
 
@@ -34,9 +31,7 @@ class TranslationsController < ApplicationController
     @translation = @corresponding_phrase.translations.build(params[:translation])
     @translation.phrase_id = @corresponding_phrase.id
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @translation }
+    standard_respond_to(@translation)
     end
   end
 

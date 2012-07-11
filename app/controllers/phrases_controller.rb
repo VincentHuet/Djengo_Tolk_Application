@@ -4,7 +4,7 @@ class PhrasesController < ApplicationController
   # GET /phrases.json
 
   before_filter :authenticate_translator!
-
+  load_and_authorize_resource
 
   def index
     @phrases = Phrase.all
@@ -14,7 +14,6 @@ class PhrasesController < ApplicationController
   # GET /phrases/1
   # GET /phrases/1.json
   def show
-    @phrase = get_phrase(params[:id])
     standard_respond_to(@phrase)
   end
 
@@ -27,7 +26,6 @@ class PhrasesController < ApplicationController
 
   # GET /phrases/1/edit
   def edit
-    @phrase = get_phrase(params[:id])
   end
 
   # POST /phrases
@@ -50,8 +48,6 @@ class PhrasesController < ApplicationController
   # PUT /phrases/1
   # PUT /phrases/1.json
   def update
-    @phrase = get_phrase(params[:id])
-
     respond_to do |format|
       if @phrase.update_attributes(params[:phrase])
         format.html { redirect_to @phrase, notice: 'Phrase was successfully updated.' }
@@ -66,7 +62,6 @@ class PhrasesController < ApplicationController
   # DELETE /phrases/1
   # DELETE /phrases/1.json
   def destroy
-    @phrase = get_phrase(params[:id])
     @phrase.destroy
 
     destroy_respond_to

@@ -4,7 +4,8 @@ class TranslatorsController < ApplicationController
   # GET /translators.json
 
   before_filter :authenticate_translator!
-  
+  load_and_authorize_resource
+
   def index
     @translators = Translator.all
 
@@ -17,11 +18,7 @@ class TranslatorsController < ApplicationController
   # GET /translators/1
   # GET /translators/1.json
   def show
-    @translator = Translator.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @translator }
+    standard_respond_to(@translator)
     end
   end
 
@@ -38,7 +35,6 @@ class TranslatorsController < ApplicationController
 
   # GET /translators/1/edit
   def edit
-    @translator = Translator.find(params[:id])
   end
 
   # POST /translators
@@ -60,8 +56,6 @@ class TranslatorsController < ApplicationController
   # PUT /translators/1
   # PUT /translators/1.json
   def update
-    @translator = Translator.find(params[:id])
-
     respond_to do |format|
       if @translator.update_attributes(params[:translator])
         format.html { redirect_to @translator, notice: 'Translator was successfully updated.' }
@@ -76,9 +70,7 @@ class TranslatorsController < ApplicationController
   # DELETE /translators/1
   # DELETE /translators/1.json
   def destroy
-    @translator = Translator.find(params[:id])
     @translator.destroy
-
     destroy_respond_to
   end
 end

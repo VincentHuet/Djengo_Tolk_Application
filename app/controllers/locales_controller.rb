@@ -6,18 +6,12 @@ class LocalesController < ApplicationController
   load_and_authorize_resource
   def index
     @locales = Locale.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @locales }
-    end
+    standard_respond_to(@locales)
   end
 
   # GET /locales/1
   # GET /locales/1.json
   def show
-    @locale = Locale.find(params[:id])
-
     standard_respond_to(@locale)
   end
 
@@ -25,13 +19,11 @@ class LocalesController < ApplicationController
   # GET /locales/new.json
   def new
     @locale = Locale.new
-
     standard_respond_to(@locale)
   end
 
   # GET /locales/1/edit
   def edit
-    @locale = Locale.find(params[:id])
   end
 
   # POST /locales
