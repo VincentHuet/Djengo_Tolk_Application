@@ -34,7 +34,5 @@ class Translator < ActiveRecord::Base
   has_many :translations
   belongs_to :locale
 
-  def db_loader
-    Translator.find(4)
-  end
+  
 end

@@ -6,4 +6,4 @@
 %td= Locale.find(@translation.locale_id).name
 %td= @translation.needed_update
 - if (can? :update, @translation)
-    %td= link_to 'Edit', edit_translation_path(@translation)
+  %td= link_to 'Edit', edit_translation_path(@translation)

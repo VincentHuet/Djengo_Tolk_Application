@@ -8,11 +8,10 @@ class TranslationsController < ApplicationController
     if !@locale.blank?
       @translations = @locale.translations.all
     else
-      @translations = Translations.all
+      #@translations = Translation.all
     end
     
     standard_respond_to(@translations)
-    end
   end
 
   # GET /translations/1
@@ -32,7 +31,6 @@ class TranslationsController < ApplicationController
     @translation.phrase_id = @corresponding_phrase.id
 
     standard_respond_to(@translation)
-    end
   end
 
   # GET /translations/1/edit
@@ -85,4 +83,5 @@ class TranslationsController < ApplicationController
 
     destroy_respond_to
   end
+
 end

@@ -16,7 +16,7 @@
     %tr
       %td= translator.id
       %td= translator.name
-      %td= Locale.find(translator.locale_id).name
+      %td= Locale.find(translator.locale_id).name + " - " + translator.locale_id.to_s
       %td= translator.email
       %td= raw("&nbsp;")
       %td= link_to 'Show', translator

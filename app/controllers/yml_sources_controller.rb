@@ -26,10 +26,7 @@ class YmlSourcesController < ApplicationController
   def new
     @yml_source = YmlSource.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @yml_source }
-    end
+    standard_respond_to(@yml_source)
   end
 
   # GET /yml_sources/1/edit
@@ -71,6 +68,11 @@ class YmlSourcesController < ApplicationController
   def destroy
     @yml_source.destroy
     destroy_respond_to
+  end
+
+  def load_to_db
+    @yml_source = YmlSource.find(params[:id])
+    @Yml_to_hash = YmlLoader.load_yaml(@yml_source.path)
   end
 
 end

@@ -19,7 +19,6 @@ class TranslatorsController < ApplicationController
   # GET /translators/1.json
   def show
     standard_respond_to(@translator)
-    end
   end
 
   # GET /translators/new
