@@ -54,16 +54,7 @@ class TranslationsController < ApplicationController
     @translation.translator_id = current_translator.id
     @translation.locale_id = current_translator.locale_id
     
-    
-    respond_to do |format|
-      if @translation.update_attributes(params[:translation])
-        format.html { redirect_to locale_translations_path(Locale.find(@translation.locale_id)), notice: 'Translation was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @translation.errors, status: :unprocessable_entity }
-      end
-    end
+    update_respond_to(@translation, params[:translation], translations_path(Locale.find(@translation.locale_id)))
   end
 
   # DELETE /translations/1

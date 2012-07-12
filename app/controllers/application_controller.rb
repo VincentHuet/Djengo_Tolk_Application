@@ -28,10 +28,22 @@ class ApplicationController < ActionController::Base
   def create_respond_to(class_type)
     respond_to do |format|
       if class_type.save
-        format.html { redirect_to class_type, notice: class_type.class.to_s' was successfully created.' }
+        format.html { redirect_to class_type, notice: class_type.class.to_s + ' was successfully created.' }
         format.json { render json: class_type, status: :created, location: class_type }
       else
         format.html { render action: "new" }
+        format.json { render json: class_type.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update_respond_to(class_type, parameters, redirect_path = class_type)
+    respond_to do |format|
+      if class_type.update_attributes(parameters)
+        format.html { redirect_to redirect_path, notice: class_type.class.to_s + ' was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
         format.json { render json: class_type.errors, status: :unprocessable_entity }
       end
     end

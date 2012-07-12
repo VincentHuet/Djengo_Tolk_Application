@@ -9,10 +9,7 @@ class TranslatorsController < ApplicationController
   def index
     @translators = Translator.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @translators }
-    end
+    standard_respond_to(@translators)
   end
 
   # GET /translators/1
@@ -26,10 +23,7 @@ class TranslatorsController < ApplicationController
   def new
     @translator = Translator.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @translator }
-    end
+    standard_respond_to(@translator)
   end
 
   # GET /translators/1/edit
@@ -47,15 +41,7 @@ class TranslatorsController < ApplicationController
   # PUT /translators/1
   # PUT /translators/1.json
   def update
-    respond_to do |format|
-      if @translator.update_attributes(params[:translator])
-        format.html { redirect_to @translator, notice: 'Translator was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @translator.errors, status: :unprocessable_entity }
-      end
-    end
+    update_respond_to(@translator, params[:translator])
   end
 
   # DELETE /translators/1
