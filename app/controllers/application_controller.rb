@@ -31,8 +31,7 @@ class ApplicationController < ActionController::Base
         format.html { redirect_to class_type, notice: class_type.class.to_s + ' was successfully created.' }
         format.json { render json: class_type, status: :created, location: class_type }
       else
-        format.html { render action: "new" }
-        format.json { render json: class_type.errors, status: :unprocessable_entity }
+        fail_respond_to("new")
       end
     end
   end
@@ -43,10 +42,13 @@ class ApplicationController < ActionController::Base
         format.html { redirect_to redirect_path, notice: class_type.class.to_s + ' was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: class_type.errors, status: :unprocessable_entity }
+        fail_respond_to("edit")
       end
     end
   end
 
+  def fail_respond_to(type_of_action)
+    format.html { render action: type_of_action }
+    format.json { render json: class_type.errors, status: :unprocessable_entity }
+  end
 end
