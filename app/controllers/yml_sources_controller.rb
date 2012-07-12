@@ -37,30 +37,13 @@ class YmlSourcesController < ApplicationController
   # POST /yml_sources.json
   def create
     @yml_source = YmlSource.new(params[:yml_source])
-
-    respond_to do |format|
-      if @yml_source.save
-        format.html { redirect_to @yml_source, notice: 'Yml source was successfully created.' }
-        format.json { render json: @yml_source, status: :created, location: @yml_source }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @yml_source.errors, status: :unprocessable_entity }
-      end
-    end
+    create_respond_to(@yml_source)
   end
 
   # PUT /yml_sources/1
   # PUT /yml_sources/1.json
   def update
-    respond_to do |format|
-      if @yml_source.update_attributes(params[:yml_source])
-        format.html { redirect_to @yml_source, notice: 'Yml source was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @yml_source.errors, status: :unprocessable_entity }
-      end
-    end
+    update_respond_to(@yml_source, params[:yml_source])
   end
 
   # DELETE /yml_sources/1

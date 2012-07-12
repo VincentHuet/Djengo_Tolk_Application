@@ -33,30 +33,13 @@ class PhrasesController < ApplicationController
   def create
     @phrase = Phrase.new(params[:phrase])
 
-    respond_to do |format|
-      if @phrase.save
-        TranslatorMailer.deliver_bienvenue
-        format.html { redirect_to @phrase, notice: 'Phrase was successfully created.' }
-        format.json { render json: @phrase, status: :created, location: @phrase }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @phrase.errors, status: :unprocessable_entity }
-      end
-    end
+    create_respond_to(@phrase)
   end
 
   # PUT /phrases/1
   # PUT /phrases/1.json
   def update
-    respond_to do |format|
-      if @phrase.update_attributes(params[:phrase])
-        format.html { redirect_to @phrase, notice: 'Phrase was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @phrase.errors, status: :unprocessable_entity }
-      end
-    end
+    update_respond_to(@phrase, params[:phrase])
   end
 
   # DELETE /phrases/1
