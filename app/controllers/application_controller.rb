@@ -25,4 +25,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def create_respond_to(class_type)
+    respond_to do |format|
+      if class_type.save
+        format.html { redirect_to class_type, notice: class_type.class.to_s' was successfully created.' }
+        format.json { render json: class_type, status: :created, location: class_type }
+      else
+        format.html { render action: "new" }
+        format.json { render json: class_type.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 end

@@ -43,18 +43,9 @@ class TranslationsController < ApplicationController
   def create
     @corresponding_phrase = Phrase.find(params[:phrase_id])
     @translation = @corresponding_phrase.translations.build(params[:translation])
-    @translation.phrase_id = @corresponding_phrase.id
-    @translation.author = current_translator.id
-    @translation.locale_id = current_translator.locale_id
-    respond_to do |format|
-      if @translation.save
-        format.html { redirect_to @translation, notice: 'Translation was successfully created.' }
-        format.json { render json: @translation, status: :created, location: @translation }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @translation.errors, status: :unprocessable_entity }
-      end
-    end
+    @translation = add_current_translator_information(@translation)
+
+    create_respond_to(@translation)
   end
 
   # PUT /translations/1
@@ -81,6 +72,11 @@ class TranslationsController < ApplicationController
     @translation.destroy
 
     destroy_respond_to
+  end
+
+  def add_current_translator_information(translation)
+    translation.author = current_translator.id
+    translation.locale_id = current_translator.locale_id
   end
 
 end

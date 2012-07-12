@@ -41,13 +41,7 @@ class TranslatorsController < ApplicationController
   def create
     @translator = Translator.new(params[:translator])
 
-    respond_to do |format|
-      if @translator.save
-        format.html { redirect_to @translator, notice: 'Translator was successfully created.' }
-      else
-        format.html { render action: "new" }
-      end
-    end
+    create_respond_to(@translator)
   end
 
   # PUT /translators/1
