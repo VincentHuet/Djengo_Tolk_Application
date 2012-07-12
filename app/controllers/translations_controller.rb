@@ -54,7 +54,7 @@ class TranslationsController < ApplicationController
     @translation.translator_id = current_translator.id
     @translation.locale_id = current_translator.locale_id
     
-    update_respond_to(@translation, params[:translation], translations_path(Locale.find(@translation.locale_id)))
+    update_respond_to(@translation, params[:translation], locale_translations_path(Locale.find(@translation.locale_id)))
   end
 
   # DELETE /translations/1
