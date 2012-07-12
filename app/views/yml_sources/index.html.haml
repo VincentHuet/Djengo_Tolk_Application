@@ -20,12 +20,3 @@
 
 / :javascript
 /   window.open('yml_sources/load_to_db/54', '_survey', 'height=400,width=300,status=no,menubar=no,location=no,toolbar=no');
-
-/ %table
-/   - @yml_files.each do |file|
-/     %tr
-/       %td= file.from(15).truncate(2, :separator => '.')
-/       %td= file
-
-/= link_to 'New Yml source', new_yml_source_path, :class => "btn" |
-/= link_to 'Phrase list', phrases_path, :class => "btn full-right"

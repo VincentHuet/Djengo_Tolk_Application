@@ -44,10 +44,8 @@ class TranslatorsController < ApplicationController
     respond_to do |format|
       if @translator.save
         format.html { redirect_to @translator, notice: 'Translator was successfully created.' }
-        format.json { render json: @translator, status: :created, location: @translator }
       else
         format.html { render action: "new" }
-        format.json { render json: @translator.errors, status: :unprocessable_entity }
       end
     end
   end
