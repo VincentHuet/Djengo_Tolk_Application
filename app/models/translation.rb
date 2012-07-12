@@ -51,4 +51,11 @@ class Translation < ActiveRecord::Base
     TranslatorMailer.welcome_email(translator).deliver if !translator.nil?
   end
 
+  def export_data_to_yaml(locale)
+    File.open("#{RAILS_ROOT}/public/data/#{locale}.yml", 'w') do |file|
+      file.write data.inject({}) { 
+      }.to_yaml
+    end
+  end 
+
 end

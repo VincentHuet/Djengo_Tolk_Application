@@ -26,6 +26,31 @@
     - else
       %tr#green
         = render 'translation_row'
-    
-        
+- hash_locale_translation = {}
+- @translations.each do |translation| 
+  - translation.phrase.yaml_path.sub(/[\.]{2}/,"").split(".").each do |lol|
+    = lol
+
+%table#translations-table
+  %tr.bottom_border
+    %td
+      %strong 
+        #normal Translation
+    %td
+      %strong 
+        #normal English Value
+    %td
+      %strong 
+  - hash_locale_translation = {}
+  - @translations.each do |translation|
+    %tr
+      %td
+        %strong 
+          #normal= translation.phrase.key
+      %td
+        %strong 
+          #normal= translation.text
+      / - translation.phrase.yaml_path.sub(/[\.]{2}/,"").split(".").each do |lol|
+      /   %td= lol
+      %td= translation.phrase.yaml_path.sub(/[\.]{2}/,"").split(".")
 %br
