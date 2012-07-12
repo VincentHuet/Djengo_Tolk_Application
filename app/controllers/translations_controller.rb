@@ -46,8 +46,6 @@ class TranslationsController < ApplicationController
     @translation.phrase_id = @corresponding_phrase.id
     @translation.author = current_translator.id
     @translation.locale_id = current_translator.locale_id
-
-
     respond_to do |format|
       if @translation.save
         format.html { redirect_to @translation, notice: 'Translation was successfully created.' }
