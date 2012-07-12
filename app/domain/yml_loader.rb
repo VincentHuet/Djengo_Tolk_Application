@@ -50,7 +50,7 @@ class YmlLoader
     new_phrase.yaml_path = hash_path + "." + sub_tree_key.to_s
     new_phrase.key = sub_tree_key.to_s
     counter = 0
-    if Phrase.find_by_yaml_path(new_phrase.yaml_path).nil?
+    if Phrase.find_by_yaml_path(new_phrase.yaml_path).nil? && !new_phrase.blank?
       new_phrase.save 
       counter = 1
       populate_translation_table(hash_branch, sub_tree_key, new_phrase)

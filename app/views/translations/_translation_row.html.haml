@@ -1,8 +1,11 @@
 %td= @translation.text 
-%td= Translator.find(@translation.translator_id).name
 /%td= Locale.find(translation.locale_id)
 - primary_locale = Locale.primary_locale
 %td= primary_locale.translations.where(:phrase_id => @translation.phrase_id).first.text
+- if @translation.translator_id.nil?
+  %td= "nil"
+- else
+  %td= Translator.find(@translation.translator_id).name
 %td= Locale.find(@translation.locale_id).name
 %td= @translation.needed_update
 - if (can? :update, @translation)

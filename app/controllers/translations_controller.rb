@@ -5,10 +5,11 @@ class TranslationsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    if !@locale.blank?
+    if !Locale.find(params[:locale_id]).nil?
+      @locale = Locale.find(params[:locale_id])
       @translations = @locale.translations.all
     else
-      #@translations = Translation.all
+      @translations = Translation.all
     end
     
     standard_respond_to(@translations)
