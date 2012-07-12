@@ -31,15 +31,7 @@ class LocalesController < ApplicationController
   def create
     @locale = Locale.new(params[:locale])
 
-    respond_to do |format|
-      if @locale.save
-        format.html { redirect_to root_path, notice: 'Locale was successfully created.' }
-        format.json { render json: @locale, status: :created, location: @locale }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @locale.errors, status: :unprocessable_entity }
-      end
-    end
+    create_respond_to(@locale)
   end
 
   # PUT /locales/1
@@ -47,15 +39,7 @@ class LocalesController < ApplicationController
   def update
     @locale = Locale.find(params[:id])
 
-    respond_to do |format|
-      if @locale.update_attributes(params[:locale])
-        format.html { redirect_to @locale, notice: 'Locale was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @locale.errors, status: :unprocessable_entity }
-      end
-    end
+    update_respond_to(@locale, params[:locale])
   end
 
   # DELETE /locales/1
