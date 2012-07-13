@@ -58,4 +58,19 @@ class Translation < ActiveRecord::Base
     end
   end 
 
+  def add_sub_lvl_in_hash(new_level)
+    new_lvl_in_exported_hash = {}
+    new_level
+  end
+
+  def insert(hash, path, value)
+    head, *tail = path
+    if tail.empty?
+      hash.merge(head => value)
+    else
+      h = insert(hash[head] || {}, tail, value)
+      hash.merge(head => hash.has_key?(head) ? hash[head].merge(h) : h)
+    end
+  end
+
 end

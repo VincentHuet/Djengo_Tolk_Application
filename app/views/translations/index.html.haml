@@ -26,10 +26,12 @@
     - else
       %tr#green
         = render 'translation_row'
-- hash_locale_translation = {}
-- @translations.each do |translation| 
-  - translation.phrase.yaml_path.sub(/[\.]{2}/,"").split(".").each do |lol|
-    = lol
+%br
+%br
+= raw(parse_exported_yaml(@yml_hash, ""))
+%br
+= @yml_hash
+
 
 %table#translations-table
   %tr.bottom_border

@@ -12,6 +12,16 @@ class TranslationsController < ApplicationController
       @translations = Translation.all
     end
     
+    @yml_hash = {}
+    hash_locale_translation = {}
+    @translations.each do |translation|
+      yaml_path = translation.phrase.yaml_path
+      translation_value = translation.text
+      translation_value = "-" if translation_value.blank?
+      @yml_hash = insert(@yml_hash, yaml_path.sub(/[.]{2}/, "").split("."), translation_value)
+    end
+
+
     standard_respond_to(@translations)
   end
 
@@ -68,6 +78,16 @@ class TranslationsController < ApplicationController
   def add_current_translator_information(translation)
     translation.author = current_translator.id
     translation.locale_id = current_translator.locale_id
+  end
+
+  def insert(hash, path, value)
+    head, *tail = path
+    if tail.empty?
+      hash.merge(head => value)
+    else
+      h = insert(hash[head] || {}, tail, value)
+      hash.merge(head => hash.has_key?(head) ? hash[head].merge(h) : h)
+    end
   end
 
 end
