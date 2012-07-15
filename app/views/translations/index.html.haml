@@ -28,31 +28,14 @@
         = render 'translation_row'
 %br
 %br
-= raw(parse_exported_yaml(@yml_hash, ""))
+%strong représentation "YAML" des clés et des valeurs du hash correspondant aux traductions de cette locale 
+%br
+= raw(parse_exported_hash_to_html(@yml_hash, ""))
+%br
+%strong Affichage brut des clés et des valeurs du hash correspondant aux traductions de cette locale : 
+= @locale.name
+%br
+- YmlLoader.export_hash_to_yaml_locale(parse_exported_hash_to_yml(@yml_hash, ""), @locale)
 %br
 = @yml_hash
 
-
-%table#translations-table
-  %tr.bottom_border
-    %td
-      %strong 
-        #normal Translation
-    %td
-      %strong 
-        #normal English Value
-    %td
-      %strong 
-  - hash_locale_translation = {}
-  - @translations.each do |translation|
-    %tr
-      %td
-        %strong 
-          #normal= translation.phrase.key
-      %td
-        %strong 
-          #normal= translation.text
-      / - translation.phrase.yaml_path.sub(/[\.]{2}/,"").split(".").each do |lol|
-      /   %td= lol
-      %td= translation.phrase.yaml_path.sub(/[\.]{2}/,"").split(".")
-%br

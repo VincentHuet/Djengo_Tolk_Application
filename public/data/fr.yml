@@ -1,0 +1,22 @@
+en: 
+  home: Accueil
+  article: -
+  team: -
+  about: -
+  logout: -
+  login: -
+  sing_up: -
+  blog: 
+    index: 
+      bonjour: -
+      welcome_paragraphe: -
+      welcome_paragraphe_2: -
+    activerecord: 
+      models: 
+        article: -
+        attributes: 
+          article: 
+            category: -
+            content: -
+            subject: -
+            time: -

@@ -82,4 +82,9 @@ class YmlLoader
     end   
   end
 
+  def self.export_hash_to_yaml_locale(yaml_exported_file, locale)
+    File.open("#{Rails.root}/public/data/#{locale.name}.yml", 'w') do |file|
+      file.write yaml_exported_file
+    end
+  end
 end

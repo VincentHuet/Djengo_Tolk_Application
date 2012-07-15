@@ -49,13 +49,6 @@ class Translation < ActiveRecord::Base
 
   def mail_if_deliverable(translator)
     TranslatorMailer.welcome_email(translator).deliver if !translator.nil?
-  end
-
-  def export_data_to_yaml(locale)
-    File.open("#{RAILS_ROOT}/public/data/#{locale}.yml", 'w') do |file|
-      file.write data.inject({}) { 
-      }.to_yaml
-    end
   end 
 
   def add_sub_lvl_in_hash(new_level)
