@@ -50,8 +50,4 @@ class PhrasesController < ApplicationController
     destroy_respond_to
   end
 
-  private
-  def get_phrase(phrase_id)
-    Phrase.find(phrase_id)
-  end
 end

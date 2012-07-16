@@ -18,7 +18,7 @@
   = link_to t("phrases"), phrases_path, :class => 'btn home-btn'
   - if translator_signed_in?
     %br
-      = link_to t("translation"), locale_translations_path(Locale.find(current_translator.locale_id)), :class => 'btn home-btn'
+      = link_to t("translation"), locale_translations_path(current_translator.locale), :class => 'btn home-btn'
     %br
       = raw("&nbsp;"*30)
     %br

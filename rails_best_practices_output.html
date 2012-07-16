@@ -57,7 +57,7 @@
       to see more useful Rails Best Practices.
     </p>
     <p>
-        Found 236 warnings.
+        Found 226 warnings.
     </p>
     <ul>
         <li>
@@ -69,24 +69,12 @@
             <label for="HashSyntaxReview">HashSyntaxReview</label>
         </li>
         <li>
-            <input type="checkbox" id="LawOfDemeterReview" value="LawOfDemeterReview" />
-            <label for="LawOfDemeterReview">LawOfDemeterReview</label>
-        </li>
-        <li>
             <input type="checkbox" id="MoveCodeIntoControllerReview" value="MoveCodeIntoControllerReview" />
             <label for="MoveCodeIntoControllerReview">MoveCodeIntoControllerReview</label>
         </li>
         <li>
-            <input type="checkbox" id="RemoveEmptyHelpersReview" value="RemoveEmptyHelpersReview" />
-            <label for="RemoveEmptyHelpersReview">RemoveEmptyHelpersReview</label>
-        </li>
-        <li>
             <input type="checkbox" id="RemoveUnusedMethodsInControllersReview" value="RemoveUnusedMethodsInControllersReview" />
             <label for="RemoveUnusedMethodsInControllersReview">RemoveUnusedMethodsInControllersReview</label>
-        </li>
-        <li>
-            <input type="checkbox" id="RemoveUnusedMethodsInModelsReview" value="RemoveUnusedMethodsInModelsReview" />
-            <label for="RemoveUnusedMethodsInModelsReview">RemoveUnusedMethodsInModelsReview</label>
         </li>
         <li>
             <input type="checkbox" id="ReplaceInstanceVariableWithLocalVariableReview" value="ReplaceInstanceVariableWithLocalVariableReview" />
@@ -196,7 +184,7 @@
           <td class='filename'>
               app/helpers/locales_helper.rb
           </td>
-          <td class='line'>14</td>
+          <td class='line'>10</td>
           <td class='message'>
             <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
           </td>
@@ -206,6 +194,24 @@
               config/application.rb
           </td>
           <td class='line'>7</td>
+          <td class='message'>
+            <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
+          </td>
+        </tr>
+        <tr class="HashSyntaxReview">
+          <td class='filename'>
+              config/routes.rb
+          </td>
+          <td class='line'>3</td>
+          <td class='message'>
+            <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
+          </td>
+        </tr>
+        <tr class="HashSyntaxReview">
+          <td class='filename'>
+              config/routes.rb
+          </td>
+          <td class='line'>3</td>
           <td class='message'>
             <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
           </td>
@@ -736,7 +742,7 @@
           <td class='filename'>
               app/views/phrases/index.html.haml
           </td>
-          <td class='line'>22</td>
+          <td class='line'>20</td>
           <td class='message'>
             <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
           </td>
@@ -790,16 +796,7 @@
           <td class='filename'>
               app/views/translations/show.html.haml
           </td>
-          <td class='line'>10</td>
-          <td class='message'>
-            <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
-          </td>
-        </tr>
-        <tr class="HashSyntaxReview">
-          <td class='filename'>
-              app/views/translations/show.html.haml
-          </td>
-          <td class='line'>10</td>
+          <td class='line'>11</td>
           <td class='message'>
             <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
           </td>
@@ -894,130 +891,13 @@
             <a href='#' target='_blank'>change Hash Syntax to 1.9</a>
           </td>
         </tr>
-        <tr class="LawOfDemeterReview">
+        <tr class="MoveCodeIntoControllerReview">
           <td class='filename'>
-              app/controllers/translations_controller.rb
+              app/views/translations/show.html.haml
           </td>
           <td class='line'>18</td>
           <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
-          </td>
-        </tr>
-        <tr class="MoveCodeIntoControllerReview">
-          <td class='filename'>
-              app/views/phrases/index.html.haml
-          </td>
-          <td class='line'>3</td>
-          <td class='message'>
             <a href='http://rails-bestpractices.com/posts/24-move-code-into-controller' target='_blank'>move code into controller</a>
-          </td>
-        </tr>
-        <tr class="MoveCodeIntoControllerReview">
-          <td class='filename'>
-              app/views/translators/index.html.haml
-          </td>
-          <td class='line'>19</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/24-move-code-into-controller' target='_blank'>move code into controller</a>
-          </td>
-        </tr>
-        <tr class="MoveCodeIntoControllerReview">
-          <td class='filename'>
-              app/views/blog/index.html.haml
-          </td>
-          <td class='line'>21</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/24-move-code-into-controller' target='_blank'>move code into controller</a>
-          </td>
-        </tr>
-        <tr class="MoveCodeIntoControllerReview">
-          <td class='filename'>
-              app/views/translations/_translation_row.html.haml
-          </td>
-          <td class='line'>8</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/24-move-code-into-controller' target='_blank'>move code into controller</a>
-          </td>
-        </tr>
-        <tr class="MoveCodeIntoControllerReview">
-          <td class='filename'>
-              app/views/translations/_translation_row.html.haml
-          </td>
-          <td class='line'>10</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/24-move-code-into-controller' target='_blank'>move code into controller</a>
-          </td>
-        </tr>
-        <tr class="MoveCodeIntoControllerReview">
-          <td class='filename'>
-              app/views/translations/show.html.haml
-          </td>
-          <td class='line'>13</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/24-move-code-into-controller' target='_blank'>move code into controller</a>
-          </td>
-        </tr>
-        <tr class="MoveCodeIntoControllerReview">
-          <td class='filename'>
-              app/views/translations/show.html.haml
-          </td>
-          <td class='line'>17</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/24-move-code-into-controller' target='_blank'>move code into controller</a>
-          </td>
-        </tr>
-        <tr class="MoveCodeIntoControllerReview">
-          <td class='filename'>
-              app/views/layouts/application.html.haml
-          </td>
-          <td class='line'>25</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/24-move-code-into-controller' target='_blank'>move code into controller</a>
-          </td>
-        </tr>
-        <tr class="RemoveEmptyHelpersReview">
-          <td class='filename'>
-              app/helpers/yml_sources_helper.rb
-          </td>
-          <td class='line'>3</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
-          </td>
-        </tr>
-        <tr class="RemoveEmptyHelpersReview">
-          <td class='filename'>
-              app/helpers/blog_helper.rb
-          </td>
-          <td class='line'>3</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
-          </td>
-        </tr>
-        <tr class="RemoveEmptyHelpersReview">
-          <td class='filename'>
-              app/helpers/application_helper.rb
-          </td>
-          <td class='line'>1</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
-          </td>
-        </tr>
-        <tr class="RemoveEmptyHelpersReview">
-          <td class='filename'>
-              app/helpers/phrases_helper.rb
-          </td>
-          <td class='line'>1</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
-          </td>
-        </tr>
-        <tr class="RemoveUnusedMethodsInControllersReview">
-          <td class='filename'>
-              app/controllers/phrases_controller.rb
-          </td>
-          <td class='line'>54</td>
-          <td class='message'>
-            <a href='#' target='_blank'>remove unused methods (PhrasesController#get_phrase)</a>
           </td>
         </tr>
         <tr class="RemoveUnusedMethodsInControllersReview">
@@ -1027,15 +907,6 @@
           <td class='line'>4</td>
           <td class='message'>
             <a href='#' target='_blank'>remove unused methods (ApplicationController#current_ability)</a>
-          </td>
-        </tr>
-        <tr class="RemoveUnusedMethodsInModelsReview">
-          <td class='filename'>
-              app/models/translation.rb
-          </td>
-          <td class='line'>54</td>
-          <td class='message'>
-            <a href='#' target='_blank'>remove unused methods (Translation#add_sub_lvl_in_hash)</a>
           </td>
         </tr>
         <tr class="ReplaceInstanceVariableWithLocalVariableReview">
@@ -1184,6 +1055,15 @@
         </tr>
         <tr class="ReplaceInstanceVariableWithLocalVariableReview">
           <td class='filename'>
+              app/views/translators/_form.html.haml
+          </td>
+          <td class='line'>17</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
               app/views/translations/_form.html.haml
           </td>
           <td class='line'>1</td>
@@ -1258,16 +1138,7 @@
           <td class='filename'>
               app/views/translations/_translation_row.html.haml
           </td>
-          <td class='line'>5</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
-          </td>
-        </tr>
-        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
-          <td class='filename'>
-              app/views/translations/_translation_row.html.haml
-          </td>
-          <td class='line'>8</td>
+          <td class='line'>7</td>
           <td class='message'>
             <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
           </td>
@@ -1285,25 +1156,34 @@
           <td class='filename'>
               app/views/translations/_translation_row.html.haml
           </td>
-          <td class='line'>11</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
-          </td>
-        </tr>
-        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
-          <td class='filename'>
-              app/views/translations/_translation_row.html.haml
-          </td>
-          <td class='line'>12</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
-          </td>
-        </tr>
-        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
-          <td class='filename'>
-              app/views/translations/_translation_row.html.haml
-          </td>
           <td class='line'>13</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/translations/_translation_row.html.haml
+          </td>
+          <td class='line'>15</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/translations/_translation_row.html.haml
+          </td>
+          <td class='line'>16</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/translations/_translation_row.html.haml
+          </td>
+          <td class='line'>17</td>
           <td class='message'>
             <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
           </td>
@@ -1341,14 +1221,23 @@
           </td>
           <td class='line'>12</td>
           <td class='message'>
-            <a href='' target='_blank'>line is longer than 80 characters (131 characters)</a>
+            <a href='' target='_blank'>line is longer than 80 characters (141 characters)</a>
+          </td>
+        </tr>
+        <tr class="LongLineCheck">
+          <td class='filename'>
+              app/helpers/translations_helper.rb
+          </td>
+          <td class='line'>14</td>
+          <td class='message'>
+            <a href='' target='_blank'>line is longer than 80 characters (88 characters)</a>
           </td>
         </tr>
         <tr class="LongLineCheck">
           <td class='filename'>
               app/helpers/locales_helper.rb
           </td>
-          <td class='line'>14</td>
+          <td class='line'>10</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (83 characters)</a>
           </td>
@@ -1456,7 +1345,16 @@
           <td class='filename'>
               config/routes.rb
           </td>
-          <td class='line'>87</td>
+          <td class='line'>3</td>
+          <td class='message'>
+            <a href='' target='_blank'>line is longer than 80 characters (94 characters)</a>
+          </td>
+        </tr>
+        <tr class="LongLineCheck">
+          <td class='filename'>
+              config/routes.rb
+          </td>
+          <td class='line'>88</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (91 characters)</a>
           </td>
@@ -1465,7 +1363,7 @@
           <td class='filename'>
               config/routes.rb
           </td>
-          <td class='line'>88</td>
+          <td class='line'>89</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (91 characters)</a>
           </td>
@@ -1843,16 +1741,7 @@
           <td class='filename'>
               app/controllers/translations_controller.rb
           </td>
-          <td class='line'>21</td>
-          <td class='message'>
-            <a href='' target='_blank'>line is longer than 80 characters (94 characters)</a>
-          </td>
-        </tr>
-        <tr class="LongLineCheck">
-          <td class='filename'>
-              app/controllers/translations_controller.rb
-          </td>
-          <td class='line'>41</td>
+          <td class='line'>36</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (81 characters)</a>
           </td>
@@ -1861,7 +1750,7 @@
           <td class='filename'>
               app/controllers/translations_controller.rb
           </td>
-          <td class='line'>55</td>
+          <td class='line'>50</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (81 characters)</a>
           </td>
@@ -1870,9 +1759,18 @@
           <td class='filename'>
               app/controllers/translations_controller.rb
           </td>
-          <td class='line'>67</td>
+          <td class='line'>62</td>
           <td class='message'>
             <a href='' target='_blank'>line is longer than 80 characters (120 characters)</a>
+          </td>
+        </tr>
+        <tr class="LongLineCheck">
+          <td class='filename'>
+              app/controllers/translations_controller.rb
+          </td>
+          <td class='line'>96</td>
+          <td class='message'>
+            <a href='' target='_blank'>line is longer than 80 characters (94 characters)</a>
           </td>
         </tr>
         <tr class="LongLineCheck">
@@ -2032,7 +1930,7 @@
           <td class='filename'>
               app/helpers/locales_helper.rb
           </td>
-          <td class='line'>13</td>
+          <td class='line'>9</td>
           <td class='message'>
             <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
           </td>
@@ -2095,16 +1993,16 @@
           <td class='filename'>
               app/controllers/translations_controller.rb
           </td>
-          <td class='line'>14</td>
+          <td class='line'>9</td>
           <td class='message'>
             <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
           </td>
         </tr>
         <tr class="RemoveTrailingWhitespaceCheck">
           <td class='filename'>
-              app/controllers/application_controller.rb
+              app/controllers/translators_controller.rb
           </td>
-          <td class='line'>16</td>
+          <td class='line'>27</td>
           <td class='message'>
             <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
           </td>
@@ -2201,6 +2099,15 @@
         </tr>
         <tr class="RemoveTrailingWhitespaceCheck">
           <td class='filename'>
+              app/views/blog/index.html.haml
+          </td>
+          <td class='line'>5</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
               app/views/translations/index.html.haml
           </td>
           <td class='line'>5</td>
@@ -2213,15 +2120,6 @@
               app/views/translations/_form.html.haml
           </td>
           <td class='line'>13</td>
-          <td class='message'>
-            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
-          </td>
-        </tr>
-        <tr class="RemoveTrailingWhitespaceCheck">
-          <td class='filename'>
-              app/views/translations/_translation_row.html.haml
-          </td>
-          <td class='line'>1</td>
           <td class='message'>
             <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
           </td>

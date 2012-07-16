@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   protected
   def standard_respond_to(class_type)
     respond_to do |format|
-      format.html 
+      format.html
       format.json { render json: class_type }
     end
   end

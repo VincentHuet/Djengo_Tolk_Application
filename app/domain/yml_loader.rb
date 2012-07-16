@@ -51,7 +51,7 @@ class YmlLoader
     new_phrase.key = sub_tree_key.to_s
     counter = 0
     if Phrase.find_by_yaml_path(new_phrase.yaml_path).nil? && !new_phrase.blank?
-      new_phrase.save 
+      new_phrase.save
       counter = 1
       populate_translation_table(hash_branch, sub_tree_key, new_phrase)
     end
@@ -62,12 +62,12 @@ class YmlLoader
     new_translation = Translation.new
     new_translation.text = hash_branch[sub_tree_key].to_s
     new_translation.phrase_id = relevant_phrase.id
-    
+    new_translation.needed_update_flag_update
     en_local = Locale.primary_locale
 
     new_translation.locale_id = en_local.id
     new_translation.save if en_local.translations.find_by_phrase_id(new_translation.phrase_id).nil?
-    
+
     populate_non_primary_translation_table(relevant_phrase)
   end
 
@@ -76,10 +76,11 @@ class YmlLoader
       if !locale.is_primary?
         new_translation = Translation.new
         new_translation.phrase_id = relevant_phrase.id
+        new_translation.needed_update_flag_update
         new_translation.locale_id = locale.id
         new_translation.save if locale.translations.find_by_phrase_id(new_translation.phrase_id).nil?
       end
-    end   
+    end
   end
 
   def self.export_hash_to_yaml_locale(yaml_exported_file, locale)

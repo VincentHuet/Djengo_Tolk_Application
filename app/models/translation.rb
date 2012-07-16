@@ -22,14 +22,14 @@ class Translation < ActiveRecord::Base
   before_save :needed_update_flag_update
 
   def need_updated?
-    needed_update == 1 
+    self.needed_update == 1
   end
 
   def needed_update_flag_update
-    needed_update = 0
+    self.needed_update = 0
 
     if text.blank?
-      needed_update = 1
+      self.needed_update = 1
     end
 
     if Locale.find(locale_id).is_primary?
@@ -49,10 +49,6 @@ class Translation < ActiveRecord::Base
 
   def mail_if_deliverable(translator)
     TranslatorMailer.welcome_email(translator).deliver if !translator.nil?
-  end 
-
-  def add_sub_lvl_in_hash(new_level)
-    new_lvl_in_exported_hash = {}
-    new_level
   end
+
 end
