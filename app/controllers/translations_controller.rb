@@ -17,7 +17,7 @@ class TranslationsController < ApplicationController
     @translations.each do |translation|
       yaml_path = translation.phrase.yaml_path
       translation_value = translation.text
-      translation_value = "-" if translation_value.blank?
+      translation_value = "" if translation_value.blank?
       @yml_hash = insert(@yml_hash, yaml_path.sub(/[.]{2}/, "").split("."), translation_value)
     end
 

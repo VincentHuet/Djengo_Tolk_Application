@@ -1,0 +1,11 @@
+en: 
+  home: gutten tag
+  article: Artcil
+  team: Equipen
+  blog: 
+    index: 
+    activerecord: 
+      models: 
+        attributes: 
+          article: 
+            category: Categoriren
