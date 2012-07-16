@@ -1,11 +1,7 @@
 module LocalesHelper
 
   def primary(locale)
-    if locale.primary_locale
-      "primary"
-    else
-      "secondary"
-    end
+    locale.primary_locale ? "primary" : "secondary"
   end
 
   def missing_translation?(locale)

@@ -8,9 +8,12 @@ module TranslationsHelper
         indent = indent + space_type*2
         return_phrase << hash_to_export(locale_translation_hash[locale_sub_level_key], indent, space_type, return_type)
       else
-        if !locale_translation_hash[locale_sub_level_key].to_s.blank?
-          return_phrase << indent << locale_sub_level_key + ": " + locale_translation_hash[locale_sub_level_key].to_s + return_type
+        if locale_translation_hash[locale_sub_level_key].to_s.blank?
+          return_phrase << indent << locale_sub_level_key + ": \" " + locale_translation_hash[locale_sub_level_key].to_s + "\"" + return_type
+        else
+          return_phrase << indent << locale_sub_level_key + ": " + "\" \"" + return_type
         end
+
         # return_phrase << locale_translation_hash[locale_sub_level_key].to_s
         # return_phrase << return_type
       end

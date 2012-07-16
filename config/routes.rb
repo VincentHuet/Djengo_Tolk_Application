@@ -1,6 +1,6 @@
 DjengoTolkApplication::Application.routes.draw do
   
-  devise_for :translators
+  devise_for :translators, :controllers => { :registrations => 'custom_devise/registrations' }
 
   resources :translators
 
@@ -28,6 +28,7 @@ DjengoTolkApplication::Application.routes.draw do
   resources :locales
 
   root :to => 'blog#index'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

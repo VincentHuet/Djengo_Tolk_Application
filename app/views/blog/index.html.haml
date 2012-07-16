@@ -1,11 +1,11 @@
 
 = link_to image_tag("logo-djengo.jpg"), root_path, :class => 'blog-image'
 %h2 Accueil du site de traduction
-/ - if translator_signed_in?
-/   %br
-/     = current_translator.id
-/   %br
-/     = Locale.find(current_translator.locale_id).name
+- if translator_signed_in?
+  %br 
+    %strong= raw("&nbsp;"*15)
+    %strong Bienvenue : &nbsp;&nbsp;
+    %strong= raw("&nbsp;"*3) + current_translator.name.humanize
 %br
 %hr
 %div.home
@@ -28,31 +28,4 @@
       = link_to t("login"), new_translator_session_path, :class => 'btn home-btn'
     %br
       = link_to t("sign_up"), new_translator_registration_path, :class => 'btn home-btn'
-
-/ %br
-/ %div
-/ - YmlLoader.load_pathes.each do |file|
-/   = file.to_s.sub!(/config\/locales\//,"")
-/   %br
-
-
-
-
-/ %table
-/   %tr
-/     %td
-/       = link_to 'Locales list', locales_path, :class => "btn"
-/     %td
-/       = link_to 'Phrase list', phrases_path, :class => "btn"
-/     %td
-/       = link_to 'Yml source list', yml_sources_path, :class => "btn"
-/   %tr
-/     %td
-/       = link_to 'Add a new Locale', new_locale_path, :class => "btn"
-/     %td
-/       = link_to 'Add a new phrase', new_locale_path, :class => "btn"
-/     %td
-/       = link_to 'Add a new Yml source', new_yml_source_path, :class => "btn"
-
-
-
+      

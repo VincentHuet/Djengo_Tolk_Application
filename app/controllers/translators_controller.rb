@@ -8,6 +8,7 @@ class TranslatorsController < ApplicationController
 
   def index
     @translators = Translator.all
+    @locales = Locale.all
 
     standard_respond_to(@translators)
   end
@@ -22,7 +23,8 @@ class TranslatorsController < ApplicationController
   # GET /translators/new.json
   def new
     @translator = Translator.new
-
+    @locales = Locale.all
+    
     standard_respond_to(@translator)
   end
 
@@ -34,6 +36,7 @@ class TranslatorsController < ApplicationController
   # POST /translators.json
   def create
     @translator = Translator.new(params[:translator])
+    @locales = Locale.all
 
     create_respond_to(@translator)
   end

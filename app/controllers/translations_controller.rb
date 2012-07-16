@@ -5,22 +5,14 @@ class TranslationsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    if !Locale.find(params[:locale_id]).nil?
-      @locale = Locale.find(params[:locale_id])
-      @translations = @locale.translations.all
+    @locale = Locale.find_by_id(params[:locale_id])
+    if @locale 
+      @translations = @locale.translations
     else
       @translations = Translation.all
     end
     
-    @yml_hash = {}
-    hash_locale_translation = {}
-    @translations.each do |translation|
-      yaml_path = translation.phrase.yaml_path
-      translation_value = translation.text
-      translation_value = "" if translation_value.blank?
-      @yml_hash = insert(@yml_hash, yaml_path.sub(/[.]{2}/, "").split("."), translation_value)
-    end
-
+    create_locale_translation_hash
 
     standard_respond_to(@translations)
   end
@@ -88,6 +80,17 @@ class TranslationsController < ApplicationController
       h = insert(hash[head] || {}, tail, value)
       hash.merge(head => hash.has_key?(head) ? hash[head].merge(h) : h)
     end
+  end
+
+  def create_locale_translation_hash
+    @yml_hash = {}
+    hash_locale_translation = {}
+    @translations.each do |translation|
+      yaml_path = translation.phrase.yaml_path
+      translation_value = translation.text
+      translation_value = "" if translation_value.blank?
+      @yml_hash = insert(@yml_hash, yaml_path.sub(/[.]{2}/, "").split("."), translation_value)
+    end    
   end
 
 end

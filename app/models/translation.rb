@@ -22,14 +22,14 @@ class Translation < ActiveRecord::Base
   before_save :needed_update_flag_update
 
   def need_updated?
-    self.needed_update == 1 
+    needed_update == 1 
   end
 
   def needed_update_flag_update
-    self.needed_update = 0
+    needed_update = 0
 
     if text.blank?
-      self.needed_update = 1
+      needed_update = 1
     end
 
     if Locale.find(locale_id).is_primary?
