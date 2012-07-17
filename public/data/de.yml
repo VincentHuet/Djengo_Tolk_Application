@@ -1,22 +1,22 @@
 en: 
-  home: " "
-  article: " "
-  team: " "
-  about: " "
-  logout: " "
-  login: " "
-  sing_up: " "
+  home: " gutten tag"
+  article: " Artcil"
+  team: " Equipen"
+  about: " nach djengi"
+  logout: " deconexxion"
+  login: " conexion"
+  sing_up: " S'enregistrer"
   blog: 
     index: 
-      bonjour: " "
-      welcome_paragraphe: " "
+      bonjour: " Bonjour"
+      welcome_paragraphe: " Ici vous êtes sur djengo"
       welcome_paragraphe_2: " "
     activerecord: 
       models: 
         article: " "
         attributes: 
           article: 
-            category: " "
+            category: " Categoriren"
             content: " "
             subject: " "
             time: " "

@@ -1,33 +1,33 @@
 en: 
-  home: " "
-  article: " "
-  team: " "
-  about: " "
-  logout: " "
-  login: " "
-  sing_up: " "
+  home: " Accueil"
+  article: " Articles"
+  team: " Equipe"
+  about: " A propos de Djengo"
+  logout: " Déconexion"
+  login: " Authentification"
+  sing_up: " S'enregistrer"
   blog: 
     index: 
-      bonjour: " "
-      welcome_paragraphe: " "
-      welcome_paragraphe_2: " "
+      bonjour: " Bonjour Monsieur"
+      welcome_paragraphe: " Vous êtes sur le blog de Djengo"
+      welcome_paragraphe_2: " sqd"
     activerecord: 
       models: 
-        article: " "
+        article: " article"
         attributes: 
           article: 
-            category: " "
-            content: " "
-            subject: " "
-            time: " "
+            category: " Catégories"
+            content: " Contenu"
+            subject: " Sujet"
+            time: " Posté le"
             comment: 
               content: " "
               time: " "
           comment: " "
       errors: 
         messages: 
-          expired: " "
-          not_found: " "
+          expired: " delai expiré, veuillez renouveller"
+          not_found: " non trouvé"
           already_confirmed: " "
           not_locked: " "
           not_saved: 
