@@ -23,7 +23,7 @@ class YmlLoader
     end
   end
 
-   def self.load_yaml(path)
+  def self.load_yaml(path)
     yml_to_hash = ''
     yml_file_path = "#{Rails.root}/config/locales/" + path
     yml_to_hash = YAML::load(File.open(yml_file_path))
@@ -36,8 +36,8 @@ class YmlLoader
     counter = 0
     hash_branch.each_key do |sub_tree_key|
       if hash_branch[sub_tree_key].kind_of? Hash
-        hash_path << "." + sub_tree_key.to_s
-        counter += parse_yaml_to_db(hash_branch[sub_tree_key], hash_path, indent)
+        # hash_path << "." + sub_tree_key.to_s
+        counter += parse_yaml_to_db(hash_branch[sub_tree_key], hash_path + "." + sub_tree_key.to_s, indent)
       else
         counter += new_phrase_entry(hash_path, sub_tree_key, hash_branch)
       end
@@ -62,10 +62,9 @@ class YmlLoader
     new_translation = Translation.new
     new_translation.text = hash_branch[sub_tree_key].to_s
     new_translation.phrase_id = relevant_phrase.id
-    new_translation.needed_update_flag_update
     en_local = Locale.primary_locale
-
     new_translation.locale_id = en_local.id
+    new_translation.needed_update_flag_update
     new_translation.save if en_local.translations.find_by_phrase_id(new_translation.phrase_id).nil?
 
     populate_non_primary_translation_table(relevant_phrase)
@@ -76,9 +75,10 @@ class YmlLoader
       if !locale.is_primary?
         new_translation = Translation.new
         new_translation.phrase_id = relevant_phrase.id
-        new_translation.needed_update_flag_update
         new_translation.locale_id = locale.id
+        new_translation.needed_update_flag_update
         new_translation.save if locale.translations.find_by_phrase_id(new_translation.phrase_id).nil?
+
       end
     end
   end

@@ -41,8 +41,8 @@ class Translation < ActiveRecord::Base
     Locale.find_each do |locale|
       if !locale.is_primary?
         locale.translations.where(:phrase_id => self.phrase_id).update_all(:needed_update => 1)
-        translator = Translator.find_by_locale_id(locale.id)
-        mail_if_deliverable(translator)
+        # translator = Translator.find_by_locale_id(locale.id)
+        # mail_if_deliverable(translator)
       end
     end
   end

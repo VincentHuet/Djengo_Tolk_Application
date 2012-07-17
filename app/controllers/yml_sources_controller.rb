@@ -1,4 +1,3 @@
-require 'yml_sources_helper'
 
 class YmlSourcesController < ApplicationController
   # GET /yml_sources
@@ -11,7 +10,7 @@ class YmlSourcesController < ApplicationController
     @yml_files = YmlLoader.load_pathes
     YmlLoader.load_locales
     @yml_sources = YmlSource.all   # YmlLoader.load_yml_content
-    
+
     standard_respond_to(@yml_sources)
   end
 

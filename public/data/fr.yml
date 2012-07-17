@@ -1,80 +1,31 @@
 en: 
-  home: " Accueil"
-  article: " Articles"
-  team: " Equipe"
-  about: " A propos de Djengo"
-  logout: " Déconexion"
-  login: " Authentification"
-  sing_up: " S'enregistrer"
-  blog: 
+  articles: 
     index: 
-      bonjour: " Bonjour Monsieur"
-      welcome_paragraphe: " Vous êtes sur le blog de Djengo"
-      welcome_paragraphe_2: " sqd"
-    activerecord: 
-      models: 
-        article: " article"
-        attributes: 
-          article: 
-            category: " Catégories"
-            content: " Contenu"
-            subject: " Sujet"
-            time: " Posté le"
-            comment: 
-              content: " "
-              time: " "
-          comment: " "
-      errors: 
-        messages: 
-          expired: " delai expiré, veuillez renouveller"
-          not_found: " non trouvé"
-          already_confirmed: " "
-          not_locked: " "
-          not_saved: 
-            one: " "
-            other: " "
-            devise: 
-              failure: 
-                already_authenticated: " "
-                unauthenticated: " "
-                unconfirmed: " "
-                locked: " "
-                invalid: " "
-                invalid_token: " "
-                timeout: " "
-                inactive: " "
-                sessions: 
-                  signed_in: " "
-                  signed_out: " "
-                  passwords: 
-                    send_instructions: " "
-                    updated: " "
-                    updated_not_active: " "
-                    send_paranoid_instructions: " "
-                    no_token: " "
-                    confirmations: 
-                      send_instructions: " "
-                      send_paranoid_instructions: " "
-                      confirmed: " "
-                      registrations: 
-                        signed_up: " "
-                        signed_up_but_unconfirmed: " "
-                        signed_up_but_inactive: " "
-                        signed_up_but_locked: " "
-                        updated: " "
-                        update_needs_confirmation: " "
-                        destroyed: " "
-                        unlocks: 
-                          send_instructions: " "
-                          unlocked: " "
-                          send_paranoid_instructions: " "
-                          omniauth_callbacks: 
-                            success: " "
-                            failure: " "
-                            mailer: 
-                              confirmation_instructions: 
-                                subject: " "
-                                reset_password_instructions: 
-                                  subject: " "
-                                  unlock_instructions: 
-                                    subject: " "
+      show: " "
+      subject: " "
+      cattegory: " "
+      posted: " "
+      new_article: " "
+      article_list: " "
+      published_article_quantity: 
+        zero: " "
+        one: " "
+        other: " "
+      article_quantity: 
+        zero: " "
+        one: " "
+        other: " "
+    show: 
+      comment: " "
+      subject: " "
+      from: " "
+      category: " "
+      content: " "
+      comments: " "
+      back: " "
+      comment_quantity: 
+        zero: " "
+        one: " "
+        other: " "
+    new: 
+      new_article: " "
