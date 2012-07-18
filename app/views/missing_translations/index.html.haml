@@ -1,0 +1,23 @@
+%h1 Listing missing translations
+%table#translations-table
+  %tr.bottom_border
+    %td
+      %strong
+        #normal Translation
+    %td
+      %strong
+        #normal English Value
+    %td
+      %strong Translator
+    %td
+      %strong
+        #skinny Locale
+    %td
+      %strong
+        #skinny status
+    %td
+      %strong
+  - @missing_translations.each do |translation|
+    %tr
+      = render '/translations/translation_row', :translation => translation
+

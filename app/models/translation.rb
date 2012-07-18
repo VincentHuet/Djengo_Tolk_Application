@@ -13,14 +13,31 @@
 #
 
 class Translation < ActiveRecord::Base
+  ##
+  # Accessibility
+  #
   attr_accessible :locale_id, :phrase_id, :previous_text, :text, :needed_update
 
+  ##
+  # Associations
+  #
   belongs_to :locale
   belongs_to :phrase
   belongs_to :translator
 
+  ##
+  # Callbacks
+  #
   before_save :needed_update_flag_update
 
+  ##
+  # Scopes
+  #
+  scope :translation_needed, where(:needed_update => 1)
+
+  ##
+  # Instance methods
+  #
   def need_updated?
     self.needed_update == 1
   end

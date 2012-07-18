@@ -1,28 +1,33 @@
 DjengoTolkApplication::Application.routes.draw do
-  
+
   devise_for :translators, :controllers => { :registrations => 'custom_devise/registrations' }
 
   resources :translators
 
-  resources :yml_sources do
-    collection do
-      get 'load_to_db'
-      get '/load_to_db/:id' => 'yml_sources#load_to_db'
-    end
-  end
+  resources :yml_sources
+  # do
+  #   collection do
+  #     get 'load_to_db'
+  #     get '/load_to_db/:id' => 'yml_sources#load_to_db'
+  #   end
+  # end
+
+  resources :phrase_database_filler, :only => [:show]
 
   resources :locales do
+    resources :missing_translations, :only => [:index]
     resources :translations
     resources :translators
+    resources :yml_files, :only => [:index]
   end
 
 
   resources :phrases do
     resources :translations
-  end  
+  end
 
   resources :translations
-  
+
   resources :phrases
 
   resources :locales

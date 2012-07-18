@@ -1,11 +1,15 @@
-%h1 Listing translations
+.pull-right
+  = link_to t('create yml file'), locale_yml_files_path(@locale), :class => 'btn'
+.page-header
+  %h1 Listing translations
+
 %table#translations-table
   %tr.bottom_border
     %td
-      %strong 
+      %strong
         #normal Translation
     %td
-      %strong 
+      %strong
         #normal English Value
     %td
       %strong Translator
@@ -16,26 +20,24 @@
       %strong
         #skinny status
     %td
-      %strong 
-  - @translation = Translation.new 
+      %strong
   - @translations.each do |translation|
-  - @translation = translation
     - if translation.need_updated?
       %tr#red
-        = render 'translation_row'
+        = render 'translation_row', :translation => translation
     - else
       %tr#green
-        = render 'translation_row'
+        = render 'translation_row', :translation => translation
 %br
 %br
-%strong représentation "YAML" des clés et des valeurs du hash correspondant aux traductions de cette locale 
+%strong représentation "YAML" des clés et des valeurs du hash correspondant aux traductions de cette locale
 %br
-= raw(hash_to_export(@yml_hash, "", "&nbsp;", "<br />"))
+= raw(TranslationsManager.hash_to_export(@yml_hash, "", "&nbsp;", "<br />"))
 %br
-%strong Affichage brut des clés et des valeurs du hash correspondant aux traductions de cette locale : 
+%strong Affichage brut des clés et des valeurs du hash correspondant aux traductions de cette locale :
 = @locale.name
 %br
-- YmlLoader.export_hash_to_yaml_locale(hash_to_export(@yml_hash, "", " ", "\n"), @locale)
+
 %br
 = @yml_hash
 

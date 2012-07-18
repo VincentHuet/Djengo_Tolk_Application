@@ -9,3 +9,6 @@ fr:
   logout: Déconnexion
   login: Connexion
   sign_up: Inscription
+  locale: "Langue de traduction"
+  yml_source: "Fichier Source Yaml"
+  missing_translation: "Traductions manquantes"

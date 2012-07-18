@@ -9,26 +9,20 @@
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
-          %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
           = link_to "Djengo's Translation Platform ", root_path, :class => "brand"
-          / <a class="brand" href="">BlogForDjengo</a>
           .nav-collapse
             %ul.nav
               %li= link_to t("home"), root_path
               %li= link_to t("yml_source"), yml_sources_path
               %li= link_to t("locale"), locales_path
-              /%li= link_to t("phrases"), phrases_path
               - if translator_signed_in?
                 %li= link_to t("translation"), locale_translations_path(current_translator.locale)
-                %li= raw("&nbsp;"*30)
-                %li= link_to t("logout"), destroy_translator_session_path, :method => :delete, :class => "full-rigth"
+                %li= link_to t("missing_translation"), locale_missing_translations_path(current_translator.locale)
+            %ul.nav.pull-right
+              - if translator_signed_in?
+                %li= link_to t("logout"), destroy_translator_session_path, :method => :delete
               - else
                 %li= link_to(t("login"), new_translator_session_path)
                 %li= link_to(t("sign_up"), new_translator_registration_path)
-              / %li
-          / /.nav-collapse
     .hero-unit
       = yield

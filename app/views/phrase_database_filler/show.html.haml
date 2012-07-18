@@ -1,0 +1,15 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @yml_source.name
+%p
+  %strong Path:
+  = @yml_source.path
+- if @counter >= 1
+  - Translator.find_each do |translator|
+    - TranslatorMailer.welcome_email(translator).deliver
+%p
+  %strong= pluralize(@counter, 'phrase added', 'phrases added')
+
+= link_to t('Continue'), yml_sources_path, :class => 'btn'
+= link_to t('Missing translation'), locale_missing_translations_path(current_translator.locale), :class => 'btn'

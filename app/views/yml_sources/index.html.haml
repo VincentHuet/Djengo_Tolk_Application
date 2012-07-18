@@ -13,12 +13,5 @@
     %tr
       %td= yml_source.name
       %td= yml_source.path
-      /%td= link_to 'Edit', edit_yml_source_path(yml_source)
-      %td= link_to 'load in DB', load_to_db_yml_sources_path + "/" + yml_source.id.to_s, :class => "btn"
-      /%td= link_to 'Destroy', yml_source, confirm: 'Are you sure?', method: :delete
+      %td= link_to 'load in DB', phrase_database_filler_path(yml_source), :class => "btn"
 %br/
-
-= YmlLoader.load_yaml("views/articles/en.yml")
-
-/ :javascript
-/   window.open('yml_sources/load_to_db/54', '_survey', 'height=400,width=300,status=no,menubar=no,location=no,toolbar=no');

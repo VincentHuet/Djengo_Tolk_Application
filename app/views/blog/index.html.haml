@@ -1,31 +1,12 @@
+.page-header
+  %h2 Accueil du site de traduction
 
-= link_to image_tag("logo-djengo.jpg"), root_path, :class => 'blog-image'
-%h2 Accueil du site de traduction
-- if translator_signed_in?
-  %br 
-    %strong= raw("&nbsp;"*15)
-    %strong Bienvenue : &nbsp;&nbsp;
-    %strong= raw("&nbsp;"*3) + current_translator.name.humanize
-%br
-%hr
-%div.home
-  = link_to t("home"), root_path, :class => 'btn home-btn'
-  %br
-  = link_to t("yml_source"), yml_sources_path, :class => 'btn home-btn'
-  %br
-  = link_to t("locale"), locales_path, :class => 'btn home-btn'
-  %br
-  = link_to t("phrases"), phrases_path, :class => 'btn home-btn'
-  - if translator_signed_in?
-    %br
-      = link_to t("translation"), locale_translations_path(current_translator.locale), :class => 'btn home-btn'
-    %br
-      = raw("&nbsp;"*30)
-    %br
-      = link_to t("logout"), destroy_translator_session_path, :method => :delete, :class => "btn full-rigth home-btn"
-  - else
-    %br
-      = link_to t("login"), new_translator_session_path, :class => 'btn home-btn'
-    %br
-      = link_to t("sign_up"), new_translator_registration_path, :class => 'btn home-btn'
-      
+.row
+  .span5
+    - if translator_signed_in?
+      %strong
+        = "Bienvenue : #{current_translator.name.humanize}"
+  .span5
+    - if translator_signed_in?
+      %strong
+        = "Il vous reste #{pluralize(missing_translation?(current_translator.locale), 'tanslation')} à effectuer"

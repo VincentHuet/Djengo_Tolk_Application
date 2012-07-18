@@ -9,3 +9,6 @@ en:
   logout: Log out
   login: Login
   sign_up: Sign up
+  locale: "Locale"
+  yml_source: "Yaml file source"
+  missing_translation: "Missing translation"
