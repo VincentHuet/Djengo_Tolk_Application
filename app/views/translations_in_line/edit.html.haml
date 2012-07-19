@@ -1,0 +1,23 @@
+toto
+- form_tag update_individual_translations_path, :method => :put do
+  - @translations = Translation.all
+  - for translation in @translations
+    %br
+      %p= translation.text
+      - primary_locale = Locale.primary_locale
+      - first_locale_translations = primary_locale.translations
+      - relevant_phrase = first_locale_translations.where(:phrase_id => translation.phrase_id)
+      - relevant_phrase_text = relevant_phrase.first.text
+      %p= relevant_phrase_text
+      - if translation.translator_id.nil?
+        %p= "nil"
+      - else
+        - corresponding_translator = translation.translator
+        %p= corresponding_translator.name
+      - corresponding_locale = translation.locale
+      %p= corresponding_locale.name
+      %p= translation.needed_update
+    - fields_for "translations[]", translation do |f|
+      .field
+        = f.text_field :text
+  %p= submit_tag "Submit"

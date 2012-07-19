@@ -15,6 +15,7 @@
               %li= link_to t("home"), root_path
               %li= link_to t("yml_source"), yml_sources_path
               %li= link_to t("locale"), locales_path
+              %li= link_to t("traduction in line"), translations_in_line_index_path
               - if translator_signed_in?
                 %li= link_to t("translation"), locale_translations_path(current_translator.locale)
                 %li= link_to t("missing_translation"), locale_missing_translations_path(current_translator.locale)

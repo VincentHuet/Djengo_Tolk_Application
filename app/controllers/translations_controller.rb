@@ -93,4 +93,14 @@ class TranslationsController < ApplicationController
     end
   end
 
+  def edit_individual
+    @translations = Translation.all
+  end
+
+  def update_individual
+    Translation.update(params[:translations].keys, params[:translations].values)
+    flash[:notice] = "Translations updated"
+    redirect_to root_path
+  end
+
 end

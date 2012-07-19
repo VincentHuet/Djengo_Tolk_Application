@@ -1,0 +1,48 @@
+.pull-right
+  = link_to t('create yml file'), locale_yml_files_path(@locale), :class => 'btn'
+.page-header
+  %h1 Listing translations
+
+- if translator_signed_in?
+  = @locale.name
+  = "=>"
+  = current_translator.email
+
+%table#translations-table
+  %tr.bottom_border
+    %td
+      %strong
+        #skinny Translation
+    %td
+      %strong
+        #normal English Value
+    %td
+      %strong Translator
+    %td
+      %strong
+        #skinny Locale
+    %td
+      %strong
+        #skinny status
+    %td
+      %strong
+  / - form_tag "translations[]", :url => translations_in_line_index_path do |f|
+  - @translations.each do |translation|
+    - if translation.need_updated?
+      %tr#red
+        = render '/translations/translation_row', :translation => translation
+        / = render 'form', :f => f
+    - else
+      %tr#green
+        = render '/translations/translation_row', :translation => translation
+        %td ok
+      / = submit_tag "Save"
+%br
+
+- form_tag translations_in_line_index_path, :method => :put do
+  - for translation in @translations
+    - fields_for "translations[]", translation do |f|
+      %h2= h translation.text
+      = render "form", :f => f
+  .form-actions
+    = submit_tag "Update", :class => 'btn'

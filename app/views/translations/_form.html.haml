@@ -10,7 +10,7 @@
 
   %br
   .field
-    = "traduction pour : " + Translation.where(:locale_id => 1).where(:phrase_id => @translation.phrase_id).first.text 
+    / = "traduction pour : " + Translation.where(:locale_id => 1).where(:phrase_id => @translation.phrase_id).first.text
     = f.text_field :text
   .actions
     = f.submit
