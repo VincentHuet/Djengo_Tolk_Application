@@ -5,6 +5,7 @@ DjengoTolkApplication::Application.routes.draw do
   resources :translators
   resources :yml_sources
   resources :phrase_database_filler, :only => [:show]
+  resources :translations
 
   resources :locales do
     resources :missing_translations, :only => [:index]

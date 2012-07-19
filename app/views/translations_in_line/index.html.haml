@@ -31,6 +31,7 @@
     - if translation.need_updated?
       %tr#red
         = render '/translations/translation_row', :translation => translation
+
         / = render 'form', :f => f
     - else
       %tr#green
@@ -39,10 +40,8 @@
       / = submit_tag "Save"
 %br
 
-- form_tag translations_in_line_index_path, :method => :put do
-  - for translation in @translations
-    - fields_for "translations[]", translation do |f|
-      %h2= h translation.text
-      = render "form", :f => f
-  .form-actions
-    = submit_tag "Update", :class => 'btn'
+
+- form_for "translation[]", :url => translations_path, :method => :put do |form|
+  - fields_for(translation) do |f|
+    .field
+      = f.text_field :text
