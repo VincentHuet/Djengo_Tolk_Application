@@ -29,15 +29,15 @@
       %tr#green
         = render 'translation_row', :translation => translation
 %br
-%br
-%strong représentation "YAML" des clés et des valeurs du hash correspondant aux traductions de cette locale
-%br
-= raw(TranslationsManager.hash_to_export(@yml_hash, "", "&nbsp;", "<br />"))
-%br
-%strong Affichage brut des clés et des valeurs du hash correspondant aux traductions de cette locale :
-= @locale.name
-%br
+/ %br
+/ %strong représentation "YAML" des clés et des valeurs du hash correspondant aux traductions de cette locale
+/ %br
+/ = raw(TranslationsManager.hash_to_export(@yml_hash, "", "&nbsp;", "<br />"))
+/ %br
+/ %strong Affichage brut des clés et des valeurs du hash correspondant aux traductions de cette locale :
+/ = @locale.name
+/ %br
 
-%br
-= @yml_hash
+/ %br
+/ = @yml_hash
 

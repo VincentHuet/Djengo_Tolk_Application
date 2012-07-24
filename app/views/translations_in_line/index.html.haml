@@ -30,18 +30,54 @@
   - @translations.each do |translation|
     - if translation.need_updated?
       %tr#red
-        = render '/translations/translation_row', :translation => translation
+        = render 'translation_in_line_row', :translation => translation
 
         / = render 'form', :f => f
     - else
       %tr#green
-        = render '/translations/translation_row', :translation => translation
+        = render 'translation_in_line_row', :translation => translation
         %td ok
       / = submit_tag "Save"
 %br
 
+/= @translations
+%br
+= "-------------------------"
+/ - if @translations.any?
+/   - form_for @locale do |locale_form|
+/     - @locale.translations.each do |translation|
+/       - if translation = @translations.find_by_locale_id(@locale.id)
+/         = locale_form.hidden_field :"translations[][id]", :value => translation.id
 
-- form_for "translation[]", :url => translations_path, :method => :put do |form|
-  - fields_for(translation) do |f|
-    .field
-      = f.text_field :text
+/         = locale_form.hidden_field :"translations[][phrase_id]", :value => translation.phrase_id
+
+/         = locale_form.hidden_field :"translations[][locale_id]", :value => translation.locale_id
+
+/         = locale_form.text_field :"translations[][text]"
+/         / , :class => "locale", :onfocus => "$(this).up('tr').addClassName('active');", :onblur => "$(this).up('tr').removeClassName('active');"
+
+/         - if params[:q].present?
+/           = highlight(translation.phrase.key, params[:q])
+/         - else
+/           = translation.phrase.key
+/         %span.key{:title => translation.phrase.key}= truncate(translation.phrase.key, :length => 100)
+/     %p= locale_form.submit "Save changes"
+/ - else
+/   %p{:style => "text-align: left"} No search results.
+
+
+= form_tag translations_in_line_index_path, :method => :put do
+  %table.table
+    - for translation in @translations
+      = fields_for "translations[]", translation do |f|
+        %tr
+          %td= translation.phrase_id
+          %td= f.hidden_field :id
+          %td= f.text_field :text
+  = submit_tag
+
+
+%br
+= "-------------------------"
+
+/= @translations.inspect
