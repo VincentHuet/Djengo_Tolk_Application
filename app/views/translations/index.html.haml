@@ -1,43 +1,47 @@
-.pull-right
-  = link_to t('create yml file'), locale_yml_files_path(@locale), :class => 'btn'
 .page-header
-  %h1 Listing translations
+  %div
+    .alert.alert-info
+      %h1= "#{t("la_langue")} #{@locales_name[current_translator.locale.name]}."
+      .offset1= "De plus, les traductions sont effectuées par #{current_translator.name}"
+    .pull-right
+      = link_to t('create yml file'), locale_yml_files_path(@locale), :class => 'btn btn-info white'
 
-%table#translations-table
-  %tr.bottom_border
-    %td
-      %strong
-        #normal Translation
-    %td
-      %strong
-        #normal English Value
-    %td
-      %strong Translator
-    %td
-      %strong
-        #skinny Locale
-    %td
-      %strong
-        #skinny status
-    %td
-      %strong
-  - @translations.each do |translation|
-    - if translation.need_updated?
-      %tr#red
-        = render 'translation_row', :translation => translation
-    - else
-      %tr#green
-        = render 'translation_row', :translation => translation
-%br
-/ %br
-/ %strong représentation "YAML" des clés et des valeurs du hash correspondant aux traductions de cette locale
-/ %br
-/ = raw(TranslationsManager.hash_to_export(@yml_hash, "", "&nbsp;", "<br />"))
-/ %br
-/ %strong Affichage brut des clés et des valeurs du hash correspondant aux traductions de cette locale :
-/ = @locale.name
-/ %br
+.alert.alert-info
+  %table.table#translation-table
+    %tr
+      %td
+        %strong Translation
+      %td
+        %strong English Value
+      %td
+        %strong Translator
 
-/ %br
-/ = @yml_hash
+- @update_date.each do |key,  date|
+  .alert.alert-success
+    = t('what_has_been_done_on')
+    = date
+    %table.table#translation-table
+      - @translations.each do |translation|
+        - if !translation.need_updated? && translation.updated_at.to_date.to_s == date.to_s
+          %tr= render 'translation_row', :translation => translation
 
+.alert.alert-warning
+  = t('still_to_do_since')
+  = @latest_translation_load_date
+  %br
+  %table.table#translation-table
+    - @translations.each do |translation|
+      / = @latest_translation_load_date.to_s + "=>" + translation.updated_at.to_date.to_s
+      / %br
+      - if translation.need_updated? && translation.created_at.to_date == @latest_translation_load_date
+        %tr= render 'translation_row', :translation => translation
+
+
+- @update_date.each do |key, date|
+  .alert.alert-error
+    = t('still_to_do_since')
+    = date
+    - @translations.each do |translation|
+      - if translation.need_updated? && translation.created_at.to_date != @latest_translation_load_date && translation.created_at.to_date.to_s == date.to_s
+        %table.table#translation-table
+          %tr= render 'translation_row', :translation => translation

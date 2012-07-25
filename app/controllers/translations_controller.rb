@@ -12,6 +12,13 @@ class TranslationsController < ApplicationController
       @translations = Translation.all
     end
 
+    @update_date = {}
+    @translations.each do |translation|
+      @update_date[translation.updated_at.to_date] = translation.updated_at.to_date
+    end
+
+    @latest_translation_load_date = Translation.maximum("created_at").to_date
+
     @yml_hash = TranslationsManager.create_translation_hash(@translations)
 
     standard_respond_to(@translations)

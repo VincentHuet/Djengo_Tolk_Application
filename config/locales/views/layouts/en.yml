@@ -12,3 +12,12 @@ en:
   locale: "Locale"
   yml_source: "Yaml file source"
   missing_translation: "Missing translation"
+  translation_resume: "Translation Resume"
+  traduction_in_line: "Translate"
+  require:
+    zero: "%{count} translation stills required"
+    one: "Il reste %{count} translation stills required"
+    other: "Il reste %{count} translations still required"
+  welcome: "Welcome on Djengo's Internationalizer WebSite"
+  translations_in_line: "Currently, you are translating Djengo's application for english use"
+  translation: "Translation"

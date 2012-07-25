@@ -1,83 +1,24 @@
-.pull-right
-  = link_to t('create yml file'), locale_yml_files_path(@locale), :class => 'btn'
 .page-header
-  %h1 Listing translations
-
-- if translator_signed_in?
-  = @locale.name
-  = "=>"
-  = current_translator.email
-
-%table#translations-table
-  %tr.bottom_border
-    %td
-      %strong
-        #skinny Translation
-    %td
-      %strong
-        #normal English Value
-    %td
-      %strong Translator
-    %td
-      %strong
-        #skinny Locale
-    %td
-      %strong
-        #skinny status
-    %td
-      %strong
-  / - form_tag "translations[]", :url => translations_in_line_index_path do |f|
-  - @translations.each do |translation|
-    - if translation.need_updated?
-      %tr#red
-        = render 'translation_in_line_row', :translation => translation
-
-        / = render 'form', :f => f
-    - else
-      %tr#green
-        = render 'translation_in_line_row', :translation => translation
-        %td ok
-      / = submit_tag "Save"
-%br
-
-/= @translations
-%br
-= "-------------------------"
-/ - if @translations.any?
-/   - form_for @locale do |locale_form|
-/     - @locale.translations.each do |translation|
-/       - if translation = @translations.find_by_locale_id(@locale.id)
-/         = locale_form.hidden_field :"translations[][id]", :value => translation.id
-
-/         = locale_form.hidden_field :"translations[][phrase_id]", :value => translation.phrase_id
-
-/         = locale_form.hidden_field :"translations[][locale_id]", :value => translation.locale_id
-
-/         = locale_form.text_field :"translations[][text]"
-/         / , :class => "locale", :onfocus => "$(this).up('tr').addClassName('active');", :onblur => "$(this).up('tr').removeClassName('active');"
-
-/         - if params[:q].present?
-/           = highlight(translation.phrase.key, params[:q])
-/         - else
-/           = translation.phrase.key
-/         %span.key{:title => translation.phrase.key}= truncate(translation.phrase.key, :length => 100)
-/     %p= locale_form.submit "Save changes"
-/ - else
-/   %p{:style => "text-align: left"} No search results.
-
-
-= form_tag translations_in_line_index_path, :method => :put do
-  %table.table
-    - for translation in @translations
-      = fields_for "translations[]", translation do |f|
+  .alert.alert-info
+    %h1#home= t("translations_in_line")
+-if !@translations.empty?
+  = form_tag translations_in_line_index_path, :method => :put do
+    %table.table.table-striped
+      %thead
         %tr
-          %td= translation.phrase_id
-          %td= f.hidden_field :id
-          %td= f.text_field :text
-  = submit_tag
-
-
-%br
-= "-------------------------"
-
-/= @translations.inspect
+          %th.important-title#fat-path= t("translation")
+          %th.important-title#fat-path= t("required_since")
+          %th.important-title#fat-path= t("translation_input")
+      %tbody
+        - for translation in @translations
+          = fields_for "translations[]", translation do |f|
+            %tr
+              %td
+                %strong= @corresponding_phrase[translation.id]
+                %br
+                %span.less-important= translation.phrase.yaml_path
+              %td= l(translation.created_at.to_date)
+              %td= f.hidden_field :id
+              %td= f.hidden_field :translator_id, :value => current_translator.id
+              %td= f.text_field :text
+    .span2.offset4= submit_tag

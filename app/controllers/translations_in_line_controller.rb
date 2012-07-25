@@ -5,9 +5,18 @@ class TranslationsInLineController < ApplicationController
     puts(params)
     @locale = current_translator.locale
     if @locale
-      @translations = @locale.translations
+      @translations = @locale.translations.translation_needed
     else
       @translations = Translation.all
+    end
+    primary_locale = Locale.primary_locale
+    @first_locale_translations = primary_locale.translations
+
+    @corresponding_phrase = {}
+    @translations.each do |translation|
+      relevant_phrase = @first_locale_translations.where(:phrase_id => translation.phrase_id)
+      relevant_phrase_text = relevant_phrase.first.text
+      @corresponding_phrase[translation.id] = relevant_phrase_text
     end
 
   end

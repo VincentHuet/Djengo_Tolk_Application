@@ -2,8 +2,8 @@ en:
   home: " Houssen"
   article: " Articlen"
   team: " Speal"
-  about: " "
-  logout: " "
+  about: " lol"
+  logout: " déconnexionen"
   login: " "
   sign_up: " "
   articles: 
@@ -41,3 +41,8 @@ en:
       bonjour: " "
       welcome_paragraphe: " "
       welcome_paragraphe_2: " "
+      require: 
+        zero: " "
+        one: " "
+        other: " "
+      welcome: " "

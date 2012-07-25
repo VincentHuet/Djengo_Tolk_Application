@@ -9,6 +9,16 @@ fr:
   logout: Déconnexion
   login: Connexion
   sign_up: Inscription
-  locale: "Langue de traduction"
-  yml_source: "Fichier Source Yaml"
+  locale: "Langues de traduction"
+  yml_source: "Fichiers Source"
   missing_translation: "Traductions manquantes"
+  translation_resume: "Récapitulatif des traductions"
+  traduction_in_line: "Effectuer des traductions"
+  require:
+    zero: "Il reste %{count} translation à effectuer"
+    one: "Il reste %{count} translation à effectuer"
+    other: "Il reste %{count} translations à effectuer"
+  welcome: "Welcome on Djengo's Internationalizer WebSite"
+  translations_in_line: "Actuellement, vous traduisez l'application pour la langue française"
+  translation: "Traduction"
+  la_langue: "La langue de traduction est : "

@@ -2738,8 +2738,8 @@ button.close {
 .btn-info:hover,
 .btn-inverse,
 .btn-inverse:hover {
-  color: #ffffff;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
 }
 
 .btn-primary.active,

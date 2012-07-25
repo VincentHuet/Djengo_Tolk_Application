@@ -4,8 +4,14 @@ class LocalesController < ApplicationController
   # GET /locales.json
   before_filter :authenticate_translator!
   load_and_authorize_resource
+
   def index
     @locales = Locale.all
+
+    @missing_translation = {}
+    @locales.each do |locale|
+      @missing_translation[locale.name] = missing_translation?(locale)
+    end
     standard_respond_to(@locales)
   end
 
@@ -49,5 +55,12 @@ class LocalesController < ApplicationController
     @locale.destroy
 
     destroy_respond_to
+  end
+
+  def missing_translation?(locale)
+    reference_locale = Locale.primary_locale
+    primary_keyword_quantity = reference_locale.translations.count
+    current_done_translation = locale.translations.where(:needed_update => 0).count
+    primary_keyword_quantity - current_done_translation
   end
 end

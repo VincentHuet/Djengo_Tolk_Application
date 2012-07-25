@@ -1,12 +1,30 @@
-.page-header
-  %h2 Accueil du site de traduction
-
 .row
-  .span5
-    - if translator_signed_in?
-      %strong
-        = "Bienvenue : #{current_translator.name.humanize}"
-  .span5
-    - if translator_signed_in?
-      %strong
-        = "Il vous reste #{pluralize(missing_translation?(current_translator.locale), 'tanslation')} à effectuer"
+  .span540.offset2.alert.alert-info#home
+    .span6
+      %br
+      %br
+      %br
+      %br
+      .span6.offset40=link_to image_tag("macbk.png"), translations_in_line_index_path
+    .row
+      .span6.offset65
+        = t('welcome')
+        %br
+        %br
+    - if @ratio <= 50
+      .progress.progress-striped.progress-warning.active
+        .bar{:style => "width: #{@ratio}%;"}
+    - else
+      .progress.progress-striped.progress-info.active
+        .bar{:style => "width: #{@ratio}%;"}
+    .row
+      .span5.offset1-5
+        - if translator_signed_in?
+          .btn-large
+            = link_to t("require", :count => @missing_translation), translations_in_line_index_path, :class => 'btn btn-info active btn-large'
+      - if !translator_signed_in?
+        .span2offset1
+          = link_to(t("login"), new_translator_session_path, :class => 'btn')
+        .span1
+          = link_to(t("sign_up"), new_translator_registration_path, :class => 'btn')
+        %br

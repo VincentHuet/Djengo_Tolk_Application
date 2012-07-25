@@ -16,7 +16,7 @@ class Translation < ActiveRecord::Base
   ##
   # Accessibility
   #
-  attr_accessible :locale_id, :phrase_id, :previous_text, :text, :needed_update
+  attr_accessible :locale_id, :phrase_id, :previous_text, :text, :needed_update, :translator_id
 
   ##
   # Associations
@@ -67,5 +67,7 @@ class Translation < ActiveRecord::Base
   def mail_if_deliverable(translator)
     TranslatorMailer.welcome_email(translator).deliver if !translator.nil?
   end
+
+
 
 end

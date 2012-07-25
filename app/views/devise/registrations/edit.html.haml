@@ -12,6 +12,10 @@
     %br/
     = f.password_field :password, :autocomplete => "off"
   %div
+    = f.label :locale_id
+    %br/
+    = f.select(:locale_id, locale_list(@locales), { :include_blank => false })
+  %div
     = f.label :password_confirmation
     %br/
     = f.password_field :password_confirmation

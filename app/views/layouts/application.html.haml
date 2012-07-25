@@ -12,13 +12,13 @@
           = link_to "Djengo's Translation Platform ", root_path, :class => "brand"
           .nav-collapse
             %ul.nav
-              %li= link_to t("home"), root_path
-              %li= link_to t("yml_source"), yml_sources_path
-              %li= link_to t("locale"), locales_path
-              %li= link_to t("traduction in line"), translations_in_line_index_path
+              -if translator_signed_in? && current_translator.locale.is_primary?
+                %li= link_to t("yml_source"), yml_sources_path
+                %li= link_to t("locale"), locales_path
               - if translator_signed_in?
-                %li= link_to t("translation"), locale_translations_path(current_translator.locale)
-                %li= link_to t("missing_translation"), locale_missing_translations_path(current_translator.locale)
+                %li= link_to t("traduction_in_line"), translations_in_line_index_path
+                %li= link_to t("translation_resume"), locale_translations_path(current_translator.locale)
+                / %li= link_to t("missing_translation"), locale_missing_translations_path(current_translator.locale)
             %ul.nav.pull-right
               - if translator_signed_in?
                 %li= link_to t("logout"), destroy_translator_session_path, :method => :delete
