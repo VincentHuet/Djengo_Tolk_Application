@@ -9,22 +9,52 @@
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
-          = link_to "Djengo's Translation Platform ", root_path, :class => "brand"
+          = link_to root_path, :class => "brand" do
+            %i.icon-home
+            = "Djengo's Translation Platform "
           .nav-collapse
             %ul.nav
               -if translator_signed_in? && current_translator.locale.is_primary?
-                %li= link_to t("yml_source"), yml_sources_path
-                %li= link_to t("locale"), locales_path
+                %li
+                  = link_to yml_sources_path do
+                    %i.icon-bookmark
+                    = t("yml_source")
+                %li
+                  = link_to locales_path do
+                    %i.icon-plane
+                    = t("locale")
               - if translator_signed_in?
-                %li= link_to t("traduction_in_line"), translations_in_line_index_path
-                %li= link_to t("translation_resume"), locale_translations_path(current_translator.locale)
+                %li
+                  = link_to translations_in_line_index_path do
+                    %i.icon-pencil
+                    = t("traduction_in_line")
+                %li
+                  = link_to locale_translations_path(current_translator.locale) do
+                    %i.icon-book
+                    = t("translation_resume")
                 / %li= link_to t("missing_translation"), locale_missing_translations_path(current_translator.locale)
             %ul.nav.pull-right
               - if translator_signed_in?
-                %li= link_to current_translator.name, translator_path(current_translator)
-                %li= link_to t("logout"), destroy_translator_session_path, :method => :delete
+                %li
+                  = link_to translator_path(current_translator) do
+                    %i.icon-user.font-size16
+                    %i.font-size14= current_translator.name.humanize
+                %li
+                  = link_to destroy_translator_session_path, :method => :delete do
+                    %i.icon-eject
+                    = t("logout")
               - else
-                %li= link_to(t("login"), new_translator_session_path)
-                %li= link_to(t("sign_up"), new_translator_registration_path)
+                %li
+                  = link_to new_translator_session_path do
+                    %i.icon-lock
+                    = t("login")
+                %li
+                  = link_to new_translator_registration_path do
+                    %i.icon-plus-sign
+                    = t("sign_up")
+              %li
+                = link_to request.fullpath do
+                  %i.icon-refresh
+                  = t("refresh")
     .hero-unit
       = yield

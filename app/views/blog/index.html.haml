@@ -19,10 +19,11 @@
         .progress.progress-striped.progress-info.active
           .bar{:style => "width: #{@ratio}%;"}
     .row
-      .span5.offset1-5
+      .span5.offset1
         - if translator_signed_in?
-          .btn-large
-            = link_to t("require", :count => @missing_translation), translations_in_line_index_path, :class => 'btn btn-info active btn-large'
+          .span5.offset08
+            .btn-large
+              = link_to t("require", :count => @missing_translation), translations_in_line_index_path, :class => 'btn btn-info active btn-large'
       - if !translator_signed_in?
         .span2offset1
           = link_to(t("login"), new_translator_session_path, :class => 'btn')

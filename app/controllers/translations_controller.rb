@@ -19,15 +19,10 @@ class TranslationsController < ApplicationController
 
     @relevant_phrase_text = {}
     @translations.each do |translation|
-
       primary_locale = Locale.primary_locale
-
       first_locale_translations = primary_locale.translations
-
       relevant_phrase = first_locale_translations.where(:phrase_id => translation.phrase_id)
-
       @relevant_phrase_text[translation.phrase_id] = relevant_phrase.first.text
-
     end
 
     @latest_translation_load_date = Translation.maximum("created_at").to_date
