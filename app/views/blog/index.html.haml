@@ -7,7 +7,7 @@
       %br
       .span6.offset40=link_to image_tag("macbk.png"), translations_in_line_index_path
     .row
-      .span6.offset65
+      .span540
         = t('welcome')
         %br
         %br
@@ -19,7 +19,7 @@
         .progress.progress-striped.progress-info.active
           .bar{:style => "width: #{@ratio}%;"}
     .row
-      .span5.offset1
+      .span5
         - if translator_signed_in?
           .span5.offset08
             .btn-large

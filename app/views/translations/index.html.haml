@@ -1,12 +1,13 @@
 .page-header
   %div
-    .alert.alert-info
+    .alert.alert-grey
       %h1= "#{t("la_langue")} #{@locales_name[current_translator.locale.name]}."
-      .offset1= "De plus, les traductions sont effectuées par #{current_translator.name}"
-    .pull-right
-      = link_to t('create yml file'), locale_yml_files_path(@locale), :class => 'btn btn-info white'
-
-.alert.alert-info
+      = "De plus, les traductions sont effectuées par #{current_translator.name}"
+    .span2.offset4
+      .offset03
+        = link_to t('create yml file'), locale_yml_files_path(@locale), :class => 'btn btn-large white'
+%br
+.alert.alert-grey
   %table.table#translation-table
     %tr.offset-01
       %td
@@ -23,6 +24,7 @@
           .span2.offser05= t('Edit')
 - @update_date.each do |key,  date|
   .alert.alert-success
+    %i.icon-ok-sign
     = t('what_has_been_done_on')
     = date
     %table.table#translation-table
@@ -32,6 +34,8 @@
 
 - @update_date.each do |key, date|
   .alert.alert-error
+    %i.icon-exclamation-sign
+    %i.icon-exclamation-sign
     = t('still_to_do_since')
     = date
     %table.table#translation-table
@@ -40,6 +44,8 @@
           %tr= render 'translation_row', :translation => translation
 
 .alert.alert-warning
+  %i.icon-question-sign
+  %i.icon-exclamation-sign
   = t('still_to_do_since')
   = @latest_translation_load_date
   %br
