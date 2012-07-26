@@ -13,17 +13,10 @@ class TranslationsController < ApplicationController
     end
 
     @update_date = {}
-    @translations.each do |translation|
-      @update_date[translation.updated_at.to_date] = translation.updated_at.to_date
-    end
+    @update_date = create_update_date_table(@translations)
 
     @relevant_phrase_text = {}
-    @translations.each do |translation|
-      primary_locale = Locale.primary_locale
-      first_locale_translations = primary_locale.translations
-      relevant_phrase = first_locale_translations.where(:phrase_id => translation.phrase_id)
-      @relevant_phrase_text[translation.phrase_id] = relevant_phrase.first.text
-    end
+    @relevant_phrase_text = create_phrase_translation_table(@translations)
 
     @latest_translation_load_date = Translation.maximum("created_at").to_date
 
@@ -116,6 +109,25 @@ class TranslationsController < ApplicationController
     Translation.update(params[:translations].keys, params[:translations].values)
     flash[:notice] = "Translations updated"
     redirect_to root_path
+  end
+
+  def create_phrase_translation_table(translations)
+    relevant_phrase_text = {}
+    translations.each do |translation|
+      primary_locale = Locale.primary_locale
+      first_locale_translations = primary_locale.translations
+      relevant_phrase = first_locale_translations.where(:phrase_id => translation.phrase_id)
+      relevant_phrase_text[translation.phrase_id] = relevant_phrase.first.text
+    end
+    relevant_phrase_text
+  end
+
+  def create_update_date_table(translations)
+    update_date = {}
+    translations.each do |translation|
+      update_date[translation.updated_at.to_date] = translation.updated_at.to_date
+    end
+    update_date
   end
 
 end

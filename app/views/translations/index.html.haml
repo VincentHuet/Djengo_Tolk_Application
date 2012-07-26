@@ -2,7 +2,7 @@
   %div
     .alert.alert-grey
       %h1= "#{t("la_langue")} #{@locales_name[current_translator.locale.name]}."
-      = "De plus, les traductions sont effectuées par #{current_translator.name}"
+      .offset02= "De plus, les traductions sont effectuées par #{current_translator.name}"
     .span2.offset4
       .offset03
         = link_to t('create yml file'), locale_yml_files_path(@locale), :class => 'btn btn-large white'
