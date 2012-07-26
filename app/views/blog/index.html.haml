@@ -11,12 +11,13 @@
         = t('welcome')
         %br
         %br
-    - if @ratio <= 50
-      .progress.progress-striped.progress-warning.active
-        .bar{:style => "width: #{@ratio}%;"}
-    - else
-      .progress.progress-striped.progress-info.active
-        .bar{:style => "width: #{@ratio}%;"}
+    - if translator_signed_in?
+      - if @ratio <= 50
+        .progress.progress-striped.progress-warning.active
+          .bar{:style => "width: #{@ratio}%;"}
+      - else
+        .progress.progress-striped.progress-info.active
+          .bar{:style => "width: #{@ratio}%;"}
     .row
       .span5.offset1-5
         - if translator_signed_in?

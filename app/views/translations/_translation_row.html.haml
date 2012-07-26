@@ -1,18 +1,11 @@
 %td= translation.text
-- primary_locale = Locale.primary_locale
-- first_locale_translations = primary_locale.translations
-- relevant_phrase = first_locale_translations.where(:phrase_id => translation.phrase_id)
-- relevant_phrase_text = relevant_phrase.first.text
-%td= relevant_phrase_text
-/ - if translation.translator_id.nil? || translation.translator.nil?
-/   %td= " "
-/ - else
-/   - corresponding_translator = translation.translator
-/   %td= corresponding_translator.name
+
+%td= @relevant_phrase_text[translation.phrase_id]
+
 - if !translation.need_updated?
   %td= translation.updated_at.to_date
 - else
   %td= translation.created_at.to_date
-- corresponding_locale = translation.locale
+
 - if (can? :update, translation)
-  %td= link_to 'Edit', edit_translation_path(translation)
+  %td= link_to 'Edit', edit_translation_path(translation), :class => 'btn btn-warning'

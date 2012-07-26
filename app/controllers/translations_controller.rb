@@ -17,6 +17,19 @@ class TranslationsController < ApplicationController
       @update_date[translation.updated_at.to_date] = translation.updated_at.to_date
     end
 
+    @relevant_phrase_text = {}
+    @translations.each do |translation|
+
+      primary_locale = Locale.primary_locale
+
+      first_locale_translations = primary_locale.translations
+
+      relevant_phrase = first_locale_translations.where(:phrase_id => translation.phrase_id)
+
+      @relevant_phrase_text[translation.phrase_id] = relevant_phrase.first.text
+
+    end
+
     @latest_translation_load_date = Translation.maximum("created_at").to_date
 
     @yml_hash = TranslationsManager.create_translation_hash(@translations)
@@ -69,7 +82,7 @@ class TranslationsController < ApplicationController
 
     next_translation_path = next_path(@translation)
 
-    update_respond_to(@translation, params[:translation], next_translation_path)
+    update_respond_to(@translation, params[:translation], locale_translations_path(current_translator.locale))
   end
 
   # DELETE /translations/1

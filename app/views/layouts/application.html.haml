@@ -21,6 +21,7 @@
                 / %li= link_to t("missing_translation"), locale_missing_translations_path(current_translator.locale)
             %ul.nav.pull-right
               - if translator_signed_in?
+                %li= link_to current_translator.name, translator_path(current_translator)
                 %li= link_to t("logout"), destroy_translator_session_path, :method => :delete
               - else
                 %li= link_to(t("login"), new_translator_session_path)
