@@ -19,7 +19,9 @@ class TranslationsManager
       yaml_path = translation_phrase.yaml_path
       translation_value = translation.text
       translation_value = "" if translation_value.blank?
-      yml_hash = self.insert(yml_hash, yaml_path.sub(/[.]{2}/, "").split("."), translation_value)
+      if yml_hash.class == "hash"
+        yml_hash = self.insert(yml_hash, yaml_path.sub(/[.]{2}/, "").split("."), translation_value)
+      end
     end
     yml_hash
   end

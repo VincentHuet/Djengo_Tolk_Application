@@ -12,13 +12,16 @@ class TranslationsController < ApplicationController
       @translations = Translation.all
     end
 
+    @latest_translation_load_date = Translation.maximum("created_at").to_date
+
+    @create_date = {}
+    @create_date = create_create_date_table(@translations)
+
     @update_date = {}
     @update_date = create_update_date_table(@translations)
 
     @relevant_phrase_text = {}
     @relevant_phrase_text = create_phrase_translation_table(@translations)
-
-    @latest_translation_load_date = Translation.maximum("created_at").to_date
 
     @yml_hash = TranslationsManager.create_translation_hash(@translations)
 
@@ -117,6 +120,16 @@ class TranslationsController < ApplicationController
       update_date[translation.updated_at.to_date] = translation.updated_at.to_date
     end
     update_date
+  end
+
+  def create_create_date_table(translations)
+    create_date = {}
+    translations.each do |translation|
+      if translation.need_updated? && translation.created_at.to_date != @latest_translation_load_date
+        create_date[translation.created_at.to_date] = translation.created_at.to_date
+      end
+    end
+    create_date
   end
 
 end

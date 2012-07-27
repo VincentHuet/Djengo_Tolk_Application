@@ -1,32 +1,40 @@
-.row
-  .span540.offset2.alert.alert-info#home
-    .span6
-      %br
-      %br
-      %br
-      %br
+.row.low-top-margin
+  .span540.offset2.alert.alert-grey#home
+    .span6.top-margin
       .span6.offset40=link_to image_tag("macbk.png"), translations_in_line_index_path
     .row
       .span540
+        %br
         = t('welcome')
         %br
         %br
+        %br
     - if translator_signed_in?
-      - if @ratio <= 50
-        .progress.progress-striped.progress-warning.active
+      - if @ratio <= 20
+        .progress.progress-striped.progress-danger.active
           .bar{:style => "width: #{@ratio}%;"}
       - else
-        .progress.progress-striped.progress-info.active
-          .bar{:style => "width: #{@ratio}%;"}
+        - if @ratio <= 50
+          .progress.progress-striped.progress-warning.active
+            .bar{:style => "width: #{@ratio}%;"}
+        - else
+          - if @ratio <= 95
+            .progress.progress-striped.progress-info.active
+              .bar{:style => "width: #{@ratio}%;"}
+          - else
+            .progress.progress-striped.progress-success.active
+              .bar{:style => "width: #{@ratio}%;"}
     .row
       .span5
         - if translator_signed_in?
           .span5.offset08
             .btn-large
+              %br
               = link_to t("require", :count => @missing_translation), translations_in_line_index_path, :class => 'btn btn-info active btn-large'
       - if !translator_signed_in?
         .span2offset1
           = link_to(t("login"), new_translator_session_path, :class => 'btn')
         .span1
           = link_to(t("sign_up"), new_translator_registration_path, :class => 'btn')
-        %br
+    %br
+    %br

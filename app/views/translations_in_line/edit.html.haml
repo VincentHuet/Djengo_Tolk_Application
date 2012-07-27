@@ -4,11 +4,8 @@ toto
   - for translation in @translations
     %br
       %p= translation.text
-      - primary_locale = Locale.primary_locale
-      - first_locale_translations = primary_locale.translations
-      - relevant_phrase = first_locale_translations.where(:phrase_id => translation.phrase_id)
-      - relevant_phrase_text = relevant_phrase.first.text
-      %p= relevant_phrase_text
+
+      %p= @relevant_phrase_text[translation.phrase_id]
       - if translation.translator_id.nil?
         %p= "nil"
       - else

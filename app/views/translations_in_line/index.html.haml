@@ -15,7 +15,8 @@
         - for translation in @translations
           = fields_for "translations[]", translation do |f|
             %tr.center
-              %td= f.hidden_field :id
+              %td= translation.id
+              = f.hidden_field :id
               %td
                 %strong= @corresponding_phrase[translation.phrase_id]
                 .less-important= translation.phrase.yaml_path

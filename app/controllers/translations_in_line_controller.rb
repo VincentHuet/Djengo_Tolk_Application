@@ -19,6 +19,7 @@ class TranslationsInLineController < ApplicationController
 
   def edit
     @translations = Translation.find([:params])
+    @corresponding_phrase = create_phrase_translation_table(@translations)
   end
 
   def update
