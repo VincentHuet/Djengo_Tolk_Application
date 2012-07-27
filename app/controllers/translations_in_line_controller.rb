@@ -10,14 +10,10 @@ class TranslationsInLineController < ApplicationController
       @translations = Translation.all
     end
     primary_locale = Locale.primary_locale
+
     @first_locale_translations = primary_locale.translations
 
-    @corresponding_phrase = {}
-    @translations.each do |translation|
-      relevant_phrase = @first_locale_translations.where(:phrase_id => translation.phrase_id)
-      relevant_phrase_text = relevant_phrase.first.text
-      @corresponding_phrase[translation.id] = relevant_phrase_text
-    end
+    @corresponding_phrase = create_phrase_translation_table(@translations)
 
   end
 

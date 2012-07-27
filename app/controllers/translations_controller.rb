@@ -111,17 +111,6 @@ class TranslationsController < ApplicationController
     redirect_to root_path
   end
 
-  def create_phrase_translation_table(translations)
-    relevant_phrase_text = {}
-    translations.each do |translation|
-      primary_locale = Locale.primary_locale
-      first_locale_translations = primary_locale.translations
-      relevant_phrase = first_locale_translations.where(:phrase_id => translation.phrase_id)
-      relevant_phrase_text[translation.phrase_id] = relevant_phrase.first.text
-    end
-    relevant_phrase_text
-  end
-
   def create_update_date_table(translations)
     update_date = {}
     translations.each do |translation|

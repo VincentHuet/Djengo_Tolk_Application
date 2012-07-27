@@ -1,14 +1,12 @@
 %td= translation.text
-- primary_locale = Locale.primary_locale
-- first_locale_translations = primary_locale.translations
-- relevant_phrase = first_locale_translations.where(:phrase_id => translation.phrase_id)
-- relevant_phrase_text = relevant_phrase.first.text
-%td= relevant_phrase_text
-- if translation.translator_id.nil?
-  %td= "nil"
-- else
-  - corresponding_translator = translation.translator
-  %td= corresponding_translator.name
+
+%td= @relevant_phrase_text[translation.phrase_id]
+
+/ - if translation.translator_id.nil?
+/   %td= "nil"
+/ - else
+/   - corresponding_translator = translation.translator
+/   %td= corresponding_translator.name
 - corresponding_locale = translation.locale
 %td= corresponding_locale.name
 %td= translation.needed_update
