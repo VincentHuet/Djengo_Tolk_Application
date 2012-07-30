@@ -20,6 +20,11 @@ class TranslationsController < ApplicationController
     @update_date = {}
     @update_date = create_update_date_table(@translations)
 
+    @create_and_update_date = {}
+
+    @create_and_update_date.merge!(@create_date)
+    @create_and_update_date.merge!(@update_date)
+
     @relevant_phrase_text = {}
     @relevant_phrase_text = create_phrase_translation_table(@translations)
 
@@ -102,16 +107,6 @@ class TranslationsController < ApplicationController
     else
       edit_translation_path(@next_translation)
     end
-  end
-
-  def edit_individual
-    @translations = Translation.all
-  end
-
-  def update_individual
-    Translation.update(params[:translations].keys, params[:translations].values)
-    flash[:notice] = "Translations updated"
-    redirect_to root_path
   end
 
   def create_update_date_table(translations)
