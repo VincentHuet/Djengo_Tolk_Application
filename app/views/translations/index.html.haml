@@ -22,6 +22,33 @@
       %td
         %strong
           .span2.offser05= t('Edit')
+
+- @create_date.each do |key, date|
+  %table.table#translation-table
+    - @translations.each do |translation|
+      - if translation.need_updated? && translation.created_at.to_date != @latest_translation_load_date &&
+        - if translation.created_at.to_date.to_s == date.to_s
+          %tr.alert.alert-error
+            %td
+              %i.icon-exclamation-sign
+              %i.icon-exclamation-sign
+              = t('still_to_do_since')
+              = date
+              = render 'translation_row', :translation => translation
+
+.alert.alert-warning
+  %i.icon-question-sign
+  %i.icon-exclamation-sign
+  = t('new_to_translate_since')
+  = @latest_translation_load_date
+  %br
+  %table.table#translation-table
+    - @translations.each do |translation|
+      / = @latest_translation_load_date.to_s + "=>" + translation.updated_at.to_date.to_s
+      / %br
+      - if translation.need_updated? && translation.created_at.to_date == @latest_translation_load_date
+        %tr= render 'translation_row', :translation => translation
+
 - @update_date.each do |key,  date|
   .alert.alert-success
     %i.icon-ok-sign
@@ -33,26 +60,3 @@
           %tr= render 'translation_row', :translation => translation
 
 
-- @create_date.each do |key, date|
-  .alert.alert-error
-    %i.icon-exclamation-sign
-    %i.icon-exclamation-sign
-    = t('still_to_do_since')
-    = date
-    %table.table#translation-table
-      - @translations.each do |translation|
-        - if translation.need_updated? && translation.created_at.to_date != @latest_translation_load_date && translation.created_at.to_date.to_s == date.to_s
-          %tr= render 'translation_row', :translation => translation
-
-.alert.alert-warning
-  %i.icon-question-sign
-  %i.icon-exclamation-sign
-  = t('still_to_do_since')
-  = @latest_translation_load_date
-  %br
-  %table.table#translation-table
-    - @translations.each do |translation|
-      / = @latest_translation_load_date.to_s + "=>" + translation.updated_at.to_date.to_s
-      / %br
-      - if translation.need_updated? && translation.created_at.to_date == @latest_translation_load_date
-        %tr= render 'translation_row', :translation => translation
