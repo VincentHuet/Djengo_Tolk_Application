@@ -32,11 +32,11 @@
       %td= link_to locale.name, locale_translations_path(locale)
       %td= @missing_translations_quantity[locale.id]
       %td= primary(locale)
-      %td= link_to t('create yml file'), locale_yml_files_path(locale), :class => 'btn btn-large'
+      %td= link_to t('create_yml_file'), locale_yml_files_path(locale), :class => 'btn btn-large'
 
 
-= current_translator.locale.translations
-- @yml_hash = TranslationsManager.create_translation_hash(current_translator.locale.translations)
-= "--------------------"*15
-= @yml_hash
-= raw(TranslationsManager.hash_to_export(@yml_hash, "", "&nbsp", "<br >"))
+/ = current_translator.locale.translations
+/ - @yml_hash = TranslationsManager.create_translation_hash(current_translator.locale.translations)
+/ = "--------------------"*15
+/ = @yml_hash
+/ = raw(TranslationsManager.hash_to_export(@yml_hash, "", "&nbsp", "<br >"))

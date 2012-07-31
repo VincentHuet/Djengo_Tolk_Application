@@ -1,8 +1,6 @@
 class TranslationsInLineController < ApplicationController
 
   def index
-    puts("-----------------------------")
-    puts(params)
     @locale = current_translator.locale
     if @locale
       @translations = @locale.translations.translation_needed
@@ -14,7 +12,6 @@ class TranslationsInLineController < ApplicationController
     @first_locale_translations = primary_locale.translations
 
     @corresponding_phrase = create_phrase_translation_table(@translations)
-
   end
 
   def edit

@@ -19,7 +19,9 @@ class TranslationsManager
       yaml_path = translation_phrase.yaml_path
       translation_value = translation.text
       translation_value = "" if translation_value.blank?
-      yml_hash = self.insert(yml_hash, yaml_path.sub(/[.]{2}/, "").split("."), translation_value)
+      if translation_value != "-"
+        yml_hash = self.insert(yml_hash, yaml_path.sub(/[.]{2}/, "").split("."), translation_value)
+      end
     end
     yml_hash
   end
@@ -40,6 +42,7 @@ class TranslationsManager
   def self.add_key_and_value(locale_translation_hash, indent, return_type, locale_sub_level_key)
     return_phrase = ""
     if !locale_translation_hash[locale_sub_level_key].to_s.blank?
+      locale_translation_hash[locale_sub_level_key] = locale_translation_hash[locale_sub_level_key].to_s.sub(/[\"]/, "\'").sub(/[\"]/, "\'")
       return_phrase << indent << locale_sub_level_key + ": \" " + locale_translation_hash[locale_sub_level_key].to_s + "\"" + return_type
     else
       return_phrase << indent << locale_sub_level_key + ": " + "\" \"" + return_type
