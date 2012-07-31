@@ -1,4 +1,4 @@
-en: 
+de:
   home: " Houssen"
   article: " Articlen"
   team: " Speal"
@@ -6,23 +6,23 @@ en:
   logout: " déconnexionen"
   login: " Connexion"
   sign_up: " S'enregistrer"
-  articles: 
-    index: 
+  articles:
+    index:
       show: " Plus d'information »"
       subject: " Sujet"
       cattegory: " Category"
       posted: " Posté le"
       new_article: " Déposé un nouvel article"
       article_list: " Liste d'article"
-      published_article_quantity: 
+      published_article_quantity:
         zero: " Il n'a aucun article publié dans la base de données"
         one: " Il y a un article publié dans la base de donnée"
         other: " Il y a %{count} articles publiés dans la base de données"
-      article_quantity: 
+      article_quantity:
         zero: " Il n'y a pas d'article dans la base de données"
         one: " Il y a un article dans la base de donnée"
         other: " Il y a %{count} articles dans la base de donnée"
-    show: 
+    show:
       comment: " Commenter"
       subject: " Sujet"
       from: " De"
@@ -30,18 +30,18 @@ en:
       content: " Contenu"
       comments: " Commentaires"
       back: " Retour"
-      comment_quantity: 
+      comment_quantity:
         zero: " Il y a rien"
         one: " "
         other: " "
-    new: 
+    new:
       new_article: " Post un nouvel article"
-  blog: 
-    index: 
+  blog:
+    index:
       bonjour: " Salut"
       welcome_paragraphe: " Vous êtes sur le Blog de Djengo"
       welcome_paragraphe_2: " "
-      require: 
+      require:
         zero: " "
         one: " "
         other: " "

@@ -11,18 +11,6 @@ class BlogController < ApplicationController
     end
   end
 
-	def missing_translation?(locale)
-    primary_keyword_quantity = phrase_quantity
-    current_done_translation = locale.translations.where(:needed_update => 0).count
-    primary_keyword_quantity - current_done_translation
-  end
-
-  def phrase_quantity()
-    reference_locale = Locale.primary_locale
-    primary_keyword_quantity = reference_locale.translations.count
-    primary_keyword_quantity
-  end
-
   def ratio(missing_translation)
     primary_keyword_quantity = phrase_quantity
     ratio = (missing_translation * 100) / primary_keyword_quantity

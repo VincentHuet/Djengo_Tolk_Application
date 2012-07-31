@@ -10,6 +10,7 @@ fr:
   date:
     formats:
       default: "%d/%m/%Y"
+      defaults: "%d-%m-%Y"
       short: "%e %b"
       long: "%e %B %Y"
     day_names:
@@ -213,7 +214,7 @@ fr:
         one: "Impossible d'enregistrer ce(tte) %{model} : 1 erreur"
         other: "Impossible d'enregistrer ce(tte) %{model} : %{count} erreurs"
       body: "Veuillez vérifier les champs suivants : "
-      
+
   activemodel:
     errors:
       <<: *errors

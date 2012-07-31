@@ -1,4 +1,5 @@
-%h1 Listing yml_sources
+.page-header
+  %h1 Listing yml_sources
 %table
   %tr
     %td.bottom_border#name
@@ -14,4 +15,28 @@
       %td= yml_source.name
       %td= yml_source.path
       %td= link_to 'load in DB', phrase_database_filler_path(yml_source), :class => "btn"
-%br/
+
+%h1 Locales :
+%table
+  %tr
+    %td
+      %strong Locale
+    %td
+      %strong Missing translation
+    %td
+      %strong Status
+    %th
+      %strong Option
+  - @locales.each do |locale|
+    %tr
+      %td= link_to locale.name, locale_translations_path(locale)
+      %td= @missing_translations_quantity[locale.id]
+      %td= primary(locale)
+      %td= link_to t('create yml file'), locale_yml_files_path(locale), :class => 'btn btn-large'
+
+
+= current_translator.locale.translations
+- @yml_hash = TranslationsManager.create_translation_hash(current_translator.locale.translations)
+= "--------------------"*15
+= @yml_hash
+= raw(TranslationsManager.hash_to_export(@yml_hash, "", "&nbsp", "<br >"))

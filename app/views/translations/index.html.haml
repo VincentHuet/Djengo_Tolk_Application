@@ -10,19 +10,19 @@
 .alert.alert-grey
   %table.table#translation-table#back30
     %tr
-      %td#normal
+      %td
       %td
         %strong
-          .span2= t("english_value")
+          .span4= t("english_value")
       %td
         %strong
-          .span2= t("translation")
+          .span4= t("translation")
       %td
         %strong
-          .span3= t("create_date")
+          .span2= t("create_date")
       %td
         %strong
-          .span3= t("update_date")
+          .span2= t("update_date")
       %td
         %strong
           .span2.offser05= t('Edit')
@@ -35,8 +35,9 @@
               %td{:colspan => "6"}
                 %i.icon-exclamation-sign
                 %i.icon-exclamation-sign
-                = t('still_to_do_since')
-                = date
+                %strong.font-size16.black-shadow
+                  = t('still_to_do_since')
+                  = date
             - flag = 1
           %tr.alert.alert-error
             = render 'translation_row', :translation => translation
@@ -44,11 +45,12 @@
         - if translation.need_updated? && translation.created_at.to_date == @latest_translation_load_date && @latest_translation_load_date.to_s == date.to_s
           - if flag <= 1
             %tr.alert.alert-warning
-              %td{:colspan => "5"}
+              %td{:colspan => "6"}
                 %i.icon-question-sign
                 %i.icon-exclamation-sign
-                  = t('new_to_translate_since')
-                  = @latest_translation_load_date
+                  %strong.font-size16.black-shadow
+                    = t('new_to_translate_since')
+                    = @latest_translation_load_date
             - flag = 2
           %tr.alert.alert-warning
             = render 'translation_row', :translation => translation
@@ -56,10 +58,11 @@
         - if !translation.need_updated? && translation.updated_at.to_date.to_s == date.to_s
           - if flag <= 2
             %tr.alert.alert-success
-              %td{:colspan => "5"}
+              %td{:colspan => "6"}
                 %i.icon-ok-sign
-                  = t('what_has_been_done_on')
-                  = date
+                  %strong.font-size16.black-shadow
+                    = t('what_has_been_done_on')
+                    = date
             - flag = 3
           %tr.alert.alert-success
             = render 'translation_row', :translation => translation

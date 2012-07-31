@@ -32,7 +32,6 @@ class YmlLoader
 
   def self.parse_yaml_to_db(hash_branch, hash_path, indent)
     puts(hash_branch).inspect
-    return_phrase = ""
     counter = 0
     hash_branch.each_key do |sub_tree_key|
       if hash_branch[sub_tree_key].kind_of? Hash
@@ -78,17 +77,14 @@ class YmlLoader
         new_translation.locale_id = locale.id
         new_translation.needed_update_flag_update
         new_translation.save if locale.translations.find_by_phrase_id(new_translation.phrase_id).nil?
-
       end
     end
   end
 
   def self.export_hash_to_yaml_locale(yaml_exported_file, locale)
-
     if File.exist?("#{Rails.root}/config/locales/#{locale.name}.yml")
       File.rename("#{Rails.root}/config/locales/#{locale.name}.yml", "#{Rails.root}/config/locales/#{locale.name}.yml.old")
     end
-
     File.open("#{Rails.root}/config/locales/#{locale.name}.yml", 'w') do |file|
       file.write yaml_exported_file
     end
@@ -96,9 +92,5 @@ class YmlLoader
 
   def exist_file?(yaml_file_paht)
     File.exist()
-  end
-
-  def rename
-
   end
 end

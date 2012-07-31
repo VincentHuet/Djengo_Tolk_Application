@@ -11,6 +11,13 @@ class YmlSourcesController < ApplicationController
     YmlLoader.load_locales
     @yml_sources = YmlSource.all   # YmlLoader.load_yml_content
 
+    @locales = Locale.all
+
+    @missing_translations_quantity = {}
+    @locales.each do |locale|
+      @missing_translations_quantity[locale.id] = missing_translation?(locale)
+    end
+
     standard_respond_to(@yml_sources)
   end
 
