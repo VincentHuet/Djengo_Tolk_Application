@@ -1,11 +1,16 @@
 class TranslationsManager
 
 	def self.insert(hash, path, value)
+
     head, *tail = path
     if tail.empty?
+      puts "----------!!!--- if ---!!!------------"
+      puts hash.inspect
       hash.merge(head => value)
     else
       h = self.insert(hash[head] || {}, tail, value)
+      puts "----------!!!--- else ---!!!------------"
+      puts hash.inspect
       hash.merge(head => hash.has_key?(head) ? hash[head].merge(h) : h)
     end
   end

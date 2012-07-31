@@ -4,16 +4,20 @@ class Ability
   def initialize(translator)
     translator ||= Translator.new # guest translator
 
-    can :read, :all
+    if translator.admin
+      can :manage, :all
+    else
+      can :read, :all
 
-    can :update, Translation do |translation|
-      translation.locale_id == translator.locale_id
+      can :update, Translation do |translation|
+        translation.locale_id == translator.locale_id
+      end
+
+      can :create, Locale
+      can :destroy, Locale
+
+      can :create, :all
     end
-
-    can :create, Locale
-    can :destroy, Locale
-
-    can :create, :all
   end
 end
 
