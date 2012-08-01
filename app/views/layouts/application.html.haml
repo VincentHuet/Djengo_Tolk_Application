@@ -19,19 +19,15 @@
                   = link_to yml_sources_path do
                     %i.icon-bookmark
                     = t("yml_source")
-                %li
-                  = link_to locales_path do
-                    %i.icon-plane
-                    = t("locale")
               - if translator_signed_in?
-                %li
-                  = link_to translations_in_line_index_path do
-                    %i.icon-pencil
-                    = t("traduction_in_line")
                 %li
                   = link_to locale_translations_path(current_translator.locale) do
                     %i.icon-book
                     = t("translation_resume")
+                %li
+                  = link_to translations_in_line_index_path do
+                    %i.icon-pencil
+                    = t("traduction_in_line")
                 / %li= link_to t("missing_translation"), locale_missing_translations_path(current_translator.locale)
             %ul.nav.pull-right
               - if translator_signed_in?

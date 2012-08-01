@@ -12,10 +12,14 @@ class BlogController < ApplicationController
   end
 
   def ratio(missing_translation)
-    primary_keyword_quantity = phrase_quantity
-    ratio = (missing_translation * 100) / primary_keyword_quantity
-    ratio = 100 - ratio
-    ratio
+      primary_keyword_quantity = phrase_quantity
+    if primary_keyword_quantity != 0
+      ratio = (missing_translation * 100) / primary_keyword_quantity
+      ratio = 100 - ratio
+      ratio
+    else
+      ratio = 100
+    end
   end
 
 end

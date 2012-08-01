@@ -1,5 +1,8 @@
 .page-header
-  %h1 Listing yml_sources
+  %h1
+    %i.icon-bookmark
+      = raw("&nbsp;")
+      = t("listing_yml_sources")
 %table
   %tr
     %td.bottom_border#name
@@ -16,23 +19,26 @@
       %td= yml_source.path
       %td= link_to 'load in DB', phrase_database_filler_path(yml_source), :class => "btn"
 
-%h1 Locales :
+%h1
+  %i.icon-plane
+    = raw("&nbsp;")
+    = t("locales")
 %table
   %tr
-    %td
+    %td.bottom_border
       %strong Locale
-    %td
+    %td.bottom_border
       %strong Missing translation
-    %td
+    %td.bottom_border
       %strong Status
-    %th
+    %td.bottom_border
       %strong Option
   - @locales.each do |locale|
     %tr
       %td= link_to locale.name, locale_translations_path(locale)
       %td= @missing_translations_quantity[locale.id]
       %td= primary(locale)
-      %td= link_to t('create_yml_file'), locale_yml_files_path(locale), :class => 'btn btn-large'
+      %td= link_to t('create_yml_file'), locale_yml_files_path(locale), :class => 'btn'
 
 
 / = current_translator.locale.translations

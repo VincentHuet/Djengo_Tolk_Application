@@ -1,16 +1,12 @@
 class TranslationsInLineController < ApplicationController
 
   def index
-    if current_translator.locale.is_primary?
-      @locale = Locale.find(params[:locale_id])
-    else
-      @locale = current_translator.locale
-    end
+    @locale = current_translator.locale
 
-    if @locale && current_translator.locale.is_primary?
+    if @locale && !current_translator.locale.is_primary?
       @translations = @locale.translations.translation_needed
     else
-      @translations = Translation.all
+      @translations = @locale.translations
     end
 
     primary_locale = Locale.primary_locale

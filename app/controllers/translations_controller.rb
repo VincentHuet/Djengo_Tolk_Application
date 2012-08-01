@@ -12,7 +12,9 @@ class TranslationsController < ApplicationController
       @translations = Translation.all
     end
 
-    @latest_translation_load_date = Translation.maximum("created_at").to_date
+    if !Translation.all.empty?
+      @latest_translation_load_date = Translation.maximum("created_at").to_date
+    end
 
     @create_date = {}
     @create_date = create_create_date_table(@translations)
