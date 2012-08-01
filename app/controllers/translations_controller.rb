@@ -7,9 +7,9 @@ class TranslationsController < ApplicationController
   def index
     @locale = Locale.find_by_id(params[:locale_id])
     if @locale
-      @translations = @locale.translations
+      @translations = @locale.translations.order('text')
     else
-      @translations = Translation.all
+      @translations = Translation.all.order('text')
     end
 
     if !Translation.all.empty?

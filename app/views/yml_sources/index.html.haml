@@ -4,17 +4,17 @@
       = raw("&nbsp;")
       = t("listing_yml_sources")
 %table
-  %tr
+  %tr#font-size16
     %td.bottom_border#name
       %strong Name
     %td.bottom_border
       %strong Path
     %td.bottom_border
       %strong Loadind Button
-  %tr
+  %tr#font-size14
     %td
   - @yml_sources.each do |yml_source|
-    %tr
+    %tr#font-size14
       %td= yml_source.name
       %td= yml_source.path
       %td= link_to 'load in DB', phrase_database_filler_path(yml_source), :class => "btn"
@@ -24,7 +24,7 @@
     = raw("&nbsp;")
     = t("locales")
 %table
-  %tr
+  %tr#font-size16
     %td.bottom_border
       %strong Locale
     %td.bottom_border
@@ -34,7 +34,7 @@
     %td.bottom_border
       %strong Option
   - @locales.each do |locale|
-    %tr
+    %tr#font-size14
       %td= link_to locale.name, locale_translations_path(locale)
       %td= @missing_translations_quantity[locale.id]
       %td= primary(locale)

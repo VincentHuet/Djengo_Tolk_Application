@@ -21,3 +21,4 @@ en:
   welcome: "Welcome on Djengo's Internationalizer WebSite"
   translations_in_line: "Currently, you are translating Djengo's application for english use"
   translation: "Translation"
+  la_langue: "The locale for translation is : "

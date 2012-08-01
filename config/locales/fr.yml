@@ -9,7 +9,8 @@
 fr:
   date:
     formats:
-      default: "%d/%m/%Y"
+      default: "%e %B %Y"
+      # default: "%d/%m/%Y"
       defaults: "%d-%m-%Y"
       short: "%e %b"
       long: "%e %B %Y"

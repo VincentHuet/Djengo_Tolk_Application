@@ -5,8 +5,7 @@
       %br
 .row
   .span4.offset3.alert.alert-info#home
-    .span4
-      .row
-        .span4.offset05= render 'form'
-      .span1.offset08= link_to 'Show', @translation, :class => 'btn btn-info'
-      .span1-5= link_to 'Back', locale_translations_path(current_translator.locale), :class => 'btn btn-warning'
+    .row
+      .span4= render 'form'
+    .span1.offset10= link_to 'Show', @translation, :class => 'btn btn-info'
+    .span1= link_to 'Back', locale_translations_path(current_translator.locale), :class => 'btn btn-warning'

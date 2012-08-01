@@ -1,15 +1,10 @@
 .page-header
-  %div
-    .alert.alert-grey
-      %h1= "#{t("la_langue")} #{@locales_name[current_translator.locale.name]}."
-      .offset02= "De plus, les traductions sont effectuées par #{current_translator.name}"
-    .span2.offset4
-      .offset03
-        = link_to t('create yml file'), locale_yml_files_path(@locale), :class => 'btn btn-large white'
-%br
+  .alert.alert-grey
+    %h1= "#{t("la_langue")} #{@locales_name[current_translator.locale.name]}."
+    .offset02= "De plus, les traductions sont effectuées par #{current_translator.name}"
 .alert.alert-grey
-  %table.table#translation-table#back30
-    %tr
+  %table.table#back30
+    %tr.font-size16
       %td
       %td
         %strong
@@ -37,9 +32,9 @@
                 %i.icon-exclamation-sign
                 %strong.font-size16.black-shadow
                   = t('still_to_do_since')
-                  = date
+                  = l date
             - flag = 1
-          %tr.alert.alert-error
+          %tr.alert.alert-error#font-size14
             = render 'translation_row', :translation => translation
       - @translations.each do |translation|
         - if translation.need_updated? && translation.created_at.to_date == @latest_translation_load_date && @latest_translation_load_date.to_s == date.to_s
@@ -50,9 +45,9 @@
                 %i.icon-exclamation-sign
                   %strong.font-size16.black-shadow
                     = t('new_to_translate_since')
-                    = @latest_translation_load_date
+                    = l @latest_translation_load_date
             - flag = 2
-          %tr.alert.alert-warning
+          %tr.alert.alert-warning#font-size14
             = render 'translation_row', :translation => translation
       - @translations.each do |translation|
         - if !translation.need_updated? && translation.updated_at.to_date.to_s == date.to_s
@@ -62,9 +57,9 @@
                 %i.icon-ok-sign
                   %strong.font-size16.black-shadow
                     = t('what_has_been_done_on')
-                    = date
+                    = l date
             - flag = 3
-          %tr.alert.alert-success
+          %tr.alert.alert-success#font-size14
             = render 'translation_row', :translation => translation
 
 

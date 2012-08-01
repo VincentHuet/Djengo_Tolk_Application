@@ -1,4 +1,4 @@
-en: 
+en:
   home: " Home"
   article: " Articles"
   team: " Team"
@@ -6,23 +6,23 @@ en:
   logout: " Log out"
   login: " Login"
   sign_up: " Sign up"
-  articles: 
-    index: 
+  articles:
+    index:
       show: " View details »"
       subject: " Subject"
       cattegory: " Catragory"
       posted: " Posted on"
       new_article: " Post a new article"
       article_list: " Article List"
-      published_article_quantity: 
+      published_article_quantity:
         zero: " There is no published article in the database"
         one: " There is one published article in the database"
         other: " There is %{count} published articles in the database"
-      article_quantity: 
+      article_quantity:
         zero: " There is no article in the database"
         one: " There is one article in the database"
         other: " There is %{count} articles in the database"
-    show: 
+    show:
       comment: " Commenter"
       subject: " Subject"
       from: " From"
@@ -30,47 +30,47 @@ en:
       content: " Content"
       comments: " Comments"
       back: " Back"
-      comment_quantity: 
+      comment_quantity:
         zero: " There is no relative comment in the database"
         one: " There is one relative comment in the database. It is the one which follows :"
         other: " There is %{count} relative comments in the database. They are the following"
-    new: 
+    new:
       new_article: " Post a new article"
-  blog: 
-    index: 
+  blog:
+    index:
       bonjour: " Hello"
       welcome_paragraphe: " Here you are on Djengo's Blog"
       welcome_paragraphe_2: " You should find your articles and relative comments."
-      require: 
+      require:
         zero: " %{count} translation still required"
         one: " %{count} translation still required"
         other: " %{count} translations still required"
       welcome: " Welcome on Djengo's Internationalizer WebSite"
-  comments: 
-    new: 
+  comments:
+    new:
       new_comment: " New comment :"
       back: " Back"
-  activerecord: 
-    models: 
+  activerecord:
+    models:
       user: " user"
-    attributes: 
-      comment: 
+    attributes:
+      comment:
         email: " Email"
         password: " password"
-  translations: 
-    form: 
+  translations:
+    form:
       phrase_id: " phrase s phrase"
-  errors: 
-    messages: 
+  errors:
+    messages:
       expired: " has expired, please request a new one"
       not_found: " not found"
       already_confirmed: " was already confirmed, please try signing in"
       not_locked: " was not locked"
-      not_saved: 
+      not_saved:
         one: " 1 error prohibited this %{resource} from being saved:"
         other: " %{count} errors prohibited this %{resource} from being saved:"
-  devise: 
-    failure: 
+  devise:
+    failure:
       already_authenticated: " You are already signed in."
       unauthenticated: " You need to sign in or sign up before continuing."
       unconfirmed: " You have to confirm your account before continuing."
@@ -79,20 +79,20 @@ en:
       invalid_token: " Invalid authentication token."
       timeout: " Your session expired, please sign in again to continue."
       inactive: " Your account was not activated yet."
-    sessions: 
+    sessions:
       signed_in: " Signed in successfully."
       signed_out: " Signed out successfully."
-    passwords: 
+    passwords:
       send_instructions: " You will receive an email with instructions about how to reset your password in a few minutes."
       updated: " Your password was changed successfully. You are now signed in."
       updated_not_active: " Your password was changed successfully."
       send_paranoid_instructions: " If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
       no_token: " You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
-    confirmations: 
+    confirmations:
       send_instructions: " You will receive an email with instructions about how to confirm your account in a few minutes."
       send_paranoid_instructions: " If your email address exists in our database, you will receive an email with instructions about how to confirm your account in a few minutes."
       confirmed: " Your account was successfully confirmed. You are now signed in."
-    registrations: 
+    registrations:
       signed_up: " Welcome! You have signed up successfully."
       signed_up_but_unconfirmed: " A message with a confirmation link has been sent to your email address. Please open the link to activate your account."
       signed_up_but_inactive: " You have signed up successfully. However, we could not sign you in because your account is not yet activated."
@@ -100,17 +100,221 @@ en:
       updated: " You updated your account successfully."
       update_needs_confirmation: " You updated your account successfully, but we need to verify your new email address. Please check your email and click on the confirm link to finalize confirming your new email address."
       destroyed: " Bye! Your account was successfully cancelled. We hope to see you again soon."
-    unlocks: 
+    unlocks:
       send_instructions: " You will receive an email with instructions about how to unlock your account in a few minutes."
       unlocked: " Your account has been unlocked successfully. Please sign in to continue."
       send_paranoid_instructions: " If your account exists, you will receive an email with instructions about how to unlock it in a few minutes."
-    omniauth_callbacks: 
+    omniauth_callbacks:
       success: " Successfully authenticated from %{kind} account."
       failure: " Could not authenticate you from %{kind} because '%{reason}'."
-    mailer: 
-      confirmation_instructions: 
+    mailer:
+      confirmation_instructions:
         subject: " Confirmation instructions"
-      reset_password_instructions: 
+      reset_password_instructions:
         subject: " Reset password instructions"
-      unlock_instructions: 
+      unlock_instructions:
         subject: " Unlock Instructions"
+  date:
+    abbr_day_names:
+    - Sun
+    - Mon
+    - Tue
+    - Wed
+    - Thu
+    - Fri
+    - Sat
+    abbr_month_names:
+    -
+    - Jan
+    - Feb
+    - Mar
+    - Apr
+    - May
+    - Jun
+    - Jul
+    - Aug
+    - Sep
+    - Oct
+    - Nov
+    - Dec
+    day_names:
+    - Sunday
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+    - Friday
+    - Saturday
+    formats:
+      default: '%B %d, %Y'
+      long: '%B %d, %Y'
+      short: '%b %d'
+    month_names:
+    -
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
+    order:
+    - :year
+    - :month
+    - :day
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: about 1 hour
+        other: about %{count} hours
+      about_x_months:
+        one: about 1 month
+        other: about %{count} months
+      about_x_years:
+        one: about 1 year
+        other: about %{count} years
+      almost_x_years:
+        one: almost 1 year
+        other: almost %{count} years
+      half_a_minute: half a minute
+      less_than_x_minutes:
+        one: less than a minute
+        other: less than %{count} minutes
+      less_than_x_seconds:
+        one: less than 1 second
+        other: less than %{count} seconds
+      over_x_years:
+        one: over 1 year
+        other: over %{count} years
+      x_days:
+        one: 1 day
+        other: ! '%{count} days'
+      x_minutes:
+        one: 1 minute
+        other: ! '%{count} minutes'
+      x_months:
+        one: 1 month
+        other: ! '%{count} months'
+      x_seconds:
+        one: 1 second
+        other: ! '%{count} seconds'
+    prompts:
+      day: Day
+      hour: Hour
+      minute: Minute
+      month: Month
+      second: Seconds
+      year: Year
+  errors: &errors
+    format: ! '%{attribute} %{message}'
+    messages:
+      accepted: must be accepted
+      blank: can't be blank
+      confirmation: doesn't match confirmation
+      empty: can't be empty
+      equal_to: must be equal to %{count}
+      even: must be even
+      exclusion: is reserved
+      greater_than: must be greater than %{count}
+      greater_than_or_equal_to: must be greater than or equal to %{count}
+      inclusion: is not included in the list
+      invalid: is invalid
+      less_than: must be less than %{count}
+      less_than_or_equal_to: must be less than or equal to %{count}
+      not_a_number: is not a number
+      not_an_integer: must be an integer
+      odd: must be odd
+      record_invalid: ! 'Validation failed: %{errors}'
+      taken: has already been taken
+      too_long:
+        one: is too long (maximum is 1 character)
+        other: is too long (maximum is %{count} characters)
+      too_short:
+        one: is too short (minimum is 1 character)
+        other: is too short (minimum is %{count} characters)
+      wrong_length:
+        one: is the wrong length (should be 1 character)
+        other: is the wrong length (should be %{count} characters)
+    template:
+      body: ! 'There were problems with the following fields:'
+      header:
+        one: 1 error prohibited this %{model} from being saved
+        other: ! '%{count} errors prohibited this %{model} from being saved'
+  helpers:
+    select:
+      prompt: Please select
+    submit:
+      create: Create %{model}
+      submit: Save %{model}
+      update: Update %{model}
+  number:
+    currency:
+      format:
+        delimiter: ! ','
+        format: ! '%u%n'
+        precision: 2
+        separator: .
+        significant: false
+        strip_insignificant_zeros: false
+        unit: $
+    format:
+      delimiter: ! ','
+      precision: 3
+      separator: .
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: ! '%n %u'
+        units:
+          billion: Billion
+          million: Million
+          quadrillion: Quadrillion
+          thousand: Thousand
+          trillion: Trillion
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: ! '%n %u'
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: ! ', and '
+      two_words_connector: ! ' and '
+      words_connector: ! ', '
+  time:
+    am: am
+    formats:
+      default: ! '%a, %d %b %Y %H:%M:%S %z'
+      long: ! '%B %d, %Y %H:%M'
+      short: ! '%d %b %H:%M'
+    pm: pm
+  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+  activemodel:
+    errors:
+      <<: *errors
+  activerecord:
+    errors:
+      <<: *errors

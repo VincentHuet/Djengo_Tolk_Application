@@ -19,11 +19,6 @@
         - current_locale = Locale.primary_locale
         %td= current_locale.translations.where(:phrase_id => phrase.id).first.text
 %br
-%br
 = link_to 'New locale', new_locale_path
 %br
-%br
 = link_to 'New Yml Source', new_yml_source_path
-%br
-%br
-%br
