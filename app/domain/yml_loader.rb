@@ -31,28 +31,36 @@ class YmlLoader
   end
 
   def self.parse_yaml_to_db(hash_branch, hash_path, indent)
-    puts(hash_branch).inspect
-    counter = 0
-    hash_branch.each_key do |sub_tree_key|
-      if hash_branch[sub_tree_key].kind_of? Hash
-        # hash_path << "." + sub_tree_key.to_s
-        counter += parse_yaml_to_db(hash_branch[sub_tree_key], hash_path + "." + sub_tree_key.to_s, indent)
+    puts "==============="
+    puts hash_branch.inspect
+    puts "==============="
+    hash_branch.inject(0) do |counter, sub_tree_key|
+      puts "==========="
+      puts sub_tree_key.inspect
+      puts "==========="
+      if hash_branch[sub_tree_key.first].kind_of? Hash
+        counter + parse_yaml_to_db(hash_branch[sub_tree_key.first], hash_path + "." + sub_tree_key.first.to_s, indent)
       else
-        counter += new_phrase_entry(hash_path, sub_tree_key, hash_branch)
+        counter + new_phrase_entry(hash_path, sub_tree_key.first, hash_branch)
       end
     end
-    counter
   end
 
   def self.new_phrase_entry(hash_path, sub_tree_key, hash_branch)
     new_phrase = Phrase.new
-    new_phrase.yaml_path = hash_path + "." + sub_tree_key.to_s
-    new_phrase.key = sub_tree_key.to_s
+    new_phrase.yaml_path = hash_path + "." + sub_tree_key.first.to_s
+    new_phrase.key = sub_tree_key.first.to_s
+    counter = self.populate_phrase_table(hash_branch, sub_tree_key, new_phrase)
+  end
+
+  def self.populate_phrase_table(hash_branch, sub_tree_key, new_phrase)
     counter = 0
-    if Phrase.find_by_yaml_path(new_phrase.yaml_path).nil? && !new_phrase.blank?
-      new_phrase.save
-      counter = 1
-      populate_translation_table(hash_branch, sub_tree_key, new_phrase)
+    if Phrase.find_by_yaml_path(new_phrase.yaml_path).nil?
+      if !new_phrase.blank?
+        new_phrase.save
+        counter = 1
+        populate_translation_table(hash_branch, sub_tree_key, new_phrase)
+      end
     end
     counter
   end
