@@ -14,16 +14,22 @@
             = "Djengo's Translation Platform "
           .nav-collapse
             %ul.nav
-              -if translator_signed_in? && current_translator.locale.is_primary?
-                %li
-                  = link_to yml_sources_path do
-                    %i.icon-bookmark
-                    = t("yml_source")
               - if translator_signed_in?
                 %li
                   = link_to locale_translations_path(current_translator.locale) do
                     %i.icon-book
                     = t("translation_resume")
+                - if current_translator.locale.is_primary?
+                  %li
+                    = link_to yml_sources_path do
+                      %i.icon-bookmark
+                      = t("yml_source")
+                - else
+                  %li
+                    = link_to translations_in_line_index_path do
+                      %i.icon-pencil
+                      = t("traduction_in_line")
+
             %ul.nav.pull-right
               - if translator_signed_in?
                 %li

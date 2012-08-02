@@ -1,10 +1,6 @@
 .row
-  .span4.offset3
-    .span4.offset05#home
-      %h1 Editing translation
-      %br
-.row
-  .span4.offset3.alert.alert-info#home
+  .span4.offset3.alert.alert-grey#home
+    %h1 Editing translation
     .row
       .span4= render 'form'
     .span1.offset10= link_to 'Show', @translation, :class => 'btn btn-info'

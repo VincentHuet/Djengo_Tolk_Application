@@ -16,6 +16,10 @@
     width: 100px;
   }
 
+.hero-unit {
+  padding-top: 10px;
+}
+
 .hero-unit h1 {
   font-style: bold;
   font-size: 20px;
@@ -29,7 +33,6 @@
 .hero-unit img {
   float: left;
   margin-left: -50px;
-  margin-top: -50px;
 }
 
 .hero-unit table {
@@ -112,6 +115,11 @@
 
   background-color: #dddddd;
   border-color: #eeeeee;
+
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+
 }
 
 .center {
@@ -140,12 +148,9 @@
 }
 
 .top-margin {
-  margin-top: 100px;
+  margin: 20px;
 }
 
-.low-top-margin {
-  margin-top: -60px;
-}
 .white {
   color: white;
 }
@@ -253,11 +258,29 @@
 }
 
 textarea{
-  width: 400px;
+  width: 350px;
   height: 50px;
   border: 3px solid #464646;
   font-family: arial;
   font-size: 14px;
   padding: 5px;
   color:#464646;
+}
+
+.autoresize {
+  font-size: 14px;
+  color: black;
+  text-align: left;
+  padding: 5px;
+  width: 340px;
+  margin: 30px 10px;
+
+  p {
+    background-color: lighten(black, 90);
+    padding: 10px;
+    font-size: 14px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
 }

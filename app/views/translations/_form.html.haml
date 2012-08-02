@@ -1,15 +1,3 @@
-= javascript_include_tag "jquery.elastic.source.js"
-= javascript_include_tag "jquery.js"
-
-:javascript
-  //
-  jQuery.noConflict();
-  jQuery(document).ready(function(){
-    jQuery('textarea').elastic();
-    jQuery('textarea').trigger('update');
-  });
-  //
-
 = form_for [@corresponding_phrase, @translation] do |f|
   - if @translation.errors.any?
     #error_explanation
@@ -19,15 +7,10 @@
       %ul
         - @translation.errors.full_messages.each do |msg|
           %li= msg
-  %br
-  %div
-    %p
-      = t("traduction pour")
-      = "»"
-  %div
-    %div
-      %p= Translation.where(:locale_id => 1).where(:phrase_id => @translation.phrase_id).first.text
+  .span4.autoresize
+    %h3= t("traduction pour »")
+    %p= Translation.where(:locale_id => 1).where(:phrase_id => @translation.phrase_id).first.text
   .field
-    = f.text_area :text, :class => 'input', :style => "max-height: 100px;"
+    = f.text_area :text
   .actions
     = f.submit
