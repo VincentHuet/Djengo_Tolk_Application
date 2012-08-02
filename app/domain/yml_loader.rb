@@ -31,13 +31,9 @@ class YmlLoader
   end
 
   def self.parse_yaml_to_db(hash_branch, hash_path, indent)
-    puts "==============="
-    puts hash_branch.inspect
-    puts "==============="
+
     hash_branch.inject(0) do |counter, sub_tree_key|
-      puts "==========="
-      puts sub_tree_key.inspect
-      puts "==========="
+
       if hash_branch[sub_tree_key.first].kind_of? Hash
         counter + parse_yaml_to_db(hash_branch[sub_tree_key.first], hash_path + "." + sub_tree_key.first.to_s, indent)
       else
@@ -61,6 +57,27 @@ class YmlLoader
         counter = 1
         populate_translation_table(hash_branch, sub_tree_key, new_phrase)
       end
+    else
+      update_phrase = Phrase.find_by_yaml_path(new_phrase.yaml_path)
+      primary_locale_for_translation = Locale.primary_locale
+
+      update_translations = update_phrase.translations
+
+      primary_update_translation = update_translations.where(:locale_id => primary_locale_for_translation.id)
+
+      if primary_update_translation.first.text != hash_branch[sub_tree_key].to_s
+        puts "=================================================".inspect
+        puts primary_update_translation.first.text.inspect
+        puts "=================================================".inspect
+        puts hash_branch[sub_tree_key].to_s.inspect
+        puts "=================================================".inspect
+
+        Translation.update(primary_update_translation.first.id, :text => hash_branch[sub_tree_key].to_s)
+        counter = 1
+      end
+      puts "=================================================".inspect
+      puts primary_update_translation.first.inspect
+      puts "=================================================".inspect
     end
     counter
   end
