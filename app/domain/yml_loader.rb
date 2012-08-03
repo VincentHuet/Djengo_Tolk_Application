@@ -44,7 +44,7 @@ class YmlLoader
 
   def self.new_phrase_entry(hash_path, sub_tree_key, hash_branch)
     new_phrase = Phrase.new
-    new_phrase.yaml_path = hash_path + "." + sub_tree_key.first.to_s
+    new_phrase.yaml_path = hash_path + "." + sub_tree_key.to_s
     new_phrase.key = sub_tree_key.first.to_s
     counter = self.populate_phrase_table(hash_branch, sub_tree_key, new_phrase)
   end
@@ -117,5 +117,12 @@ class YmlLoader
 
   def exist_file?(yaml_file_paht)
     File.exist()
+  end
+
+  def self.load_yaml_source(yml_source)
+    yml_to_hash = self.load_yaml(yml_source.path)
+    indent = "--"
+    counter = self.parse_yaml_to_db(yml_to_hash, '', indent)
+    counter
   end
 end

@@ -2,9 +2,14 @@ class PhraseDatabaseFillerController < ApplicationController
 
   def show
     @yml_source = YmlSource.find(params[:id])
-    @Yml_to_hash = YmlLoader.load_yaml(@yml_source.path)
-    indent = "--"
-    @counter = YmlLoader.parse_yaml_to_db(@Yml_to_hash, '', indent)
+
+    @counter = YmlLoader.load_yaml_source(@yml_source)
+  end
+
+  def index
+  	YmlSource.find_each do |yml_source|
+  		@counter = YmlLoader.load_yaml_source(yml_source)
+  	end
   end
 
 end

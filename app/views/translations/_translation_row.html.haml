@@ -3,7 +3,9 @@
 - if @relevant_phrase_text[translation.phrase_id].blank?
   %td= "-"
 - else
-  %td= @relevant_phrase_text[translation.phrase_id]
+  %td
+    = @relevant_phrase_text[translation.phrase_id]
+    .less-important= translation.phrase.yaml_path
 
 %td= translation.text
 

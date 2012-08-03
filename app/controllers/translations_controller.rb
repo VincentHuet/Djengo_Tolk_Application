@@ -11,25 +11,12 @@ class TranslationsController < ApplicationController
     else
       @translations = Translation.all.order('text')
     end
-
     if !Translation.all.empty?
       @latest_translation_load_date = Translation.maximum("created_at").to_date
     end
+    @update_dates = @translations.map {|translation| translation.updated_at.to_date}.uniq
 
-    @create_date = {}
-    @create_date = create_create_date_table(@translations)
-
-    @update_date = {}
-    @update_date = create_update_date_table(@translations)
-
-    @create_and_update_date = {}
-
-    @create_and_update_date.merge!(@create_date)
-    @create_and_update_date.merge!(@update_date)
-
-    @relevant_phrase_text = {}
     @relevant_phrase_text = create_phrase_translation_table(@translations)
-
     @yml_hash = TranslationsManager.create_translation_hash(@translations)
 
     standard_respond_to(@translations)
@@ -128,5 +115,4 @@ class TranslationsController < ApplicationController
     end
     create_date
   end
-
 end

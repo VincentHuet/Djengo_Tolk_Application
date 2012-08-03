@@ -3,6 +3,9 @@
     %h1= "#{t("la_langue")} #{@locales_name[current_translator.locale.name]}."
     .offset02= "De plus, les traductions sont effectuées par #{current_translator.name}"
 .alert.alert-grey
+  - @update_dates.each do |up_date|
+    = up_date.to_date
+    %br
   %table.table#back30
     %tr.font-size16
       %td
@@ -21,7 +24,7 @@
       %td
         %strong
           .span2.offser05= t('Edit')
-    - @create_and_update_date.sort.each do |key, date|
+    - @update_dates.sort.each do |date|
       - flag = 0
       - @translations.each do |translation|
         - if translation.need_updated? && translation.created_at.to_date != @latest_translation_load_date && translation.created_at.to_date.to_s == date.to_s
@@ -61,6 +64,3 @@
             - flag = 3
           %tr.alert.alert-success#font-size14
             = render 'translation_row', :translation => translation
-
-
-
