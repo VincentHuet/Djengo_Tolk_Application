@@ -5,6 +5,6 @@ class TranslatorMailer < ActionMailer::Base
   def welcome_email(translator)
     @translator = translator
     @url  = "http://example.com/login"
-    mail(:to => @translator.email, :subject => "New translation are needed ! ")
+    mail(:to => @translator.email, :subject => "New translations are needed ! ")
   end
 end

@@ -6,8 +6,6 @@ class LocalesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @locales = Locale.all
-
     @missing_translation = {}
     @locales.each do |locale|
       @missing_translation[locale.name] = missing_translation?(locale)
@@ -35,23 +33,18 @@ class LocalesController < ApplicationController
   # POST /locales
   # POST /locales.json
   def create
-    @locale = Locale.new(params[:locale])
-
     create_respond_to(@locale)
   end
 
   # PUT /locales/1
   # PUT /locales/1.json
   def update
-    @locale = Locale.find(params[:id])
-
     update_respond_to(@locale, params[:locale])
   end
 
   # DELETE /locales/1
   # DELETE /locales/1.json
   def destroy
-    @locale = Locale.find(params[:id])
     @locale.destroy
 
     destroy_respond_to

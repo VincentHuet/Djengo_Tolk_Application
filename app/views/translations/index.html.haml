@@ -3,9 +3,6 @@
     %h1= "#{t("la_langue")} #{@locales_name[current_translator.locale.name]}."
     .offset02= "De plus, les traductions sont effectuées par #{current_translator.name}"
 .alert.alert-grey
-  - @update_dates.each do |up_date|
-    = up_date.to_date
-    %br
   %table.table#back30
     %tr.font-size16
       %td

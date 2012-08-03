@@ -7,7 +7,6 @@ class PhrasesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @phrases = Phrase.all
     standard_respond_to(@phrase)
   end
 
@@ -31,8 +30,6 @@ class PhrasesController < ApplicationController
   # POST /phrases
   # POST /phrases.json
   def create
-    @phrase = Phrase.new(params[:phrase])
-
     create_respond_to(@phrase)
   end
 
@@ -46,7 +43,6 @@ class PhrasesController < ApplicationController
   # DELETE /phrases/1.json
   def destroy
     @phrase.destroy
-
     destroy_respond_to
   end
 

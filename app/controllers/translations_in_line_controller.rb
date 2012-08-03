@@ -1,6 +1,10 @@
 class TranslationsInLineController < ApplicationController
+  before_filter :authenticate_translator!
+
+  load_and_authorize_resource :translation
 
   def index
+
     @locale = current_translator.locale
 
     if @locale && !current_translator.locale.is_primary?
@@ -17,7 +21,6 @@ class TranslationsInLineController < ApplicationController
   end
 
   def edit
-    @translations = Translation.find([:params])
     @corresponding_phrase = create_phrase_translation_table(@translations)
   end
 

@@ -7,7 +7,6 @@ class TranslatorsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @translators = Translator.all
     @locales = Locale.all
 
     standard_respond_to(@translators)
@@ -24,7 +23,7 @@ class TranslatorsController < ApplicationController
   def new
     @translator = Translator.new
     @locales = Locale.all
-    
+
     standard_respond_to(@translator)
   end
 
@@ -35,7 +34,6 @@ class TranslatorsController < ApplicationController
   # POST /translators
   # POST /translators.json
   def create
-    @translator = Translator.new(params[:translator])
     @locales = Locale.all
 
     create_respond_to(@translator)

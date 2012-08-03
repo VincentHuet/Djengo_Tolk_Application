@@ -4,12 +4,11 @@ class YmlSourcesController < ApplicationController
   # GET /yml_sources.json
 
   before_filter :authenticate_translator!
-  #load_and_authorize_resource
+  load_and_authorize_resource
 
   def index
     @yml_files = YmlLoader.load_pathes
-    YmlLoader.load_locales
-    @yml_sources = YmlSource.all   # YmlLoader.load_yml_content
+    YmlLoader.load_locales  # YmlLoader.load_yml_content
 
     @locales = Locale.all
 
@@ -30,8 +29,6 @@ class YmlSourcesController < ApplicationController
   # GET /yml_sources/new
   # GET /yml_sources/new.json
   def new
-    @yml_source = YmlSource.new
-
     standard_respond_to(@yml_source)
   end
 
@@ -42,7 +39,6 @@ class YmlSourcesController < ApplicationController
   # POST /yml_sources
   # POST /yml_sources.json
   def create
-    @yml_source = YmlSource.new(params[:yml_source])
     create_respond_to(@yml_source)
   end
 

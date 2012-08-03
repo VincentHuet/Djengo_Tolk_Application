@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :initialise_locales_name
+  before_filter :initialize_locales_name
 
   def current_ability
     @current_ability ||= Ability.new(current_translator)
@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
     format.json { render json: class_type.errors, status: :unprocessable_entity }
   end
 
-  def initialise_locales_name
+  def initialize_locales_name
     @locales_name = {
       'ar' => 'Arabic',
       'bs' => 'Bosnian',
@@ -107,25 +107,27 @@ class ApplicationController < ActionController::Base
 
   def create_phrase_translation_table(translations)
     relevant_phrase_text = {}
+    primary_locale = Locale.primary_locale
+    first_locale_translations = primary_locale.translations
     translations.each do |translation|
-      primary_locale = Locale.primary_locale
-      first_locale_translations = primary_locale.translations
-      relevant_phrase = first_locale_translations.where(:phrase_id => translation.phrase_id)
-      relevant_phrase_text[translation.phrase_id] = relevant_phrase.first.text
+      relevant_phrases = first_locale_translations.where(:phrase_id => translation.phrase_id)
+      if !relevant_phrases.first.nil?
+        relevant_phrase_text[translation.phrase_id] = relevant_phrases.first.text
+      else
+        relevant_phrase_text[translation.phrase_id] = "nil"
+      end
     end
     relevant_phrase_text
   end
 
   def missing_translation?(locale)
-    primary_keyword_quantity = phrase_quantity
     current_done_translation = locale.translations.where(:needed_update => 0).count
-    primary_keyword_quantity - current_done_translation
+    phrase_quantity - current_done_translation
   end
 
-  def phrase_quantity()
+  def phrase_quantity
     reference_locale = Locale.primary_locale
     primary_keyword_quantity = reference_locale.translations.count
-    primary_keyword_quantity
   end
 
 end

@@ -1,5 +1,5 @@
 
-class BlogController < ApplicationController
+class HomeController < ApplicationController
   protect_from_forgery
 
   require 'yaml'

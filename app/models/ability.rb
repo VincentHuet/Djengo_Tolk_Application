@@ -13,6 +13,7 @@ class Ability
         translation.locale_id == translator.locale_id
       end
 
+
       can :create, Locale
       can :destroy, Locale
 
@@ -20,4 +21,3 @@ class Ability
     end
   end
 end
-
