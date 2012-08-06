@@ -1,5 +1,7 @@
-%h1 Editing translation
-= render 'form'
-= link_to 'Show', @translation
-|
-\#{link_to 'Back', translations_path}
+.row
+  .span4.offset3.alert.alert-grey#home
+    %h1 Editing translation
+    .row
+      .span4= render 'form'
+    .span1.offset10= link_to 'Show', @translation, :class => 'btn btn-info'
+    .span1= link_to 'Back', locale_translations_path(current_translator.locale), :class => 'btn btn-warning'

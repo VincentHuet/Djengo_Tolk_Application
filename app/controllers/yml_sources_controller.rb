@@ -1,108 +1,66 @@
-require 'yml_sources_helper'
 
 class YmlSourcesController < ApplicationController
   # GET /yml_sources
   # GET /yml_sources.json
 
   before_filter :authenticate_translator!
+  load_and_authorize_resource
 
   def index
-    @yml_sources = YmlSource.all
-
     @yml_files = YmlLoader.load_pathes
+    YmlLoader.load_locales  # YmlLoader.load_yml_content
 
-    YmlLoader.load_locales
+    @locales = Locale.all
 
-   # YmlLoader.load_yml_content
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @yml_sources }
+    @missing_translations_quantity = {}
+    @locales.each do |locale|
+      @missing_translations_quantity[locale.id] = missing_translation?(locale)
     end
+
+    standard_respond_to(@yml_sources)
   end
 
   # GET /yml_sources/1
   # GET /yml_sources/1.json
   def show
-    @yml_source = YmlSource.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @yml_source }
-    end
+    standard_respond_to(@yml_source)
   end
 
   # GET /yml_sources/new
   # GET /yml_sources/new.json
   def new
-    @yml_source = YmlSource.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @yml_source }
-    end
+    standard_respond_to(@yml_source)
   end
 
   # GET /yml_sources/1/edit
   def edit
-    @yml_source = YmlSource.find(params[:id])
   end
 
   # POST /yml_sources
   # POST /yml_sources.json
   def create
-    @yml_source = YmlSource.new(params[:yml_source])
-
-    respond_to do |format|
-      if @yml_source.save
-        format.html { redirect_to @yml_source, notice: 'Yml source was successfully created.' }
-        format.json { render json: @yml_source, status: :created, location: @yml_source }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @yml_source.errors, status: :unprocessable_entity }
-      end
-    end
+    create_respond_to(@yml_source)
   end
 
   # PUT /yml_sources/1
   # PUT /yml_sources/1.json
   def update
-    @yml_source = YmlSource.find(params[:id])
-
-    respond_to do |format|
-      if @yml_source.update_attributes(params[:yml_source])
-        format.html { redirect_to @yml_source, notice: 'Yml source was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @yml_source.errors, status: :unprocessable_entity }
-      end
-    end
+    update_respond_to(@yml_source, params[:yml_source])
   end
 
   # DELETE /yml_sources/1
   # DELETE /yml_sources/1.json
   def destroy
-    @yml_source = YmlSource.find(params[:id])
     @yml_source.destroy
-
-    respond_to do |format|
-      format.html { redirect_to yml_sources_url }
-      format.json { head :no_content }
-    end
+    destroy_respond_to
   end
 
-  def load_to_db
-    @yml_source = YmlSource.find(params[:id])
-
-    @Yml_to_hash = YmlLoader.load_yaml(@yml_source.path)
-
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @yml_source }
-    end
-  end
+  # def load_to_db
+  #   @yml_source = YmlSource.find(params[:id])
+  #   @Yml_to_hash = YmlLoader.load_yaml(@yml_source.path)
+  #   indent = "--"
+  #   @counter = YmlLoader.parse_yaml_to_db(@Yml_to_hash, '.', indent)
+  # end
 
 end
 

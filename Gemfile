@@ -40,6 +40,10 @@ gem "carrierwave"
 
 gem 'i18n'
 
+gem 'hpricot'
+
+gem 'ruby_parser'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

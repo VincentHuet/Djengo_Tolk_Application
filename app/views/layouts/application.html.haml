@@ -9,26 +9,51 @@
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
-          %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          = link_to "Djengo's Translation Platform ", root_path, :class => "brand"
-          / <a class="brand" href="">BlogForDjengo</a>
+          = link_to root_path, :class => "brand" do
+            %i.icon-home
+            = "Djengo's Translation Platform "
           .nav-collapse
             %ul.nav
-              %li= link_to t("home"), root_path
-              %li= link_to t("yml_source"), yml_sources_path
-              %li= link_to t("locale"), locales_path
-              %li= link_to t("phrases"), phrases_path
               - if translator_signed_in?
-                %li= link_to t("translation"), locale_translations_path(Locale.find(current_translator.locale_id))
-                %li= raw("&nbsp;"*30)
-                %li= link_to t("logout"), destroy_translator_session_path, :method => :delete, :class => "full-rigth"
+                %li
+                  = link_to locale_translations_path(current_translator.locale) do
+                    %i.icon-book
+                    = t("translation_resume")
+                - if current_translator.locale.is_primary?
+                  %li
+                    = link_to yml_sources_path do
+                      %i.icon-bookmark
+                      = t("yml_source")
+                - else
+                  %li
+                    = link_to translations_in_line_index_path do
+                      %i.icon-pencil
+                      = t("traduction_in_line")
+
+            %ul.nav.pull-right
+              - if translator_signed_in?
+                %li
+                  = link_to translator_path(current_translator) do
+                    %i.icon-user.font-size16
+                    %i.font-size14= current_translator.name.humanize
+                %li
+                  = link_to destroy_translator_session_path, :method => :delete do
+                    %i.icon-eject
+                    = t("logout")
               - else
-                %li= link_to(t("login"), new_translator_session_path)
-                %li= link_to(t("sign_up"), new_translator_registration_path)
-              / %li
-          / /.nav-collapse
-    .hero-unit
-      = yield
+                %li
+                  = link_to new_translator_session_path do
+                    %i.icon-lock
+                    = t("login")
+                %li
+                  = link_to new_translator_registration_path do
+                    %i.icon-plus-sign
+                    = t("sign_up")
+              %li
+                = link_to request.fullpath do
+                  %i.icon-refresh
+                  = t("refresh")
+    .container
+      = render 'layouts/flash_msg', :flash => flash
+      .hero-unit
+        = yield

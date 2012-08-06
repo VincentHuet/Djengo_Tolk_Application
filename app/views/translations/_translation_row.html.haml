@@ -1,0 +1,20 @@
+%td
+
+- if @relevant_phrase_text[translation.phrase_id].blank?
+  %td= "-"
+- else
+  %td
+    = @relevant_phrase_text[translation.phrase_id]
+    .less-important= translation.phrase.yaml_path
+
+%td= translation.text
+
+- if !translation.need_updated?
+  %td= translation.created_at.to_date
+  %td= translation.updated_at.to_date
+- else
+  %td= translation.created_at.to_date
+  %td= "-"
+
+- if (can? :update, translation)
+  %td= link_to 'Edit', edit_translation_path(translation), :class => 'btn btn-warning'

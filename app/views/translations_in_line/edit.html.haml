@@ -1,0 +1,19 @@
+- form_tag update_individual_translations_path, :method => :put do
+  - @translations = Translation.all
+  - for translation in @translations
+    %br
+      %p= translation.text
+
+      %p= @relevant_phrase_text[translation.phrase_id]
+      - if translation.translator_id.nil?
+        %p= "nil"
+      - else
+        - corresponding_translator = translation.translator
+        %p= corresponding_translator.name
+      - corresponding_locale = translation.locale
+      %p= corresponding_locale.name
+      %p= translation.needed_update
+    - fields_for "translations[]", translation do |f|
+      .field
+        = f.text_field :text
+  %p= submit_tag "Submit"

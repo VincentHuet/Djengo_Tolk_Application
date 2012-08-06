@@ -7,10 +7,10 @@
       %ul
         - @translation.errors.full_messages.each do |msg|
           %li= msg
-
-  %br
+  .span4.autoresize
+    %h3= t("traduction pour »")
+    %p= Translation.where(:locale_id => 1).where(:phrase_id => @translation.phrase_id).first.text
   .field
-    = "traduction pour : " + Translation.where(:locale_id => 1).where(:phrase_id => @translation.phrase_id).first.text 
-    = f.text_field :text
+    = f.text_area :text
   .actions
     = f.submit

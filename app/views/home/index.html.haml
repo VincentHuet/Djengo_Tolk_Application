@@ -1,0 +1,23 @@
+.row
+  .span540.offset1-5.alert.alert-grey#home
+    .span6.top-margin
+      .span6.offset40=link_to image_tag("macbk.png"), translations_in_line_index_path
+    .row
+      .span540
+        = t('welcome')
+        %br
+        %br
+    - if translator_signed_in?
+      .progress.progress-striped.active{:class => find_class_of_progess_bar(@ratio)}
+        .bar{:style => "width: #{@ratio}%;"}
+    .row
+      .span5
+        - if translator_signed_in?
+          .span5.offset08
+            .btn-large
+              = link_to t("require", :count => @missing_translation), translations_in_line_index_path, :class => 'btn btn-info active btn-large'
+      - if !translator_signed_in?
+        .span2offset1
+          = link_to(t("login"), new_translator_session_path, :class => 'btn')
+        .span1
+          = link_to(t("sign_up"), new_translator_registration_path, :class => 'btn')

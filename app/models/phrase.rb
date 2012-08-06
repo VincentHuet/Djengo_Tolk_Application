@@ -14,6 +14,5 @@ class Phrase < ActiveRecord::Base
   attr_accessible :yaml_path
 
   has_many :translations
-  belongs_to :locale
 
 end

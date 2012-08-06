@@ -5,19 +5,22 @@
       %strong ID
     %td
       %strong Name
-    %td 
+    %td
       %strong Locale
-    %td 
+    %td
       %strong Email
     %th
+      %strong admin
     %th
     %th
   - @translators.each do |translator|
     %tr
       %td= translator.id
       %td= translator.name
-      %td= Locale.find(translator.locale_id).name
+      - translator_locale = translator.locale
+      %td= translator_locale.name
       %td= translator.email
+      %td= translator.admin
       %td= raw("&nbsp;")
       %td= link_to 'Show', translator
       %td= link_to 'Edit', edit_translator_path(translator)

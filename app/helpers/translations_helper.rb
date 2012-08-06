@@ -1,6 +1,4 @@
 module TranslationsHelper
 
 
-
-
 end

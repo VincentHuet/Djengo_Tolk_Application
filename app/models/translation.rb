@@ -13,21 +13,40 @@
 #
 
 class Translation < ActiveRecord::Base
-  attr_accessible :locale_id, :phrase_id, :previous_text, :text, :needed_update
+  ##
+  # Accessibility
+  #
+  attr_accessible :locale_id, :phrase_id, :previous_text, :text, :needed_update, :translator_id
 
-  belongs_to :locale
-  belongs_to :phrase
+  ##
+  # Associations
+  #
+  belongs_to :locale, :dependent => :destroy
+  belongs_to :phrase, :dependent => :destroy
   belongs_to :translator
 
+  ##
+  # => Delegations
+  #
+
+  delegate :yaml_path, :to => :phrase
+
+  ##
+  # Callbacks
+  #
   before_save :needed_update_flag_update
 
+  ##
+  # Scopes
+  #
+  scope :translation_needed, where(:needed_update => 1)
 
-
-
-  def need_updated?(current_translator)
-    self.needed_update == 1 && current_translator.locale_id == self.locale_id || Locale.find(self.locale_id).is_primary? && Locale.find(current_translator.locale_id).is_primary? 
+  ##
+  # Instance methods
+  #
+  def need_updated?
+    self.needed_update == 1
   end
-
 
   def needed_update_flag_update
     self.needed_update = 0
@@ -37,19 +56,24 @@ class Translation < ActiveRecord::Base
     end
 
     if Locale.find(locale_id).is_primary?
-      vincent = Translator.find(2)
-      
-      
-      Locale.find_each do |locale|
-        if !locale.is_primary?
-          locale.translations.where(:phrase_id => self.phrase_id).update_all(:needed_update => 1)
-          translator = Translator.find_by_locale_id(locale.id)
-          TranslatorMailer.welcome_email(translator).deliver
-        end
-      end
-      # phrase.translations.where("name != ?", :en).update_all(:needed_update => 1)
+      actualize_secondary_locale_relevant_translation
     end
   end
+
+  def actualize_secondary_locale_relevant_translation
+    Locale.find_each do |locale|
+      if !locale.is_primary?
+        locale.translations.where(:phrase_id => self.phrase_id).update_all(:needed_update => 1)
+        # translator = Translator.find_by_locale_id(locale.id)
+        # mail_if_deliverable(translator)
+      end
+    end
+  end
+
+  def mail_if_deliverable(translator)
+    TranslatorMailer.welcome_email(translator).deliver if !translator.nil?
+  end
+
 
 
 end

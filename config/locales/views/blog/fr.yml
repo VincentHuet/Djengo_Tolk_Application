@@ -4,6 +4,8 @@
 fr:
   blog:
     index:
-      bonjour: Bonjour
-      welcome_paragraphe: Vous vous trouvez sur le blog de Djengo
-      welcome_paragraphe_2: Retrouvez y tous vos messages et le commentaires de vos amis.
+      require:
+        zero: "Il reste %{count} translation à effectuer"
+        one: "Il reste %{count} translation à effectuer"
+        other: "Il reste %{count} translations à effectuer"
+      welcome: "Welcome on Djengo's Internationalizer WebSite"

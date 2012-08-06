@@ -1,14 +1,258 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-  %body
-    %h1
-      Welcome to example.com, #{@translator.name}
-    %p
-      You have successfully signed up to example.com,
-      your username is: #{@translator.email}.
-      %br/
-    %p
-      To login to the site, just follow this link: #{@url}.
-    %p Thanks for joining and have a great day!
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+      %title Djengo
+      :css
+        /**/
+          #outlook a{padding:0;} /* Force Outlook to provide a "view in browser" button. */
+          body{width:100% !important;} .ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail to display emails at full width */
+          body{-webkit-text-size-adjust:none;} /* Prevent Webkit platforms from changing default text sizes. */
+
+          body{margin:0; padding:0;}
+          img{border:0; height:auto; line-height:100%; outline:none; text-decoration:none;}
+          table td{border-collapse:collapse;}
+          #backgroundTable{height:100% !important; margin:0; padding:0; width:100% !important;}
+          body, #backgroundTable{
+            background-color:#FAFAFA;
+          }
+
+          */
+          #templateContainer{
+            border: 1px solid #DDDDDD;
+          }
+
+          h1, .h1{
+            color:#202020;
+            display:block;
+            font-family:Arial;
+            font-size:34px;
+            font-weight:bold;
+            line-height:100%;
+            margin-top:0;
+            margin-right:0;
+            margin-bottom:10px;
+            margin-left:0;
+            text-align:left;
+          }
+          h2, .h2{
+            color:#202020;
+            display:block;
+            font-family:Arial;
+            font-size:30px;
+            font-weight:bold;
+            line-height:100%;
+            margin-top:0;
+            margin-right:0;
+            margin-bottom:10px;
+            margin-left:0;
+            text-align:left;
+          }
+          h3, .h3{
+            color:#202020;
+            display:block;
+            font-family:Arial;
+            font-size:26px;
+            font-weight:bold;
+            line-height:100%;
+            margin-top:0;
+            margin-right:0;
+            margin-bottom:10px;
+            margin-left:0;
+            text-align:left;
+          }
+          h4, .h4{
+            color:#202020;
+            display:block;
+            font-family:Arial;
+            font-size:22px;
+            font-weight:bold;
+            line-height:100%;
+            margin-top:0;
+            margin-right:0;
+            margin-bottom:10px;
+            margin-left:0;
+            text-align:left;
+          }
+
+          .less-important{
+            font-size: 11px;
+            color: #999;
+          }
+
+          #templatePreheader{
+            background-color:#FAFAFA;
+          }
+
+          .preheaderContent div{
+            color:#505050;
+            font-family:Arial;
+            font-size:10px;
+            line-height:100%;
+            text-align:left;
+          }
+
+          .preheaderContent div a:link, .preheaderContent div a:visited, /* Yahoo! Mail Override */ .preheaderContent div a .yshortcuts /* Yahoo! Mail Override */{
+            color:#336699;
+            font-weight:normal;
+            text-decoration:underline;
+          }
+
+          #templateHeader{
+            background-color:#FFFFFF;
+            border-bottom:0;
+          }
+
+          .headerContent{
+            color:#202020;
+            font-family:Arial;
+            font-size:34px;
+            font-weight:bold;
+            line-height:100%;
+            padding:0;
+            text-align:center;
+            vertical-align:middle;
+          }
+
+          .headerContent a:link, .headerContent a:visited, /* Yahoo! Mail Override */ .headerContent a .yshortcuts /* Yahoo! Mail Override */{
+            color:#336699;
+            font-weight:normal;
+            text-decoration:underline;
+          }
+
+          #headerImage{
+            height:auto;
+            max-width:600px !important;
+          }
+
+          #templateContainer, .bodyContent{
+            background-color:#FFFFFF;
+          }
+
+          .bodyContent div{
+            color:#505050;
+            font-family:Arial;
+            font-size:14px;
+            line-height:150%;
+            text-align:left;
+          }
+
+          .bodyContent div a:link, .bodyContent div a:visited, /* Yahoo! Mail Override */ .bodyContent div a .yshortcuts /* Yahoo! Mail Override */{
+            color:#336699;
+            font-weight:normal;
+            text-decoration:underline;
+          }
+
+          .bodyContent img{
+            display:inline;
+            height:auto;
+          }
+
+          #templateFooter{
+            background-color:#FFFFFF;
+            border-top:0;
+          }
+
+          .footerContent div{
+            color:#707070;
+            font-family:Arial;
+            font-size:12px;
+            line-height:125%;
+            text-align:center;
+          }
+
+          .footerContent div a:link, .footerContent div a:visited, /* Yahoo! Mail Override */ .footerContent div a .yshortcuts /* Yahoo! Mail Override */{
+            color:#336699;
+            font-weight:normal;
+            text-decoration:underline;
+          }
+
+          .footerContent img{
+            display:inline;
+          }
+
+          #social{
+            background-color:#FAFAFA;
+            border:0;
+          }
+
+          #social div{
+            text-align:center;
+          }
+        /**/
+  %body{:leftmargin => "0", :marginheight => "0", :marginwidth => "0", :offset => "0", :topmargin => "0"}
+    %center
+      %table#backgroundTable{:border => "0", :cellpadding => "0", :cellspacing => "0", :height => "100%", :width => "100%"}
+        %tr
+          %td{:align => "center", :valign => "top"}
+            / // Begin Template Preheader \\
+            %table#templatePreheader{:border => "0", :cellpadding => "10", :cellspacing => "0", :width => "600"}
+              %tr
+                %td.preheaderContent{:valign => "top"}
+                  / // Begin Module: Standard Preheader \
+                  %table{:border => "0", :cellpadding => "10", :cellspacing => "0", :width => "100%"}
+                    %tr
+                      %td{:valign => "top"}
+                        %div{"mc:edit" => "std_preheader_content", :style => "font-size: 11px; color:#555"}
+                          This email has been sent from info@djengo.net.
+                      %td{:valign => "top", :width => "190"}
+                        %div{"mc:edit" => "std_preheader_links", :style => "font-size: 11px; color:#555"}
+                          Feel free to give us some feedback.
+                  / // End Module: Standard Preheader \
+            / // End Template Preheader \\
+            %table#templateContainer{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "600"}
+              %tr
+                %td{:align => "center", :valign => "top"}
+                  / // Begin Template Header \\
+                  %table#templateHeader{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "600"}
+                    %tr
+                      %td.headerContent
+                        / // Begin Module: Standard Header Image \\
+                        %img{:id => "headerImage campaign-icon", "mc:allowdesigner" => "", "mc:allowtext" => "", "mc:edit" => "header_image", "mc:label" => "header_image", :src => "http://www.djengo.be/images/header-mail.png", :style => "max-width:600px;"}
+              %tr
+                %td{:align => "center", :valign => "top"}
+                  / // Begin Template Body \\
+                  %table#templateBody{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "600"}
+                    %tr
+                      %td.bodyContent{:valign => "top"}
+                        / // Begin Module: Standard Content \\
+                        %table{:bgcolor => "#FFFFFF", :border => "0", :cellpadding => "20", :cellspacing => "0", :width => "100%"}
+                          %tr
+                            %td{:valign => "top"}
+                              %div{"mc:edit" => "std_content00", :style => "color:#555"}
+                                %strong New translation are needed !
+                                %br We remind you that your username is:
+                                = @translator.email
+                                %br
+
+                                %div{:style => "text-align:center"}
+                                  %a{:href => @url, :style => "text-align: center; display: inline-block; margin: 5px; padding: 5px; line-height: 25px; font-size: 16px; font-weight: bold; text-decoration: none; border: 1px solid #358A8A; border-bottom: 2px solid #358A8A; color: #0caca5;", :target => "_blank"} To login to the site, just follow this link:
+                                %br
+                                  %strong{:color => "#555"} Thanks for working with us and have a great day!
+                                %br
+                                  %strong{:color => "#555"} L'équipe djengo
+                        / // End Module: Standard Content \\
+                  / // End Template Body \\
+              %tr
+                %td{:align => "center", :valign => "top"}
+                  / // Begin Template Footer \\
+                  %table#templateFooter{:bgcolor => "#FFFFFF", :border => "0", :cellpadding => "10", :cellspacing => "0", :width => "600"}
+                    %tr
+                      %td.footerContent{:valign => "top"}
+                        / // Begin Module: Standard Footer \\
+                        %table{:border => "0", :cellpadding => "10", :cellspacing => "0", :width => "100%"}
+                          %tr
+                            %td#social{:bgcolor => "#FAFAFA", :colspan => "2", :valign => "middle"}
+                              %div{"mc:edit" => "std_social", :style => "color:#555; text-align:center"}
+                                %a{:href => "http://www.twitter.com/djengo_net"} Follow on Twitter
+                                |
+                                %a{:href => "http://www.facebook.com/djengo.net"} Find us on Facebook
+                                |
+                                %a{:href => "http://www.djengo.be/"}
+                                  Login to update your preferences
+                                  %a
+                          %tr
+                            %td{:valign => "top"}
+                              %div{"mc:edit" => "std_footer", :style => "color:#555; text-align:center"}
+                                %em Copyright © 2012 Djengo, All rights reserved.
+                                %br

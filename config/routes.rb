@@ -1,41 +1,33 @@
 DjengoTolkApplication::Application.routes.draw do
-  
 
-  resources :file_uploads
-
-  devise_for :translators
+  devise_for :translators, :controllers => { :registrations => 'custom_devise/registrations' }
 
   resources :translators
-
-  resources :yml_sources do
-    collection do
-      get 'load_to_db'
-      get '/load_to_db/:id' => 'yml_sources#load_to_db'
-    end
-  end
-
-  resources :translations do 
-    collection do
-      get '/index_by_locale/'
-      get '/index_by_locale/:id' => 'translations#index_by_locale'
-    end
-  end
+  resources :yml_sources
+  resources :phrase_database_filler, :only => [:show, :index]
+  resources :translations
 
   resources :locales do
+    resources :missing_translations, :only => [:index]
     resources :translations
     resources :translators
+    resources :yml_files, :only => [:index]
   end
-
 
   resources :phrases do
     resources :translations
-  end  
+  end
+
+  resources :translations_in_line do
+    collection do
+      put :update
+    end
+  end
 
   resources :phrases
-
   resources :locales
 
-  root :to => 'blog#index'
+  root :to => 'home#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -96,3 +88,4 @@ DjengoTolkApplication::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 end
+

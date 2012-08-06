@@ -1,37 +1,51 @@
-%h1 Listing yml_sources
+.page-header
+  %h1
+    %i.icon-bookmark
+      = raw("&nbsp;")
+      = t("listing_yml_sources")
+      .pull-right
+        = link_to 'load all in DB', phrase_database_filler_index_path, :class => "btn"
 %table
-  %tr
+  %tr#font-size16
     %td.bottom_border#name
       %strong Name
     %td.bottom_border
       %strong Path
     %td.bottom_border
-      %strong 
-    %td.bottom_border
-      %strong
-    %td.bottom_border
-      %strong
+      %strong Loadind Button
+  %tr#font-size14
+    %td
   - @yml_sources.each do |yml_source|
-    %tr
+    %tr#font-size14
       %td= yml_source.name
       %td= yml_source.path
-      %td= link_to 'Show', yml_source
-      %td= link_to 'Edit', edit_yml_source_path(yml_source)
-      %td= link_to 'load in DB', load_to_db_yml_sources_path + "/" + yml_source.id.to_s
-      %td= link_to 'Destroy', yml_source, confirm: 'Are you sure?', method: :delete
-%br/
+      %td= link_to 'load in DB', phrase_database_filler_path(yml_source), :class => "btn"
+%h1
+  %i.icon-plane
+    = raw("&nbsp;")
+    = t("locales")
+%table
+  %tr#font-size16
+    %td.bottom_border
+      %strong Locale
+    %td.bottom_border
+      %strong Missing translation
+    %td.bottom_border
+      %strong Status
+    %td.bottom_border
+      %strong Option
+  - @locales.each do |locale|
+    %tr#font-size14
+      %td= link_to locale.name, locale_translations_path(locale)
+      %td= @missing_translations_quantity[locale.id]
+      %td= primary(locale)
+      %td= link_to t('create_yml_file'), locale_yml_files_path(locale), :class => 'btn'
 
-/ :javascript
-/   window.open('yml_sources/load_to_db/54', '_survey', 'height=400,width=300,status=no,menubar=no,location=no,toolbar=no');
 
-/ %table
-/   - @yml_files.each do |file|
-/     %tr
-/       %td= file.from(15).truncate(2, :separator => '.')
-/       %td= file
+/ = current_translator.locale.translations
+- @yml_hash = TranslationsManager.create_translation_hash(current_translator.locale.translations)
+= "--------------------"*15
 
-= link_to 'New Yml source', new_yml_source_path
-
-%br/
-
-= link_to 'Phrase list', phrases_path
+= @yml_hash
+%br
+= raw(TranslationsManager.hash_to_export(@yml_hash, "", "&nbsp", "<br >"))

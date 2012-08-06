@@ -5,5 +5,10 @@ en:
   blog:
     index:
       bonjour: Hello
-      welcome_paragraphe: Here you are on Djengo's Blog 
+      welcome_paragraphe: Here you are on Djengo's Blog
       welcome_paragraphe_2: You should find your articles and relative comments.
+      require:
+        zero: "%{count} translation still required"
+        one: "%{count} translation still required"
+        other: "%{count} translations still required"
+      welcome: "Welcome on Djengo's Internationalizer WebSite"

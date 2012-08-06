@@ -1,0 +1,26 @@
+.page-header
+  .alert.alert-grey
+    %h1#home= t("translations_in_line")
+
+-if !@translations.empty?
+  = form_tag translations_in_line_index_path, :method => :put do
+    %table.table.table-striped
+      %thead
+        %tr
+          %th
+          %th.important-title#fat-path= t("translation")
+          %th.important-title#fat-path= t("required_since")
+          %th.important-title#fat-path= t("translation_input")
+      %tbody
+        - for translation in @translations
+          = fields_for "translations[]", translation do |f|
+            %tr.center
+              %td= translation.id
+              = f.hidden_field :id
+              %td
+                %strong= @corresponding_phrase[translation.phrase_id]
+                .less-important= translation.phrase.yaml_path
+              %td= l(translation.created_at.to_date)
+              %td= f.text_field :text
+              = f.hidden_field :translator_id, :value => current_translator.id
+    .span2.offset4= submit_tag

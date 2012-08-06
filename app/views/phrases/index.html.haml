@@ -1,6 +1,4 @@
 %p
-  / = @information["en"]["articles"].inspect
-  - @full_phrase = Phrase.all
   %h1 Listing complet de la table phrase
   %table#phrases-table
     %tr
@@ -14,21 +12,13 @@
         %strongEnglish Value
       %td.bottom_border
         %strong
-    - @full_phrase.sort_by{|e| e[:yaml_path]}.each do |phrase|
+    - @phrases.sort_by{|e| e[:yaml_path]}.each do |phrase|
       %tr
         %td= phrase.id
         %td= phrase.yaml_path
-        - current_locale = Locale.where(:name => :en).first
+        - current_locale = Locale.primary_locale
         %td= current_locale.translations.where(:phrase_id => phrase.id).first.text
-        /%td= link_to 'translate', new_phrase_translation_path(phrase), :class => "full-right"
-        /%td= link_to 'Destroy', phrase, confirm: 'Are you sure?', method: :delete
-
-%br
 %br
 = link_to 'New locale', new_locale_path
 %br
-%br
 = link_to 'New Yml Source', new_yml_source_path
-%br
-%br
-%br

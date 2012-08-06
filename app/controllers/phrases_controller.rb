@@ -4,85 +4,46 @@ class PhrasesController < ApplicationController
   # GET /phrases.json
 
   before_filter :authenticate_translator!
+  load_and_authorize_resource
 
   def index
-    @phrases = Phrase.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @phrases }
-    end
+    standard_respond_to(@phrase)
   end
 
   # GET /phrases/1
   # GET /phrases/1.json
   def show
-    @phrase = Phrase.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @phrase }
-    end
+    standard_respond_to(@phrase)
   end
 
   # GET /phrases/new
   # GET /phrases/new.json
   def new
     @phrase = Phrase.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @phrase }
-    end
+    standard_respond_to(@phrase)
   end
 
   # GET /phrases/1/edit
   def edit
-    @phrase = Phrase.find(params[:id])
   end
 
   # POST /phrases
   # POST /phrases.json
   def create
-    @phrase = Phrase.new(params[:phrase])
-
-    respond_to do |format|
-      if @phrase.save
-        TranslatorMailer.deliver_bienvenue
-        format.html { redirect_to @phrase, notice: 'Phrase was successfully created.' }
-        format.json { render json: @phrase, status: :created, location: @phrase }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @phrase.errors, status: :unprocessable_entity }
-      end
-    end
+    create_respond_to(@phrase)
   end
 
   # PUT /phrases/1
   # PUT /phrases/1.json
   def update
-    @phrase = Phrase.find(params[:id])
-
-    respond_to do |format|
-      if @phrase.update_attributes(params[:phrase])
-        format.html { redirect_to @phrase, notice: 'Phrase was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @phrase.errors, status: :unprocessable_entity }
-      end
-    end
+    update_respond_to(@phrase, params[:phrase])
   end
 
   # DELETE /phrases/1
   # DELETE /phrases/1.json
   def destroy
-    @phrase = Phrase.find(params[:id])
     @phrase.destroy
-
-    respond_to do |format|
-      format.html { redirect_to phrases_url }
-      format.json { head :no_content }
-    end
+    destroy_respond_to
   end
+
 end

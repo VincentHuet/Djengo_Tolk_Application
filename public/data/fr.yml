@@ -1,0 +1,43 @@
+en: 
+  home: " Accueil"
+  article: " Articles"
+  team: " "
+  about: " "
+  logout: " "
+  login: " "
+  sign_up: " "
+  articles: 
+    index: 
+      show: " "
+      subject: " "
+      cattegory: " "
+      posted: " "
+      new_article: " "
+      article_list: " "
+      published_article_quantity: 
+        zero: " "
+        one: " "
+        other: " "
+      article_quantity: 
+        zero: " "
+        one: " "
+        other: " "
+    show: 
+      comment: " "
+      subject: " "
+      from: " "
+      category: " "
+      content: " "
+      comments: " "
+      back: " "
+      comment_quantity: 
+        zero: " "
+        one: " "
+        other: " "
+    new: 
+      new_article: " "
+  blog: 
+    index: 
+      bonjour: " "
+      welcome_paragraphe: " "
+      welcome_paragraphe_2: " "

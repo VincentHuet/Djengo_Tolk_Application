@@ -4,14 +4,18 @@
   = @translation.text
 %p
   %b Author:
-  = @translation.author
+  = @translation.translator_id
 %p
   %b Original text:
-  = Translation.where(:locale_id => 1).where(:phrase_id => @translation.phrase_id).first.text
+  - primary_locale = Locale.primary_locale
+  %b= primary_locale.translations.where(:phrase_id => @translation.phrase_id).first.text
 %p
   %b Locale:
-  = Locale.find(@translation.locale_id).name
+  = @relevant_locale_name
+%p
+  %b statut:
+  = @translation.needed_update
 
 = link_to 'Edit', edit_translation_path(@translation)
 |
-\#{link_to 'Back', locale_translations_path(Locale.find(@translation.locale_id))}
+\#{link_to 'Back', locale_translations_path(@translation.locale)}

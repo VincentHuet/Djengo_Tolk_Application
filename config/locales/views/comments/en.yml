@@ -4,6 +4,7 @@
 en:
   comments:
     new:
-      new_comment: "New comment :"
-      back: "Back"
+      new_comment: "New comment : "
+      back: "Back :"
+      trool: "tolol :"
 

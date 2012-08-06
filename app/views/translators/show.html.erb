@@ -7,13 +7,9 @@
 
 <p>
   <b>Locale:</b>
-  <%= @translator.locale_id %>
+  <%= @translator.locale.name %>
 </p>
 
-<p>
-  <b>Password:</b>
-  <%= @translator.password %>
-</p>
 
 
 <%= link_to 'Edit', edit_translator_path(@translator) %> |
