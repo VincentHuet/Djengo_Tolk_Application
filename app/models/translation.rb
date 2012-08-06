@@ -21,9 +21,15 @@ class Translation < ActiveRecord::Base
   ##
   # Associations
   #
-  belongs_to :locale
-  belongs_to :phrase
+  belongs_to :locale, :dependent => :destroy
+  belongs_to :phrase, :dependent => :destroy
   belongs_to :translator
+
+  ##
+  # => Delegations
+  #
+
+  delegate :yaml_path, :to => :phrase
 
   ##
   # Callbacks

@@ -4,7 +4,6 @@ class TranslationsInLineController < ApplicationController
   load_and_authorize_resource :translation
 
   def index
-
     @locale = current_translator.locale
 
     if @locale && !current_translator.locale.is_primary?

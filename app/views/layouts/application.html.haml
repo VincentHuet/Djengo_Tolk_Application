@@ -53,5 +53,7 @@
                 = link_to request.fullpath do
                   %i.icon-refresh
                   = t("refresh")
-    .hero-unit
-      = yield
+    .container
+      = render 'layouts/flash_msg', :flash => flash
+      .hero-unit
+        = yield

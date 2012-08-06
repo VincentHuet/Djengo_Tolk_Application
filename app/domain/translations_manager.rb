@@ -16,12 +16,11 @@ class TranslationsManager
     hash_locale_translation = {}
 
     translations.each do |translation|
-      translation_phrase = translation.phrase
-      yaml_path = translation_phrase.yaml_path
+      yaml_path = translation.yaml_path
       translation_value = translation.text
       translation_value = "" if translation_value.blank?
       if translation_value != "-"
-        yml_hash = self.insert(yml_hash, yaml_path.sub(/[.]{2}/, "").split("."), translation_value)
+        yml_hash = self.insert(yml_hash, yaml_path.sub(/[.]{1}en/, "#{translation.locale.name}").split("."), translation_value)
       end
     end
     yml_hash
@@ -31,7 +30,7 @@ class TranslationsManager
     return_phrase = ""
     locale_translation_hash.each_key do |locale_sub_level_key|
       if locale_translation_hash[locale_sub_level_key].class == Hash
-        return_phrase << indent + locale_sub_level_key + ": " << return_type
+        return_phrase << "#{indent}#{locale_sub_level_key} :#{return_type}"
         return_phrase << self.hash_to_export(locale_translation_hash[locale_sub_level_key], indent + space_type*2, space_type, return_type)
       else
         return_phrase << self.add_key_and_value(locale_translation_hash, indent, return_type, locale_sub_level_key)
@@ -44,9 +43,9 @@ class TranslationsManager
     return_phrase = ""
     if !locale_translation_hash[locale_sub_level_key].to_s.blank?
       locale_translation_hash[locale_sub_level_key] = locale_translation_hash[locale_sub_level_key].to_s.sub(/[\"]/, "\'").sub(/[\"]/, "\'")
-      return_phrase << indent << locale_sub_level_key + ": \" " + locale_translation_hash[locale_sub_level_key].to_s + "\"" + return_type
+      return_phrase << "#{indent}#{locale_sub_level_key}: \"#{locale_translation_hash[locale_sub_level_key].to_s}\"#{return_type}"
     else
-      return_phrase << indent << locale_sub_level_key + ": " + "\" \"" + return_type
+      return_phrase << "#{indent}#{locale_sub_level_key}: \" \"#{return_type}"
     end
   end
 

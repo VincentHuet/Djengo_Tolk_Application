@@ -1,1 +1,116 @@
-de:
+en:
+  home: " Houssen"
+  article: " Articlen"
+  team: " Speal"
+  about: " lol"
+  logout: " déconnexionen"
+  login: " Connexion"
+  sign_up: " S'enregistrer"
+  articles:
+    index:
+      show: " Plus d'information »"
+      subject: " Sujet"
+      cattegory: " Category"
+      posted: " Posté le"
+      new_article: " Déposé un nouvel article"
+      article_list: " Liste d'article"
+      published_article_quantity:
+        zero: " Il n'a aucun article publié dans la base de données"
+        one: " Il y a un article publié dans la base de donnée"
+        other: " Il y a %{count} articles publiés dans la base de données"
+      article_quantity:
+        zero: " Il n'y a pas d'article dans la base de données"
+        one: " Il y a un article dans la base de donnée"
+        other: " Il y a %{count} articles dans la base de donnée"
+    show:
+      comment: " Commenter"
+      subject: " Sujet"
+      from: " De"
+      category: " Catégorie"
+      content: " Contenu"
+      comments: " Commentaires"
+      back: " Retour"
+      comment_quantity:
+        zero: " Il y a rien"
+        one: " "
+        other: " "
+    new:
+      new_article: " Post un nouvel article"
+  blog:
+    index:
+      bonjour: " Salut"
+      welcome_paragraphe: " Vous êtes sur le Blog de Djengo"
+      welcome_paragraphe_2: " "
+      require:
+        zero: " "
+        one: " "
+        other: " "
+      welcome: " "
+  comments:
+    new:
+      new_comment: " Nouveau commentaire"
+      back: " Retour"
+  activerecord:
+    models:
+      user: " Utilisateur"
+    attributes:
+      comment:
+        email: " Courriel"
+        password: " mot de passe"
+  translations:
+    form:
+      phrase_id: " --"
+  errors:
+    messages:
+      expired: " "
+      not_found: " "
+      already_confirmed: " "
+      not_locked: " "
+      not_saved:
+        one: " "
+        other: " "
+  devise:
+    failure:
+      already_authenticated: " "
+      unauthenticated: " "
+      unconfirmed: " "
+      locked: " "
+      invalid: " "
+      invalid_token: " "
+      timeout: " "
+      inactive: " "
+    sessions:
+      signed_in: " "
+      signed_out: " "
+    passwords:
+      send_instructions: " "
+      updated: " "
+      updated_not_active: " "
+      send_paranoid_instructions: " "
+      no_token: " "
+    confirmations:
+      send_instructions: " "
+      send_paranoid_instructions: " "
+      confirmed: " "
+    registrations:
+      signed_up: " "
+      signed_up_but_unconfirmed: " "
+      signed_up_but_inactive: " "
+      signed_up_but_locked: " "
+      updated: " "
+      update_needs_confirmation: " "
+      destroyed: " "
+    unlocks:
+      send_instructions: " "
+      unlocked: " "
+      send_paranoid_instructions: " "
+    omniauth_callbacks:
+      success: " "
+      failure: " "
+    mailer:
+      confirmation_instructions:
+        subject: " "
+      reset_password_instructions:
+        subject: " "
+      unlock_instructions:
+        subject: " "

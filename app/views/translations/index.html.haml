@@ -3,15 +3,15 @@
     %h1= "#{t("la_langue")} #{@locales_name[current_translator.locale.name]}."
     .offset02= "De plus, les traductions sont effectuées par #{current_translator.name}"
 .alert.alert-grey
-  %table.table#back30
+  %table.table#margin-left-9
     %tr.font-size16
       %td
       %td
         %strong
-          .span4= t("english_value")
+          .span-text= t("english_value")
       %td
         %strong
-          .span4= t("translation")
+          .span-text= t("translation")
       %td
         %strong
           .span2= t("create_date")
@@ -20,7 +20,7 @@
           .span2= t("update_date")
       %td
         %strong
-          .span2.offser05= t('Edit')
+          .span1.offser05= t('Edit')
     - @update_dates.sort.each do |date|
       - flag = 0
       - @translations.each do |translation|

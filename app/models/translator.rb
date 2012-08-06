@@ -32,7 +32,7 @@ class Translator < ActiveRecord::Base
   attr_accessible :locale_id, :name, :password
 
   has_many :translations
-  belongs_to :locale
+  belongs_to :locale, :dependent => :destroy
 
-  
+
 end

@@ -43,7 +43,9 @@
 
 
 / = current_translator.locale.translations
-/ - @yml_hash = TranslationsManager.create_translation_hash(current_translator.locale.translations)
-/ = "--------------------"*15
-/ = @yml_hash
-/ = raw(TranslationsManager.hash_to_export(@yml_hash, "", "&nbsp", "<br >"))
+- @yml_hash = TranslationsManager.create_translation_hash(current_translator.locale.translations)
+= "--------------------"*15
+
+= @yml_hash
+%br
+= raw(TranslationsManager.hash_to_export(@yml_hash, "", "&nbsp", "<br >"))

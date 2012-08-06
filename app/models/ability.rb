@@ -9,6 +9,8 @@ class Ability
     else
       can :read, :all
 
+      cannot :read, YmlSource
+
       can :update, Translation do |translation|
         translation.locale_id == translator.locale_id
       end

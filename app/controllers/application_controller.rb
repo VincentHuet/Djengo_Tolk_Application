@@ -7,9 +7,15 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:error] = "Access denied."
-    redirect_to root_url
+    if !translator_signed_in?
+      session[:translator_return_to] = request.url
+      redirect_to new_translator_session_path, :alert => exception.message
+    else
+      redirect_to root_url, :alert => exception.message
+    end
   end
+
+
 
   protected
   def standard_respond_to(class_type)
@@ -106,18 +112,14 @@ class ApplicationController < ActionController::Base
   end
 
   def create_phrase_translation_table(translations)
-    relevant_phrase_text = {}
     primary_locale = Locale.primary_locale
     first_locale_translations = primary_locale.translations
-    translations.each do |translation|
+    translations.inject({}) do |relevant_phrase_text, translation|
       relevant_phrases = first_locale_translations.where(:phrase_id => translation.phrase_id)
-      if !relevant_phrases.first.nil?
-        relevant_phrase_text[translation.phrase_id] = relevant_phrases.first.text
-      else
-        relevant_phrase_text[translation.phrase_id] = "nil"
-      end
+      relevant_phrase = relevant_phrases.first
+      relevant_phrase_text[translation.phrase_id] = relevant_phrase && relevant_phrase.text
+      relevant_phrase_text
     end
-    relevant_phrase_text
   end
 
   def missing_translation?(locale)
